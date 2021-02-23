@@ -1,0 +1,15 @@
+<li class="mo-list-item dc-pa-5 dc-pa-md10{:mao_view_style($maccms.mid,count($__LIST__),$key)}">
+	<a class="mo-part-round dc-row mo-situ-pics mo-lazy-color{:mao_view_style($maccms.mid,count($__LIST__))}" href="{:mac_url_vod_detail($vo)}">
+		<img class="mo-pic-img mo-lazy-load" src="{:mao_url_lazy($vo.vod_pic)}" data-src="{:mao_url_img($vo.vod_pic)}" alt="{:mao_view_title($vo.vod_name)}" />
+		<div class="mo-situ-rema mo-part-ramp dc-font-12 mo-text-white dc-row">
+			<span class="dc-east">{:mao_view_title($vo.vod_name,1)}</span>
+			<span class="dc-west">{$vo.vod_remarks}</span>
+		</div>
+		<span class="mo-situ-play"></span>
+		{:mao_view_tips($vo)}
+	</a>
+	<div class="dc-pt-5 dc-pt-md10">
+		<a {:mao_view_color($vo.vod_color)}class="dc-clamp dc-font-14" href="{:mac_url_vod_detail($vo)}">{:mao_view_title($vo.vod_name)}</a>
+		<span class="dc-clamp dc-font-12 dc-line-18 dc-pt-2 mo-text-muted">{$vo.vod_actor|mac_default='演员未知'}</span>
+	</div>
+</li>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>魔加主题设置</title>
+<link href="{$mojia.config.cdn}{$mojia.config.mode}/layui/css/layui.css?v={$mojia.config.ver}" rel="stylesheet" type="text/css" />
+<script src="{$mojia.config.cdn}{$mojia.config.mode}/layui/layui.all.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+{include file="public/config"}{if$mojia.config.mode=='dev/exploit'}
+<link href="{$mojia.config.cdn}{$mojia.config.mode}/font/iconfont.css?v={$mojia.config.ver}" rel="stylesheet" type="text/css" />
+<link href="{$mojia.config.cdn}{$mojia.config.mode}/style/layout.css?v={$mojia.config.ver}" rel="stylesheet" type="text/css" />
+{/if}
+<link href="{$mojia.config.cdn}{$mojia.config.mode}/style/admin.css?v={$mojia.config.ver}" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+	var magic = {
+		'path': '{$mojia.config.path}',
+		'admin': '{$mojia.config.path}{$mojia.base.edit.entry}',
+		'entry': '{$mojia.config.entry}',
+		'tpl': '{$mojia.config.tpl}',
+	};
+</script>
+</head>
+
+<body style="min-width:1165px">

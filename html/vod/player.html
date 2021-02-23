@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{include file="public/include,module/include/style"}
+<style type="text/css">
+	html, body {height: 100% !important;}
+</style>
+<script type="text/javascript">
+	if (window.parent != this.window) {
+		window.parent.document.getElementById('mo-play-load').style.display = 'none';
+	}
+</script>
+</head>
+
+<body class="mo-back-black">
+<div class="mo-play-load dc-load dc-full" data-copy="{$obj.vod_copyright}" data-prim="{$mojia['play']['other']['prim']}" data-pass="{$mojia['play']['other']['pass']}" data-code="{:mac_default($popedom['code'],1)}" data-trysee="{:mac_default($obj.vod_trysee,$GLOBALS['config']['user']['trysee'])}" data-groupid="{:mac_default($user['group_id'],1)}" data-points="{$obj.vod_points_play}" data-group="{:in_array(mac_default($user['group_id'],1), explode(',',$mojia['play']['advs']['group']))}" data-advs="{$mojia['play']['advs']['state']}" data-link="{$mojia['play']['advs']['link']}" data-time="{$mojia['play']['advs']['time']}" data-auto="{$mojia['play']['other']['auto']}" data-state="{$mojia['other']['demo']['state']?0:$obj['vod_play_list'][$param['sid']]['player_info']['ps']}" data-parse="{:mao_view_parse($obj, $param)}" data-play="{:mao_view_play($obj, $param)}" data-next="{if$obj.player_info.link_next}{$maccms.http_type}{$_SERVER['HTTP_HOST']}{$obj.player_info.link_next}{/if}"></div>
+<iframe class="mo-play-iframe mo-java-left dc-full" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+<div class="mo-play-copyer dc-row dc-full dc-hide mo-back-black">
+	<div class="dc-core">
+		<h2 class="dc-center dc-font-18">{$mojia['play']['copy']['tips']}</h2>
+	</div>
+</div>
+<div class="mo-play-trysee dc-row dc-full dc-hide mo-back-black">
+	<div class="dc-core dc-row dc-pn-10">
+		{if$obj.vod_points_play}
+		<h2 class="dc-center dc-pn-10 dc-font-16 dc-font-md18">{if$GLOBALS['config']['user']['trysee']}试看{$obj.vod_trysee|mac_default=$GLOBALS['config']['user']['trysee']}分钟结束，完整观看本影片需要花费{$obj.vod_points_play}积分，请支付后观看。{else}{$popedom.msg}{/if}</h2>
+		<p class="dc-center dc-pn-10 dc-font-14">提示：一次支付，永久观看，不重复扣费，谢谢支持。</p>
+		<div class="dc-center">
+			{if mac_default($user['group_id'],1)==1}
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-white" href="{:mac_url('user/reg')}">用户注册</a>
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-mojia mo-play-login mo-java-event" href="javascript:;">立即登录</a>
+			{else}
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-white" href="{:mac_url('user/buy')}" target="_blank">马上充值</a>
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-mojia mo-java-power" href="javascript:;" data-name="{if$obj.player_info.flag=='play'}播放{else}下载{/if}" data-type="{if$obj.player_info.flag=='play'}4{else}5{/if}">确认购买</a>
+			{/if}
+		</div>
+		{else}
+		<h2 class="dc-center dc-pn-10 dc-font-16 dc-font-md18">{if$GLOBALS['config']['user']['trysee']}试看{$obj.vod_trysee|mac_default=$GLOBALS['config']['user']['trysee']}分钟结束，完整观看本影片需要升级会员组，请升级后观看。{else}{$popedom.msg}{/if}</h2>
+		<p class="dc-center dc-pn-10 dc-font-14">提示：购买VIP会员组，享受超级权限，谢谢支持。</p>
+		<div class="dc-center">
+			{if mac_default($user['group_id'],1)==1}
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-white" href="{:mac_url('user/reg')}">用户注册</a>
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-mojia mo-play-login mo-java-event" href="javascript:;">立即登录</a>
+			{else}
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-white" href="{:mac_url('user/index')}" target="_blank">会员中心</a>
+			<a class="mo-part-btns mo-bord-muted mo-bord-round dc-iblock dc-line-34 dc-pn-10 dc-ma-5 mo-back-mojia" href="{:mac_url('user/upgrade')}" target="_blank">马上升级</a>
+			{/if}
+		</div>
+		{/if}
+	</div>
+</div>
+<div class="mo-play-wechat dc-row dc-full dc-hide mo-back-black" data-chat="{:in_array($obj['type_id'], explode(',',$mojia['play']['chat']['category']))}" data-word="{:md5($GLOBALS['config']['weixin']['gjcm1'])}">
+	<div class="dc-core dc-row dc-width dc-pa-15 dc-pa-md10 mo-chat-info">
+		<h2 class="dc-pb-10 dc-pb-md20 dc-center dc-font-16 dc-font-md18">扫码回复<font color="red">{$GLOBALS['config']['weixin']['gjc1']}</font>,获取口令</h2>
+		<div class="dc-col-5 dc-row dc-pa-10 dc-pa-md10 dc-pl-0">
+			<img class="mo-bord-round" width="100%" src="{$mojia['play']['chat']['pic']|mac_url_img}" />
+		</div>
+		<div class="dc-col-7">
+			<li class="dc-row dc-pz-5 dc-pt-md5 dc-pb-md10 dc-center">欢迎关注微信公众号</li>
+			<li class="dc-row dc-pa-sm10"><input class="mo-chat-input mo-form-info mo-bord-round mo-bord-muted mo-back-muted dc-col-12" data-user="{$user.user_id}" type="text" placeholder="请输入口令" maxlength="60" /></li>
+			<li class="dc-row dc-pt-10 dc-pa-sm10 mo-ptss-10"><a class="mo-chat-submit mo-form-info mo-bord-round mo-bord-muted mo-back-mojia dc-center dc-block" href="javascript:;">确认</a></li>
+		</div>
+	</div>
+</div>
+{include file="module/include/script"}
+</body>
+
+</html>

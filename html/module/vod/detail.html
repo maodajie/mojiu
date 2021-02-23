@@ -1,0 +1,19 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<div class="mo-main-item mo-info-wrap dc-row mo-back-white">
+	<div class="dc-col-4 dc-col-md3 dc-col-xl2 mo-info-pics dc-row">
+		<a class="mo-bord-round dc-row dc-show dc-1by2 dc-font-0" href="{:mac_url_vod_detail($vo)}">
+			<img class="dc-full" src="{:mao_url_img($vo.vod_pic)}" alt="{$obj.vod_name}" />
+		</a>
+	</div>
+	<dl class="dc-col-8 dc-col-md9 dc-col-xl10 dc-pl-10 dc-pl-md15">
+		<dt class="dc-font-16 dc-line-24 dc-clamp"><a {:mao_view_color($vo.vod_color)} class="dc-bold" href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|mac_filter_html}</a></dt>
+		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">主演:&nbsp;</span>{$vo.vod_actor|mac_url_create='actor','vod','search'}</dd>
+		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">导演:&nbsp;</span>{$vo.vod_director|mac_url_create='director','vod','search'}</dd>
+		<dd class="dc-font-14 dc-line-24 dc-clamp">{$vo.vod_year|mac_url_create='year','vod','search'}{$vo.vod_class|mac_url_create='class','vod','search'}{$vo.vod_area|mac_url_create='area','vod','search'}</dd>
+	</dl>
+	<dd class="dc-col-8 dc-col-md9 dc-col-xl10 dc-pl-10 dc-pl-md15 dc-font-0 dc-line-24 dc-clamp mo-info-btns">
+		<a class="dc-font-14 dc-none mo-deta-play dc-mr-10 mo-part-btns dc-line-30 mo-bord-round mo-back-mojia" href="{:mac_url_vod_detail($vo)}"><i class="mo-icon-font mo-icon-down dc-pr-2 dc-font-14"></i>详情</a>
+		<a class="dc-font-14 dc-iblock mo-deta-play dc-mr-10 mo-part-btns dc-line-30 mo-bord-round mo-back-mojia" href="{:mac_url_vod_play($vo,'first')}"><i class="mo-icon-font mo-icon-play dc-pr-2 dc-font-14"></i>播放</a>
+		<a class="dc-font-14 dc-iblock mo-deta-play dc-mr-10 mo-part-btns dc-line-30 mo-bord-round mo-back-mojia" href="{:mac_url_vod_down($vo,'first')}"><i class="mo-icon-font mo-icon-down dc-pr-2 dc-font-14"></i>下载</a>
+	</dd>
+</div>

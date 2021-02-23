@@ -1,0 +1,13 @@
+<div class="mo-main-item">
+	<div class="mo-title-wrap dc-row dc-mz-10 dc-mz-md20">
+		<h2 class="dc-font-16 dc-font-md24 dc-line-24 dc-bold">猜你喜欢</h2>
+		<ul class="mo-part-more dc-font-0">
+			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="{:mac_url_type($obj.type)}">更多<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
+		{maccms:vod num="12" not="'.$obj['vod_id'].'" type="'.$GLOBALS['type_id'].'" rel="'.$obj[($maccms.mid==1?'vod':'art').'_rel_vod'].'" order="desc" by="time"}
+		{include file="basics/picture"}
+		{/maccms:vod}
+	</ul>
+</div>

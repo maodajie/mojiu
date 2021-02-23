@@ -1,0 +1,42 @@
+<div class="mo-head-wrap mo-back-white dc-mb-10 dc-mb-md20">
+	<div class="dc-body">
+		<div class="mo-navs-wrap">
+			<div class="mo-navs-logo dc-east">
+				<a class="dc-show" href="{$maccms.path}"><img class="dc-show dc-mz-5 dc-mz-md15" width="auto" height="40" src="{$mojia.base.logo.pic1}" alt="{$maccms.site_name}"></a>
+			</div>
+			<div class="mo-navs-icon dc-west">
+				{maccms:foreach name="$mojia['nav']" id="sub"}{if$sub['type']=='icon'}
+				<a class="mo-navs-{$sub['btns']=='center'&&!$Think.cookie.user_id?'logins':$sub['btns']} dc-iblock dc-font-0 mo-java-event" href="{$sub['link']|mac_default='javascript:;'}" {if$sub['btns']=='linker' } target="_blank" {/if}>{if$sub['btns']=='center'&&$Think.cookie.user_id} <img class="mo-part-coin" width="24" height="24" src="{$user['user_qq']?'http://q1.qlogo.cn/g?b=qq&nk='.$user['user_qq'].'&s=640':str_replace($install.'static/images/touxiang.png',$cdnpath.'asset/img/avatar.png',mac_get_user_portrait($user['user_id']))}" />{else}<i class="dc-show dc-font-24 dc-font-md28 mo-icon-font {$sub['icon']}"></i>{/if}</a>
+				{/if}{/maccms:foreach}
+			</div>
+			<div class="mo-navs-sbox mo-back-muted">
+				<input type="search" class="mo-sbox-text" placeholder="请输入关键词" />
+				<div class="mo-sbox-btns dc-font-0">
+					<a href="javascript:;" class="mo-sbox-btn dc-pl-10 dc-pr-10 dc-iblock mo-icon-font mo-icon-sousuo"></a>
+				</div>
+			</div>
+		</div>
+		<div class="mo-head-item mo-head-sbox">
+		</div>
+		<div class="mo-head-item mo-head-rbox">
+		</div>
+		<div class="mo-head-item mo-head-lbox">
+		</div>
+		<div class="mo-head-item mo-head-abox">
+		</div>
+	</div>
+	<div class="dc-body">
+		<ul class="mo-main-item mo-menu-wrap mo-java-scroll mo-back-white mo-part-round">
+			{maccms:foreach name=":mao_nav_view('desktop')" id="sub"}
+			<li class="mo-menu-item dc-iblock dc-font-16{if$sub['type']=='tid'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[mac_default($user['group_id'],1)]['group_type']))} mo-part-hide{/if}"><a class="mo-text-hover dc-show{if$sub['type']=='tid'&&($sub['id']==[tid]||$sub['id']==[pid])} mo-text-mojia mo-java-navs{elseif$sub['type']=='mid'&&$sub['id']==[mid]} mo-text-mojia mo-java-navs{/if}" href="{$sub['link']}"><i class="mo-part-bold mo-icon-font {$sub['icon']} dc-none dc-md-inline"></i> {$sub['name']|mac_filter_html}</a></li>
+			{/maccms:foreach}
+		</ul>
+	</div>
+</div>
+<div class="mo-tabr-info mo-back-white mo-cols-minw mo-line-top mo-bord-muted mo-cosm-none mo-java-fadein{if!$mobile} mo-coxs-none{/if}">
+	<ul class="mo-cols-rows mo-java-mojia">
+		{maccms:foreach name=":mao_nav_view('mobile')" id="sub"}
+		<li class="mo-pzxs-5px mo-cols-cell mo-coxs-center{if$sub['type']=='tid'&&!in_array($sub['id'], explode(',',model('Group')->getCache()[mac_default($user['group_id'],1)]['group_type']))} mo-part-hide{/if}"><a class="mo-cols-show{if$sub['type']=='tid'&&($sub['id']==$obj.type_id||$sub['id']==$obj.type_1.type_id||$sub['id']==$obj.parent.type_id)} mo-text-mojia{elseif$sub['type']=='mid'&&$maccms.mid==$sub['id']} mo-text-mojia{/if}" href="{if$sub['link']==mac_url('user/index')&&!$Think.cookie.user_id}{:mac_url('user/login')}{else}{$sub['link']}{/if}"><i class="mo-fsxs-24px mo-lhxs-24px mo-cols-show mo-icon-font {$sub['icon']}"></i><span class="mo-cols-show mo-fsxs-12px">{$sub['name']|mac_filter_html}</span></a></li>
+		{/maccms:foreach}
+	</ul>
+</div>

@@ -1,0 +1,40 @@
+{extend name="index/index"}
+{block name="left"}
+{if mao_view_slide($indexs,$maccms.mid)}
+<div class="mo-main-item dc-box">
+	{include file="basics/banner" data=":mao_view_slide($indexs,$maccms.mid)"}
+</div>
+{/if}{if$obj.childids}
+{maccms:type parent="'.$GLOBALS['type_id'].'" order="asc" by="sort" id="magic"}
+<div class="mo-main-item">
+	<div class="mo-title-wrap dc-row dc-mb-10 dc-mb-md20">
+		<h2 class="dc-font-16 dc-font-md24 dc-line-24 dc-bold">{$magic['type_name']}</h2>
+		<ul class="mo-part-more dc-font-0">
+			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block">今日更新{:mac_data_count(0,'today','vod')}</a></li>
+			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="{:mac_url_type($magic)}">更多<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
+		{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
+		{include file="basics/picture"}
+		{/maccms:vod}
+	</ul>
+</div>
+{/maccms:type}{else}
+<div class="mo-main-item">
+	<div class="mo-title-wrap dc-row dc-mb-10 dc-mb-md20">
+		<h2 class="dc-font-16 dc-font-md24 dc-line-24 dc-bold">{$obj['type_name']}</h2>
+		<ul class="mo-part-more dc-font-0">
+			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block">今日更新{:mac_data_count(0,'today','vod')}</a></li>
+			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="{:mac_url_type($obj)}">更多<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
+		{maccms:vod num="48" paging="yes" half="3" type="'.$GLOBALS['type_id'].'" order="desc" by="time"}
+		{include file="basics/picture"}
+		{/maccms:vod}
+	</ul>
+	{include file="tinier/paging"}
+</div>
+{/if}
+{/block}

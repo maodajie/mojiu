@@ -1,0 +1,32 @@
+<div class="mo-foot-wrap dc-body">
+	<div class="dc-center mo-bord-round mo-back-white dc-mb-10 dc-mb-md20 dc-pa-10 dc-pa-md20" data-mid="{$maccms['mid']}" data-aid="{$maccms['aid']}" data-rid="{$obj[mac_get_mid_code($maccms['mid']).'_id']}" data-sid="{$param['sid']}" data-nid="{$param['nid']}">
+		<p class="dc-center dc-line-30 dc-font-14">{$mojia['other']['foot']['code']}</p>
+		<p class="dc-center dc-line-30 dc-font-14">{$maccms.site_tj}</p>
+		<p class="dc-center dc-line-30 dc-font-14">
+			<a class="dc-iblock" href="{:mac_url('rss/index')}" target="_blank">RSS订阅</a>
+			<span class="dc-iblock">&nbsp;-&nbsp;</span>
+			<a class="dc-iblock" href="{:mac_url('rss/baidu')}" target="_blank">百度蜘蛛</a>
+			<span class="dc-iblock">&nbsp;-&nbsp;</span>
+			<a class="dc-iblock" href="{:mac_url('rss/google')}" target="_blank">谷歌爬虫</a>
+			<span class="dc-iblock">&nbsp;-&nbsp;</span>
+			<a class="dc-iblock" href="{:mac_url('map/index')}" target="_blank">网站地图</a>
+		</p>
+		<p class="dc-center dc-line-30 dc-font-14">&copy;&nbsp;{:date('Y')}&nbsp;{$maccms.site_url}&nbsp;Theme&nbsp;by&nbsp;<a class="mo-text-hover" href="{$mojia['base']['copy']['link']}?theme=https://mojia.amujie.com" target="_blank">{$mojia['base']['copy']['tips']}</a></p>
+	</div>
+</div>
+<div class="mo-goto-info mo-java-fadein">
+	<ul class="mo-coxs-block mo-java-union" data-union="{:in_array($maccms['mid'],explode(',',$mojia['base']['union']['type']))}" data-url="{$mojia['base']['union']['link']}">
+		{if$obj[mac_get_mid_code($maccms['mid']).'_id']&&$mojia['base']['edit']['state']&&mao_check_login()}
+		<li class="dc-center"><a class="mo-goto-calls mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow dc-font-20 dc-font-md24 dc-show mo-icon-font mo-icon-bianji mo-java-event" href="{$mojia.config.path}{$mojia.base.edit.entry}/admin/{:mac_get_mid_code($maccms.mid)}/info/id/{$obj[mac_get_mid_code($maccms.mid).'_id']}.{$GLOBALS['config']['app']['suffix']}" target="_blank"></a></li>
+		{/if}{if$mojia['fix']['call']['state']}
+		<li class="dc-center"><a class="mo-goto-calls mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow dc-font-20 dc-font-md24 dc-show mo-icon-font mo-icon-zixun mo-java-event" href="{$mojia['fix']['call']['link']}" target="_blank"></a></li>
+		{/if}{if$mojia['fix']['chat']['state']}
+		<li class="dc-center"><a class="mo-goto-chats mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow dc-font-20 dc-font-md24 dc-show mo-icon-font mo-icon-weixin mo-java-event" href="javascript:;" data-tips="{$mojia['fix']['chat']['tips']}" data-link="{$mojia['fix']['chat']['link']}" data-pics="{$mojia['fix']['chat']['pics']|mac_url_img}"></a></li>
+		{/if}{if$mojia['fix']['share']['state']}
+		<li class="dc-center"><a class="mo-goto-share mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow dc-font-20 dc-font-md24 dc-show mo-icon-font mo-icon-fenxiang mo-java-event" href="javascript:;" data-api="{$mojia['fix']['share']['apis']?1:0}" data-tpl="{$template}" data-chain="{:mac_default($mojia['fix']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['fix']['share']['agent']}"></a></li>
+		{/if}{if$mojia['color']['type']['name']!=2}
+		<li class="dc-center"><a class="mo-goto-black mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow dc-font-20 dc-font-md24 dc-show mo-icon-font mo-icon-yingyuan-line" href="javascript:;"></a></li>
+		{/if}
+		<li class="dc-center"><a class="mo-goto-toper mo-goto-lump mo-back-white mo-bord-round mo-bsxs-shadow dc-font-20 dc-font-md24 dc-hide mo-icon-font mo-icon-xiangshang" href="javascript:;"></a></li>
+	</ul>
+</div>

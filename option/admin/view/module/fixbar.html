@@ -1,0 +1,94 @@
+<div class="layui-tab-item">
+	<table class="layui-table" style="margin-top:0">
+		<colgroup>
+			<col width="110">
+			<col width="110">
+			<col width="300">
+			<col width="110">
+			<col width="110">
+			<col>
+		</colgroup>
+		<thead>
+			<tr>
+				<th>名称</th>
+				<th>图标</th>
+				<th>接口</th>
+				<th>链接</th>
+				<th>链接</th>
+			    <th>备注</th>
+			</tr>  
+		</thead>
+		<tbody>
+			{maccms:foreach name="$mojia['fix']" id="fixbar" key="fix"}
+			<input type="hidden" name="mojia[fix][{$fix}][type]" value="{$fixbar.type}" />
+			{switch $fixbar.type}
+			{case input}
+			<tr>
+				<td><input type="text" name="mojia[fix][{$fix}][name]" value="{$fixbar.name}" class="layui-input" placeholder="名称"></td>
+				<td><input type="text" name="mojia[fix][{$fix}][icon]" value="{$fixbar.icon}" class="layui-input" iconfont="iconfont"></td>
+				<td colspan="3"><input type="text" name="mojia[fix][{$fix}][link]" value="{$fixbar.link}" class="layui-input" placeholder="请填写跳转链接"></td>
+				<td>
+					<input type="radio" name="mojia[fix][{$fix}][state]" value="1" title="开启"{if$fixbar.state==1} checked{/if}>
+					<input type="radio" name="mojia[fix][{$fix}][state]" value="0" title="关闭"{if$fixbar.state==0} checked{/if}>
+				</td>
+			</tr>
+			{/case}
+			{case chat}
+			<tr>
+				<td rowspan="2"><input type="text" name="mojia[fix][{$fix}][name]" value="{$fixbar.name}" class="layui-input" placeholder="名称"></td>
+				<td rowspan="2"><input type="text" name="mojia[fix][{$fix}][icon]" value="{$fixbar.icon}" class="layui-input" iconfont="iconfont"></td>
+				<td><input type="text" name="mojia[fix][{$fix}][tips]" value="{$fixbar.tips}" class="layui-input" placeholder="请填写提示语"></td>
+				<td colspan="2"><input type="text" name="mojia[fix][{$fix}][link]" value="{$fixbar.link}" class="layui-input" placeholder="请填写公众号链接"></td>
+				<td>
+					<input type="radio" name="mojia[fix][{$fix}][state]" value="1" title="开启"{if$fixbar.state==1} checked{/if}>
+					<input type="radio" name="mojia[fix][{$fix}][state]" value="0" title="关闭"{if$fixbar.state==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="mojia[fix][{$fix}][pic]" value="{$fixbar.pic}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit>查看图片</button></td>
+				<td>
+					<input type="hidden" name="mojia[fix][{$fix}][des]" value="{$fixbar.des}" />
+					{$fixbar.des}
+				</td>
+			</tr>
+			{/case}
+			{case share}
+			<tr>
+				<td rowspan="3"><input type="text" name="mojia[fix][{$fix}][name]" value="{$fixbar.name}" class="layui-input" placeholder="名称"></td>
+				<td rowspan="3"><input type="text" name="mojia[fix][{$fix}][icon]" value="{$fixbar.icon}" class="layui-input" iconfont="iconfont"></td>
+				<td><input type="text" name="mojia[fix][{$fix}][image]" value="{$fixbar.image}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit>查看图片</button></td>
+				<td>
+					<input type="radio" name="mojia[fix][{$fix}][state]" value="1" title="开启"{if$fixbar.state==1} checked{/if}>
+					<input type="radio" name="mojia[fix][{$fix}][state]" value="0" title="关闭"{if$fixbar.state==0} checked{/if}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="mojia[fix][{$fix}][api]" value="{$fixbar.api}" class="layui-input" placeholder="请填写短连接API地址"></td>
+				<td colspan="2"><textarea name="mojia[fix][{$fix}][regex]" class="layui-textarea ts-admin-area" placeholder="正则表达式：/(.*)/i">{$fixbar.regex}</textarea></td>
+				<td><a href="https://www.runoob.com/regexp/regexp-syntax.html" target="_blank"><font color="red">正则表达式</font></a>&nbsp;正则获取短连接地址</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="mojia[fix][{$fix}][host]" value="{$fixbar.host}" class="layui-input" placeholder="自定义域名"></td>
+				<td><input type="text" name="mojia[fix][{$fix}][url]" value="{$fixbar.url}" class="layui-input" placeholder="请填写接口地址"></td>
+				<td>
+					<select name="mojia[fix][{$fix}][agent]" lay-filter="unique">
+						<option value="3"{if$fixbar.agent==2} selected{/if} data-url="https://i0.wp.com/">WP官方</option>
+						<option value="1"{if$fixbar.agent==1} selected{/if} data-url="{$mojia.config.tpl}api.php/index/image?pic=">自定义</option>
+						<option value="0"{if$fixbar.agent==0} selected{/if} data-url="">关闭</option>
+					</select>
+				</td>
+				<td>
+					<input type="hidden" name="mojia[fix][{$fix}][des]" value="{$fixbar.des}" />
+					{$fixbar.des}
+				</td>
+			</tr>
+			{/case}
+			{/switch}
+			{/maccms:foreach}
+		</tbody>
+	</table>
+</div>
