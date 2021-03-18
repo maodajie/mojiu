@@ -28,9 +28,9 @@
 <script type="text/javascript">
 	layui.config({
 		version: '{$mojia.config.ver}',
-		base: '{$mojia.config.cdn}{$mojia.config.mode}/script/',
+		base: '{$mojia.config.cdn}{$mojia.config.base}/script/',
 	}).extend({
-		income: '{$GLOBALS["package"][str_replace("dev/","",$GLOBALS["package"]["mode"])]["income"]}'
+		income: '{$GLOBALS["package"][$GLOBALS["package"]["mode"]]["income"]}'
 	}).use(['admin', 'income'], function() {
 		layui.admin.global.init();
 		layui.income.init();

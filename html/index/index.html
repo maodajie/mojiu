@@ -30,7 +30,7 @@
 	{case banner}
 	{if mao_view_slide($indexs,$maccms.mid)}
 	<div class="mo-main-item dc-box">
-		{include file="basics/banner" data=":mao_view_slide($indexs,$maccms.mid)"}
+		{include file="module/common/banner" data=":mao_view_slide($indexs,$maccms.mid)"}
 	</div>
 	{/if}
 	{/case}
@@ -45,7 +45,7 @@
 		</div>
 		<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
 			{maccms:vod num="'.$indexs['num'].'" type="'.$indexs['category'].'" level="'.$indexs['level'].'" order="'.$indexs['order'].'" by="'.$indexs['sort'].'"}
-			{include file="basics/picture"}
+			{include file="module/vod/picture"}
 			{/maccms:vod}
 		</ul>
 	</div>
@@ -60,7 +60,7 @@
 		</div>
 		<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
 			{maccms:vod num="'.$indexs['num'].'" type="'.$indexs['category'].'" level="'.$indexs['level'].'" order="'.$indexs['order'].'" by="'.$indexs['sort'].'"}
-			{include file="basics/picture"}
+			{include file="module/vod/picture"}
 			{/maccms:vod}
 		</ul>
 	</div>
@@ -79,7 +79,7 @@
 		</div>
 		<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
 			{maccms:vod num="'.$indexs['num'].'" type="'.$magic['type_id'].'" level="'.$indexs['level'].'" order="'.$indexs['order'].'" by="'.$indexs['sort'].'"}
-			{include file="basics/picture"}
+			{include file="module/vod/picture"}
 			{/maccms:vod}
 		</ul>
 	</div>

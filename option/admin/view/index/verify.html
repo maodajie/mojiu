@@ -36,7 +36,7 @@
 <script type="text/javascript">
 	layui.config({
 		version: '{$mojia.config.ver}',
-		base: '{$mojia.config.cdn}{$GLOBALS["package"]["mode"]}/script/',
+		base: '{$mojia.config.cdn}{$mojia.config.base}/script/',
 	}).use(['admin'], function() {
 		layui.admin.verify.init();
 	});

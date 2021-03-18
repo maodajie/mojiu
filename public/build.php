@@ -1,7 +1,8 @@
 <?php
 /*!
  * @author:大橙子
- * @website:https://amujie.com
+ * @website:https://maodajie.com
+ * @telegram:https://t.me/mubanqun
  * @qqcode:1570457334
  */
 header('Content-Type:text/html;charset=utf-8');
