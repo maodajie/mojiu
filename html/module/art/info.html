@@ -1,0 +1,34 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<div class="dc-layout dc-wane mo-back-white dc-pa-10 dc-pa-md15">
+	{if count(mao_img_count($vo.art_content))==3}
+	<a class="dc-omit-2 dc-font-14 dc-pb-5 dc-pb-md10" href="{:mac_url_art_detail($vo)}">{$vo.art_name}</a>
+	<a class="dc-show dc-row dc-wane" href="{:mac_url_art_detail($vo)}">
+		{maccms:foreach name=":mao_img_count($vo.art_content)" id="image" key="pic"}
+		<div {if$pic==1}style="padding:0 1px" {/if} class="dc-col-4{if$pic==0} dc-pr-2{elseif$pic==2} dc-pl-2{/if}">
+			<div class="mo-lazy-wrap dc-row mo-lazy-color mo-lazy-broad dc-3by2">
+				<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($image)}" data-src="{:mao_img_src($image)}" alt="{$vo.art_name}" />
+			</div>
+		</div>
+		{/maccms:foreach}
+	</a>
+	<span class="dc-show dc-row dc-font-12 mo-text-muted dc-pt-5 dc-pt-md10">
+		{$vo.type.type_name}&nbsp;·&nbsp;{$vo.art_time|mac_day}
+	</span>
+	{else}
+	<div class="dc-col-8 dc-pr-10">
+		<a class="dc-omit-2 dc-font-14" href="{:mac_url_art_detail($vo)}">{$vo.art_name}</a>
+	</div>
+	<div class="dc-col-4 dc-pl-2">
+		<a class="dc-show dc-row dc-wane" href="{:mac_url_art_detail($vo)}">
+			<div class="mo-lazy-wrap dc-row mo-lazy-color mo-lazy-broad dc-3by2">
+				<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.art_pic)}" data-src="{:mao_img_src($vo.art_pic)}" alt="{$vo.art_name}" />
+			</div>
+		</a>
+	</div>
+	<div class="dc-col-8 dc-pr-10 dc-lbgo dc-pa-10 dc-pa-md15">
+		<span class="dc-row dc-font-12 mo-text-muted">
+			{$vo.type.type_name}&nbsp;·&nbsp;{$vo.art_time|mac_day}
+		</span>
+	</div>
+	{/if}
+</div>

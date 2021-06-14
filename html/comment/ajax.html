@@ -1,0 +1,38 @@
+<?php require '.'.MAC_PATH_TEMPLATE.'public/include.php';?>
+{maccms:comment mid="'.$maccms['mid'].'" rid="'.$obj['vod_id'].'" num="'.$GLOBALS['config']['comment']['pagesize'].'" paging="yes" half="3" order="desc" by="id"}
+{if$vo.comment_content}
+{$key>1?='<span class="dc-show dc-border dc-ma-5 mo-edge-color"></span>'}
+<li class="dc-row dc-over dc-pa-5">
+	<img class="mo-talk-avat dc-wane-100 dc-ltgo dc-pa-5 js-lazyload" src="{:mao_img_lazy(mao_view_user($vo,'user_avatar'))}" data-src="{:mao_view_user($vo,'user_avatar')}" />
+	<div class="mo-talk-left dc-line-20">
+		<div class="mo-talk-info">
+			<span class="dc-bold">{:mac_default(mao_view_user($vo,'user_nick_name'),$vo.comment_name)}</span>
+			<span class="dc-font-12 mo-text-muted dc-rtgo dc-pa-5">{$vo.comment_time|mac_day}</span>
+			<p class="dc-pz-5">{:mao_img_face($vo.comment_content)}</p>
+			<div class="dc-right dc-font-12">
+				<a class="mo-talk-hand dc-ml-5" data-id="{$vo.comment_id}" data-type="tip" href="javascript:;">举报</a>
+				<a class="mo-talk-hand dc-ml-5 mo-text-green" data-id="{$vo.comment_id}" data-mid="4" data-type="up" href="javascript:;"><i class="mo-icon-font mo-icon-dianzan-line dc-font-12 dc-bold"></i>(<span>{$vo.comment_up}</span>)</a>
+				<a class="mo-talk-call dc-ml-5" data-id="{$vo.comment_id}" href="javascript:;">回复</a>
+			</div>
+		</div>
+		{maccms:foreach name="$vo.sub" id="child"}
+		<span class="dc-show dc-border dc-mz-5 mo-edge-color"></span>
+		<div class="mo-talk-info dc-row dc-over dc-pt-5">
+			<img class="mo-talk-avat dc-wane-100 dc-ltgo dc-pz-5 js-lazyload" src="{:mao_img_lazy(mao_view_user($child,'user_avatar'))}" data-src="{:mao_view_user($child,'user_avatar')}" />
+			<div class="mo-talk-left dc-line-20">
+				<span class="dc-bold">{:mac_default(mao_view_user($child,'user_nick_name'),$child.comment_name)}</span>
+				<span class="dc-font-12 mo-text-muted dc-rtgo dc-pz-5">{$child.comment_time|mac_day}</span>
+				<p class="dc-pz-5">{:mao_img_face($child.comment_content)}</p>
+				<div class="dc-right dc-font-12">
+					<a class="mo-talk-hand dc-ml-5" data-id="{$child.comment_id}" data-type="up" href="javascript:;">举报</a>
+					<a class="mo-talk-hand dc-ml-5 mo-text-green" data-id="{$child.comment_id}" data-mid="4" data-type="up" href="javascript:;"><i class="mo-icon-font mo-icon-dianzan-line dc-font-12 dc-bold"></i>(<span>{$child.comment_up}</span>)</a>
+					<a class="mo-talk-call dc-ml-5" data-id="{$vo.comment_id}" href="javascript:;">回复</a>
+				</div>
+			</div>
+		</div>
+		{/maccms:foreach}
+	</div>
+</li>
+{/if}
+{/maccms:comment}
+{include file="module/common/paging"}

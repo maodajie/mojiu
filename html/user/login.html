@@ -1,8 +1,35 @@
-{include file="public/header"}
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	<div class="mo-part-maxw mo-part-patb">
-		<h2 class="mo-fsxs-18px mo-coxs-center">会员登录</h2>
-		{include file="user/ajax_login"}
-	</div>
+{extend name="index/index"}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<h2 class="dc-font-20 dc-center dc-pz-20">会员登录</h2>
+	<form class="mo-form-wrap dc-row" autocomplete="off">
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" autocomplete="off" type="text" name="user_name" placeholder="账号/邮箱/手机号" maxlength="20" />
+		</div>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" autocomplete="off" type="password" name="user_pwd" placeholder="请输入密码" maxlength="20" />
+		</div>
+		{if$GLOBALS['config']['user']['login_verify']}
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="number" name="verify" placeholder="请输入验证码" maxlength="4" />
+			<img class="dc-row dc-wane dc-rtgo dc-ma-10" height="34" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
+		</div>
+		{/if}
+		<span class="dc-pn-5 dc-line-18 dc-font-12">&emsp;</span>
+		<div class="dc-row dc-pa-5">
+			<a data-jump="{:mac_url('user/index')}" class="mo-user-click mo-back-mojia dc-wane dc-edge dc-line-24 dc-col-12 dc-pa-10 dc-center" href="javascript:;">登录</a>
+		</div>
+		<div class="dc-row dc-pa-5 dc-pb-20 dc-mb-10 dc-font-12">
+			<a class="dc-col-3 dc-left" href="{:mac_url('user/findpass')}">忘记密码</a>
+			{if$GLOBALS['config']['connect']['weixin']['status']}
+			<a class="{if$GLOBALS['config']['connect']['qq']['status']} dc-col-3{else} dc-col-6{/if} dc-center" href="{:mac_url('user/oauth')}?type=weixin">微信登录</a>
+			{/if}{if$GLOBALS['config']['connect']['qq']['status']}
+			<a class="{if$GLOBALS['config']['connect']['weixin']['status']} dc-col-3{else} dc-col-6{/if} dc-center" href="{:mac_url('user/oauth')}?type=qq">QQ登录</a>
+			{/if}{if!$GLOBALS['config']['connect']['weixin']['status']&&!$GLOBALS['config']['connect']['qq']['status']}
+			<a class="dc-col-6 dc-center">&emsp;</a>
+			{/if}
+			<a class="dc-col-3 dc-right" href="{:mac_url('user/reg')}">注册账号</a>
+		</div>
+	</form>
 </div>
-{include file="tinier/relate,public/footer"}
+{/block}

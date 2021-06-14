@@ -1,4 +1,4 @@
-<div class="mo-play-wrap mo-bord-round dc-row">
+<div class="dc-mt-10 dc-mt-md20 mo-play-wrap mo-back-white dc-wane dc-row">
 	<div class="mo-back-black dc-row dc-16by9">
 		<div id="mo-play-load" class="dc-load dc-full"></div>
 		<iframe class="dc-full" src="{:mac_url('vod/player',['id'=>$param['id'],'sid'=>$param['sid'],'nid'=>$param['nid']])}" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
@@ -9,49 +9,46 @@
 		</div>
 		{/if}
 	</div>
-</div>
-<div class="mo-play-btns mo-back-white">
-	<ul class="dc-line-top mo-bord-muted">
-		{if$mojia['play']['other']['cuts']}
-		<li class="dc-iblock">
-			<a class="dc-line-40 mo-play-switch" href="javascript:;"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-fuzhi"></i>切换</a>
+	<ul class="dc-line-top mo-edge-color dc-pa-md5">
+		<li class="dc-cell dc-center">
+			<a class="dc-line-44 mo-play-switch" href="javascript:;"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-fuzhi"></i>线路</a>
 		</li>
-		{/if}{if$obj.vod_down_list}
-		<li class="dc-iblock">
-			<a class="dc-line-40 mo-play-downer" href="{:mac_url_vod_down($obj,['sid'=>$param.sid,'nid'=>$param.nid])}" target="_blank"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-xiazai"></i>下载</a>
+		{if$obj.vod_down_list}
+		<li class="dc-cell dc-center">
+			<a class="dc-line-44 mo-play-downer" href="{:mac_url_vod_down($obj,['sid'=>$param.sid,'nid'=>$param.nid])}" target="_blank"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-xiazai"></i>下载</a>
 		</li>
 		{else}
-		<li class="dc-iblock mo-coxs-none mo-coss-table">
-			<a class="dc-line-40 mo-play-reno" href="javascript:location.reload();"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-shuaxin"></i>刷新</a>
-		</li>
+		<!-- <li class="dc-cell dc-center mo-coxs-none mo-coss-table">
+			<a class="dc-line-44 mo-play-reno" href="javascript:location.reload();"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-shuaxin"></i>刷新</a>
+		</li> -->
 		{/if}{if$GLOBALS['config']['user']['status']}{assign name="somake" value=":model('Ulog')->listData(array('ulog_type'=>'2','ulog_rid'=>$obj['vod_id'],'ulog_sid'=>$param['sid'],'ulog_nid'=>$param['nid'],'user_id'=>$user['user_id']),'ulog_time desc')"}
-		<li class="dc-iblock">
-			<a class="dc-line-40 mo-play-somake" href="javascript:;" data-url="{:mac_url('user/ulog_del')}" data-ids="{$somake['list'][0]['ulog_id']}"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-shoucang-line{if$somake['pagecount']} mo-icon-shoucang-fill{/if}"></i>收藏</a>
+		<li class="dc-cell dc-center">
+			<a class="dc-line-44 mo-play-somake" href="javascript:;" data-url="{:mac_url('user/ulog_del')}" data-ids="{$somake['list'][0]['ulog_id']}"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-shoucang-line{if$somake['pagecount']} mo-icon-shoucang-fill{/if}"></i>收藏</a>
 		</li>
 		{/if}{if$mojia['fix']['share']['state']}
-		<li class="dc-iblock">
-			<a class="dc-line-40 mo-play-share mo-java-event" href="javascript:;" data-api="{$mojia['fix']['share']['apis']?1:0}" data-tpl="{$template}" data-chain="{:mac_default($mojia['fix']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['fix']['share']['agent']}"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-fenxiang"></i>分享</a>
+		<li class="dc-cell dc-center">
+			<a class="dc-line-44 mo-play-share mo-java-event" href="javascript:;" data-api="{$mojia['fix']['share']['apis']?1:0}" data-tpl="{$template}" data-chain="{:mac_default($mojia['fix']['chain']['apis'],'asset/exc/create.php?id=url&pic=')}" data-agent="{$mojia['fix']['share']['agent']}"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-fenxiang"></i>分享</a>
 		</li>
 		{/if}
-		<li class="dc-iblock">
-			<a class="dc-line-40 mo-play-prev{if$param.nid==1} mo-part-bans mo-text-disad{/if}" href="{$obj.player_info.link_pre}"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-shangyige"></i>上集</a>
+		<li class="dc-cell dc-center">
+			<a class="dc-line-44 mo-play-prev{if$param.nid==1} mo-part-bans mo-text-disad{/if}" href="{$obj.player_info.link_pre}"><i class="dc-bold dc-pr-2 mo-icon-font mo-icon-shangyige"></i>上集</a>
 		</li>
-		<li class="dc-iblock">
-			<a class="dc-line-40 mo-play-next{if$param.nid==$obj['vod_play_list'][$param['sid']]['url_count']} mo-part-bans mo-text-disad{/if}" href="{$obj.player_info.link_next}">下集<i class="dc-bold dc-pl-2 mo-icon-font mo-icon-xiayige"></i></a>
+		<li class="dc-cell dc-center">
+			<a class="dc-line-44 mo-play-next{if$param.nid==$obj['vod_play_list'][$param['sid']]['url_count']} mo-part-bans mo-text-disad{/if}" href="{$obj.player_info.link_next}">下集<i class="dc-bold dc-pl-2 mo-icon-font mo-icon-xiayige"></i></a>
 		</li>
 	</ul>
 </div>
-<div class="mo-play-tips dc-line-24 dc-mb-10 mo-bord-round dc-row dc-center dc-line-40">
-	温馨提示:<span>{$mojia.play.tips.text}</span>
-</div>
-<div class="mo-play-title dc-mb-10">
-	<div class="mo-title-wrap dc-row">
-		<h2 class="dc-font-18 dc-font-md24 dc-line-24 dc-bold">{$obj.vod_name|mac_filter_html}</h2>
-		<ul class="mo-part-more dc-font-0">
-			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="{:mac_url('label/latest')}">简介<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
-		</ul>
+<div class="dc-layout dc-wane mo-back-white dc-none mo-play-line">
+	<div class="mo-title-wrap dc-row dc-pa-5">
+		<h2 class="dc-font-14 dc-line-20 dc-bold">播放线路</h2>
 	</div>
-	<div class="mo-list-wrap dc-row dc-font-12 dc-line-20 mo-text-muted">
-		<i class="mo-icon-font mo-icon-remen-fill dc-font-12" style="color:#f42c5d"></i>热度{$obj.vod_hits}&nbsp;·&nbsp;{$obj.vod_class|mac_url_create='class','vod','search'}·&nbsp;{$obj.vod_area|mac_url_create='area','vod','search'}·&nbsp;{$obj.vod_remarks|mac_default='未知'}
-	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:foreach name="obj.vod_play_list" id="vo"}
+		{if$vo.url_count>=$param.nid}
+		<li class="dc-pa-5 dc-col-6 dc-col-md4">
+			<a class="dc-bold mo-part-btns dc-font-14 dc-center mo-edge-color dc-wane dc-show dc-clamp dc-line-40 mo-back-click{if$vo.sid==$param.sid} mo-back-mojia{/if}" href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$param.nid])}">{$vo.player_info.show}{if$vo.url_count>2}更新至{$vo.url_count}集{/if}</a>
+		</li>
+		{/if}
+		{/maccms:foreach}
+	</ul>
 </div>

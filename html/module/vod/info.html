@@ -1,0 +1,32 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<div class="{if'[type]'!='tile'}dc-layout dc-wane mo-back-white {/if}mo-info-wrap dc-row">
+	<div class="mo-info-pic dc-pa-5 dc-row">
+		<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-1by2" href="{:mac_url_vod_detail($vo)}">
+			<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.vod_pic)}" data-src="{:mao_img_src($vo.vod_pic)}" alt="{:mao_view_title($vo.vod_name)}" />
+			<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12">
+				<span class="dc-east">{:mao_view_title($vo.vod_name,1)}</span>
+				<span class="dc-west">{:mao_vod_remarks($vo)}</span>
+			</div>
+			<span class="mo-lazy-play dc-full"></span>
+		</a>
+	</div>
+	<dl class="mo-info-item dc-ltgo{if'[type]'!='tile'} dc-pa-10 dc-pa-md15{else} dc-pa-5{/if}">
+		<dt class="dc-font-16 dc-line-24 dc-clamp"><a {:mao_view_color($vo.vod_color)} class="dc-bold" href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|strip_tags}</a></dt>
+		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-mojia dc-iblock dc-font-18 dc-bold dc-pr-5">{$vo.vod_douban_score>0?$vo.vod_douban_score:$vo.vod_score}</span><span class="dc-iblock mo-rate-wrap mo-rate-go{:mao_vod_rate($vo.vod_douban_score>0?$vo.vod_douban_score:$vo.vod_score)}"></span></dd>
+		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">类型:&nbsp;</span>{$vo.vod_class|mac_url_create='class','vod','search'}{$vo.vod_year|mac_url_create='year','vod','search'}{$vo.vod_area|mac_url_create='area','vod','search'}</dd>
+		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">主演:&nbsp;</span>{$vo.vod_actor|mac_url_create='actor','vod','search'}</dd>
+		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">导演:&nbsp;</span>{$vo.vod_director|mac_url_create='director','vod','search'}</dd>
+	</dl>
+	<div class="mo-info-item dc-lbgo dc-font-0{if'[type]'!='tile'} dc-pa-15 dc-pa-md20{else} dc-pa-10{/if} dc-font-0 dc-line-24 dc-clamp">
+		{if$maccms.aid!=14}
+		<a class="mo-info-btns dc-wane dc-center dc-font-14 dc-line-30 dc-pn-10 dc-ml-10 mo-back-mojia dc-iblock" href="{:mac_url_vod_detail($vo)}"><i class="mo-icon-font mo-icon-dingdan dc-pr-2 dc-font-14"></i>查看详情</a>
+		{else}
+		{if!$obj.vod_pwd&&$maccms.aid!=15&&count($vo['vod_play_list'])}
+		<a class="mo-info-btns dc-wane dc-center dc-font-14 dc-line-30 dc-pn-10 dc-ml-10 mo-back-mojia dc-iblock" href="{:mac_url_vod_play($vo,'first')}"><i class="mo-icon-font mo-icon-bofang dc-pr-2 dc-font-14"></i>立即播放</a>
+		{/if}
+		{if!$obj.vod_pwd&&$maccms.aid!=16&&count($vo['vod_down_list'])&&$maccms.aid!=10}
+		<a class="mo-info-btns dc-wane dc-center dc-font-14 dc-line-30 dc-pn-10 dc-ml-10 mo-back-mojia dc-iblock" href="{:mac_url_vod_down($vo,'first')}"><i class="mo-icon-font mo-icon-xiazai-line dc-pr-2 dc-font-14"></i>下载</a>
+		{/if}
+		{/if}
+	</div>
+</div>

@@ -1,20 +1,24 @@
-{include file="public/header"}
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	<div class="mo-jump-info mo-part-maxw mo-part-patb" data-msg="{$msg}">
-		<h3 class="mo-jump-head mo-paxs-10px mo-maxs-10px mo-fsxs-16px mo-fsmd-20px mo-bord-muted"><span class="mo-jump-span mo-fsxs-24px">提示</span>{$msg}</h3>
-		<div class="mo-cols-rows mo-paxs-10px mo-ptxs-0px">
-			<div class="mo-jump-tips mo-cols-info mo-cols-xs6">
-				<h4 class="mo-fsxs-18px">可能原因：</h4>
-				<p class="mo-lhxs-40px">找不到请求的页面</p>
-				<p class="mo-lhxs-40px">输入的网址不正确</p>
-			</div>
-			<div class="mo-jump-tips mo-cols-info mo-cols-xs6">
-				<h4 class="mo-fsxs-18px">可以尝试：</h4>
-				<p class="mo-lhxs-40px"><a class="mo-text-mojia" href="{:mac_url('index/index')}">打开网站首页</a></p>
-				<?php if(!strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST'])){ $url = mac_url('index/index'); } ?>
-				<p class="mo-lhxs-40px"><a class="mo-jump-href" href="{$url}">自动跳转(<span class="mo-jump-nums">3</span>)</a></p>
-			</div>
+{extend name="index/index"}
+{block name="title"}
+<title>404 Not Found - {$GLOBALS['config']['site']['site_name']}</title>
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-pa-10 dc-font-0">
+		<h2 class="dc-bold dc-font-28 dc-pb-10">提示<span class="dc-pl-20 dc-font-18">{$msg}</span></h2>
+		<span class="dc-show dc-border mo-edge-color"></span>
+	</div>
+	<div class="mo-jump-wrap dc-pb-20 dc-pl-10 dc-row">
+		<div class="dc-col-6">
+			<h4 class="dc-font-18 dc-line-44">可能原因：</h4>
+			<p class="dc-font-14 dc-line-30">找不到请求的页面</p>
+			<p class="dc-font-14 dc-line-30">输入的网址不正确</p>
+		</div>
+		<div class="dc-col-6">
+			<h4 class="dc-font-18 dc-line-44">可以尝试：</h4>
+			<p class="dc-font-14 dc-line-30"><a class="mo-text-mojia" href="http://127.0.0.1/index.php/vod/detail/id/471158.html">打开网站首页</a></p>
+			<p class="dc-font-14 dc-line-30"><a class="js-jump" data-url="{:mac_url('index/index')}" href="{:strpos($_SERVER['HTTP_REFERER'],$_SERVER['HTTP_HOST'])===false?mac_url('index/index'):$url}">自动跳转(<span>3</span>)</a></p>
 		</div>
 	</div>
 </div>
-{include file="tinier/relate,public/footer"}
+{/block}

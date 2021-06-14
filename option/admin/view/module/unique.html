@@ -2,14 +2,16 @@
 	<table class="layui-table" style="margin-top:0">
 		<colgroup>
 			<col width="110">
+			<col width="110">
 			<col width="300">
-			<col width="135">
-			<col width="130">
+			<col width="110">
+			<col width="110">
 			<col>
 		</colgroup>
 		<thead>
 			<tr>
 				<th>名称</th>
+				<th>副标</th>
 				<th>链接</th>
 				<th colspan="2">按钮</th>
 	            <th>备注</th>
@@ -22,7 +24,7 @@
 			{case close}
 			<tr>
 				<td><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="名称"></td>
-				<td><input type="text" name="mojia[sole][{$sole}][tips]" value="{$unique.tips}" class="layui-input" placeholder="请填写"></td>
+				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][tips]" value="{$unique.tips}" class="layui-input" placeholder="请填写"></td>
 				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][time]" value="{$unique.time}" class="layui-input mo-date-time" placeholder="请填写下次开启站点时间"></td>
 				<td>
 					<input type="radio" name="mojia[sole][{$sole}][state]" value="1" title="开启"{if$GLOBALS['config']['site']['site_status']==1} checked{/if}>
@@ -33,37 +35,17 @@
 			{case input}
 			<tr>
 				<td><input type="input" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="名称"></td>
-				<td colspan="3"><input type="input" name="mojia[sole][{$sole}][text]" value="{$unique.text}" class="layui-input" placeholder="请填写"></td>
+				<td colspan="4"><input type="input" name="mojia[sole][{$sole}][text]" value="{$unique.text}" class="layui-input" placeholder="请填写"></td>
 				<td>
 					<input type="radio" name="mojia[sole][{$sole}][state]" value="1" title="开启"{if$unique.state==1} checked{/if}>
 					<input type="radio" name="mojia[sole][{$sole}][state]" value="0" title="关闭"{if$unique.state==0} checked{/if}>
 				</td>
 			</tr>
 			{/case}
-			{case image}
-			<tr>
-				<td><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="名称"></td>
-				<td><input type="text" name="mojia[sole][{$sole}][text]" value="{$unique.text}" class="layui-input" placeholder="请填写"></td>
-				<td><input type="text" name="mojia[sole][{$sole}][sub]" value="{$unique.sub}" class="layui-input" placeholder="名称"></td>
-				<td>
-					<input type="hidden" name="mojia[sole][{$sole}][category]" value="{$unique.category}" />
-					<select multiple="multiple" lay-filter="home">
-						<option value="">请选择</option>
-						{maccms:type ids="parent" order="asc" by="sort" mid="1"}
-						<option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$unique['category']))} selected{/if}>{$vo.type_name}</option>
-						{/maccms:type}
-					</select>
-				</td>
-				<td>
-					<input type="hidden" name="mojia[sole][{$sole}][des]" value="{$unique.des}" />
-					{$unique.des}
-				</td>
-			</tr>
-			{/case}
 			{case cdn}
 			<tr>
 				<td><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="静态加速"></td>
-				<td><input type="text" name="mojia[sole][{$sole}][link]" value="{$unique.link}" class="layui-input" placeholder="静态文件加速地址"></td>
+				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][link]" value="{$unique.link}" class="layui-input" placeholder="静态文件加速地址"></td>
 				<td colspan="2">
 					<select name="mojia[sole][{$sole}][debug]">
 						<option value="1"{if$unique.debug==1} selected{/if}>版本号(线上运行)</option>
@@ -79,79 +61,191 @@
 			{case browse}
 			<tr>
 				<td><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="浏览控制"></td>
-				<td colspan="2"><textarea name="mojia[sole][{$sole}][rule]" class="layui-textarea ts-admin-area" lay-submit lay-filter="browse" placeholder="请填写正则表达式">{$unique.rule}</textarea></td>
+				<td colspan="3"><textarea name="mojia[sole][{$sole}][preg]" class="layui-textarea ts-admin-area" lay-submit lay-filter="browse" placeholder="请填写正则表达式">{$unique.preg}</textarea></td>
 				<td>
 					<select name="mojia[sole][{$sole}][state]">
 						<option value="1"{if$unique.state==1} selected{/if}>允许</option>
 						<option value="0"{if$unique.state==0} selected{/if}>禁止</option>
 					</select>
 				</td>
-				<td>
-					<input type="hidden" name="mojia[sole][{$sole}][des]" value="{$unique.des}" />
-					{$unique.des}
-				</td>
+				<td>某些浏览器打开网站</td>
 			</tr>
 			{/case}
 			{case chain}
 			<tr>
-				<td rowspan="2"><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="图片盗链"></td>
-				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][url]" value="{$unique.url}" class="layui-input" placeholder="请填写接口地址"></td>
+				<td><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="图片盗链"></td>
+				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][url]" value="{$unique.url}" class="layui-input" placeholder="请填写接口地址"></td>
 				<td>
-					<select name="mojia[sole][{$sole}][agent]" lay-filter="unique">
-						<option value="3"{if$unique.agent==2} selected{/if} data-url="https://i3.wp.com/">WP官方</option>
-						<option value="1"{if$unique.agent==1} selected{/if} data-url="{$mojia.config.tpl}api.php/index/image?pic=">自定义</option>
+					<select name="mojia[sole][{$sole}][agent]" lay-filter="chain">
+						<option value="2"{if$unique.agent==2} selected{/if} data-url="https://i3.wp.com/">WP官方</option>
+						<option value="1"{if$unique.agent==1} selected{/if} data-url="{$mojia.config.run}index.php/index/image?pic=">自定义</option>
 						<option value="0"{if$unique.agent==0} selected{/if} data-url="">关闭</option>
 					</select>
 				</td>
-				<td rowspan="2">
-					<input type="hidden" name="mojia[sole][{$sole}][des]" value="{$unique.des}" />
-					{$unique.des}
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][regex]" value="{$unique.regex}" class="layui-input" placeholder="清除已存在的代理,以防打不开,多条用(,)分隔"></td>
+				<td>解决图片403的问题</td>
 			</tr>
 			{/case}
 			{case taoke}
 			<tr>
 				<td rowspan="2"><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="淘客设置"></td>
-				<td><input type="text" name="mojia[sole][{$sole}][secret]" value="{$unique.secret}" class="layui-input" placeholder="APP_SECRET"></td>
+				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][secret]" value="{$unique.secret}" class="layui-input" placeholder="APP_SECRET"></td>
 				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][key]" value="{$unique.key}" class="layui-input" placeholder="APP_KEY"></td>
-				<td rowspan="2">
-					<input type="hidden" name="mojia[sole][{$sole}][des]" value="{$unique.des}" />
-					{$unique.des}
-				</td>
+				<td>大淘客配置</td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][pid]" value="{$unique.pid}" class="layui-input" placeholder="PID"></td>
-				<td>
+				<td colspan="2">
 					<input type="hidden" name="mojia[sole][{$sole}][mid]" value="{$unique.mid}" />
-					<select multiple="multiple" lay-filter="home">
+					<select multiple="unique" lay-filter="home">
 						<option value="">请选择</option>
 						{maccms:foreach name=":explode(',','0,1,2,3,5,6,7,8,11')"}
 						<option value="{$vo}"{if in_array($vo, explode(',',$unique['mid']))} selected{/if}>{$vo|mac_get_mid_text|mac_default='首页'}</option>
 						{/maccms:foreach}
 					</select>
 				</td>
+				<td>选择触发更新缓存的模块</td>
 			</tr>
 			{/case}
 			{case ajax}
 			<tr>
 				<td><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="触发任务"></td>
-				<td colspan="2"><textarea name="mojia[sole][{$sole}][link]" class="layui-textarea" placeholder="请填写">{$unique.link}</textarea></td>
 				<td>
 					<input type="hidden" name="mojia[sole][{$sole}][mid]" value="{$unique.mid}" />
-					<select multiple="multiple" lay-filter="home">
+					<select multiple="unique" lay-filter="home">
 						<option value="">请选择</option>
 						{maccms:foreach name=":explode(',','0,1,2,3,5,6,7,8,11')"}
 						<option value="{$vo}"{if in_array($vo, explode(',',$unique['mid']))} selected{/if}>{$vo|mac_get_mid_text|mac_default='首页'}</option>
 						{/maccms:foreach}
 					</select>
 				</td>
+				<td colspan="3"><textarea name="mojia[sole][{$sole}][link]" class="layui-textarea" placeholder="请填写">{$unique.link}</textarea></td>
+				<td>选择触发模块,一行一条</td>
+			</tr>
+			{/case}
+			{case follow}
+			<tr>
+				<td rowspan="6"><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="名称"></td>
+				<td><input type="text" value="二维码图" class="layui-input" readonly></td>
+				<td><input type="text" name="mojia[sole][{$sole}][pic]" value="{$unique.pic}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit>查看图片</button></td>
+				<td>二维码图片</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="关注提示" class="layui-input" readonly></td>
+				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][text]" value="{$unique.text}" class="layui-input" placeholder="关注提示语"></td>
+				<td>关注提示语</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="mojia[sole][{$sole}][icon1]" value="{$unique.icon1}" class="layui-input" iconfont="unique"></td>
+				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][link1]" value="{$unique.link1}" class="layui-input" placeholder="请填写链接"></td>
+				<td>社交平台1</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="mojia[sole][{$sole}][icon2]" value="{$unique.icon2}" class="layui-input" iconfont="unique"></td>
+				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][link2]" value="{$unique.link2}" class="layui-input" placeholder="请填写链接"></td>
+				<td>社交平台2</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="mojia[sole][{$sole}][icon3]" value="{$unique.icon3}" class="layui-input" iconfont="unique"></td>
+				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][link3]" value="{$unique.link3}" class="layui-input" placeholder="请填写链接"></td>
+				<td>社交平台3</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="mojia[sole][{$sole}][icon4]" value="{$unique.icon4}" class="layui-input" iconfont="unique"></td>
+				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][link4]" value="{$unique.link4}" class="layui-input" placeholder="请填写链接"></td>
+				<td>社交平台4</td>
+			</tr>
+			{/case}
+			{case share}
+			<tr>
+				<td rowspan="4"><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="名称"></td>
+				<td><input type="text" value="默认图片" class="layui-input" readonly></td>
+				<td><input type="text" name="mojia[sole][{$sole}][image]" value="{$unique.image}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit>查看图片</button></td>
+				<td>默认分享封面图片</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="图片盗链" class="layui-input" readonly></td>
+				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][url]" value="{$unique.url}" class="layui-input" placeholder="请填写接口"></td>
 				<td>
-					<input type="hidden" name="mojia[sole][{$sole}][des]" value="{$unique.des}" />
-					{$unique.des}
+					<select name="mojia[sole][{$sole}][agent]" lay-filter="chain">
+						<option value="2" {if$unique.agent==2} selected{/if} data-url="https://i0.wp.com/">WP官方</option>
+						<option value="1" {if$unique.agent==1} selected{/if} data-url="{$mojia.config.run}index.php/index/image?pic=">自定义</option>
+						<option value="0" {if$unique.agent==0} selected{/if} data-url="">关闭</option>
+					</select>
 				</td>
+				<td>图片或二维码无法显示请开启</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="短链接口" class="layui-input" readonly></td>
+				<td><input type="text" name="mojia[sole][{$sole}][api]" value="{$unique.api}" class="layui-input" placeholder="请填写短连接API地址"></td>
+				<td colspan="2"><input type="text" name="mojia[sole][{$sole}][host]" value="{$unique.host}" class="layui-input" placeholder="自定义域名(需加http(s)://前缀)"></td>
+				<td>调用不同域名分享防止被拦截</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="正则取值" class="layui-input" readonly></td>
+				<td colspan="3"><textarea name="mojia[sole][{$sole}][regex]" class="layui-textarea ts-admin-area" placeholder="正则表达式：/(.*)/i">{$unique.regex}</textarea></td>
+				<td>正则获取接口返回的短连接</td>
+			</tr>
+			{/case}
+			{case play}
+			<tr>
+				<td rowspan="3"><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="名称"></td>
+				<td><input type="text" value="二维码图" class="layui-input" readonly></td>
+				<td><input type="text" name="mojia[sole][{$sole}][pic]" value="{$unique.pic}" class="layui-input layui-upfile" placeholder="请填写图片地址"></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-upload">上传图片</button></td>
+				<td><button type="button" class="layui-btn layui-btn-primary layui-lookup" lay-filter="lookup" lay-submit>查看图片</button></td>
+				<td>扫描二维码图片回复答案观看视频</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="发送内容" class="layui-input" readonly></td>
+				<td><input type="text" name="mojia[sole][{$sole}][send]" value="{$GLOBALS['config']['weixin']['gjc1']}" class="layui-input" placeholder="发送关键字"></td>
+				<td colspan="2">
+					<input type="hidden" name="mojia[sole][{$sole}][category]" value="{$unique.category}" />
+					<select multiple="unique" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:type order="asc" by="sort" mid="1"}
+						<option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$unique['category']))} selected{/if}>{$vo.type_name}</option>
+						{/maccms:type}
+					</select>
+				</td>
+				<td>选择需要扫码观看的分类</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="返回内容" class="layui-input" readonly></td>
+				<td><input type="text" name="mojia[sole][{$sole}][code]" value="{$GLOBALS['config']['weixin']['gjcm1']}" class="layui-input" placeholder="回复内容"></td>
+				<td><input type="text" value="更新周期" class="layui-input" readonly></td>
+				<td>
+					<select name="mojia[sole][{$sole}][time]">
+						<option value="1"{if$unique.agent==1} selected{/if}>每天</option>
+						<option value="7"{if$unique.agent==7} selected{/if}>每周</option>
+					</select>
+				</td>
+				<td>返回内容更新周期</td>
+			</tr>
+			{/case}
+			{case advert}
+			<tr>
+				<td rowspan="2"><input type="text" name="mojia[sole][{$sole}][name]" value="{$unique.name}" class="layui-input" placeholder="名称"></td>
+				<td><input type="text" value="广告时间" class="layui-input" readonly></td>
+				<td><input type="text" name="mojia[sole][{$sole}][time]" value="{$unique.time}" class="layui-input" placeholder="广告时间"></td>
+				<td colspan="2">
+					<input type="hidden" name="mojia[sole][{$sole}][group]" value="{$unique.group}" />
+					<select multiple="unique" lay-filter="home">
+						<option value="">请选择</option>
+						{maccms:foreach name=":model('Group')->getCache('group_list')"}
+						<option value="{$vo.group_id}"{if in_array($vo['group_id'], explode(',',$unique['group']))} selected{/if}>{$vo.group_name}</option>
+						{/maccms:foreach}
+					</select>
+				</td>
+				<td>选择需要显示广告的用户组</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="广告链接" class="layui-input" readonly></td>
+				<td colspan="3"><input type="text" name="mojia[sole][{$sole}][link]" value="{$unique.link}" class="layui-input" placeholder="广告链接"></td>
+				<td>视频播放前的广告,任意网页链接均可</td>
 			</tr>
 			{/case}
 			{/switch}

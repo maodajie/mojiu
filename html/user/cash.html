@@ -1,51 +1,70 @@
-{include file="public/header,user/banner"}
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="user" title=":mac_default('积分提现')" btns="返回" href=":mac_url('user/index')"}
-	<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
-		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">银行名称</span>
-			<input class="mo-form-text mo-text-input mo-bord-muted mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_bank_name" placeholder="开户行名称或支付宝微信" maxlength="40" />
-		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">银行账号</span>
-			<input class="mo-form-text mo-text-input mo-bord-muted mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_bank_no" placeholder="银行卡号或支付宝微信账号" maxlength="40" />
-		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">收款姓名</span>
-			<input class="mo-form-text mo-text-input mo-bord-muted mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_payee_name" placeholder="收款人姓名与上方账户对应" maxlength="40" />
-		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">提现金额</span>
-			<input class="mo-form-text mo-text-input mo-bord-muted mo-form-left mo-cols-info mo-cols-xs12" lay-verify="required" type="text" name="cash_money" placeholder="请输入提现金额" maxlength="40" />
-		</div>
-		<span class="mo-user-tips mo-lhxs-20px mo-paxs-5px mo-text-gules mo-cols-show">最低提现金额:&nbsp;{$GLOBALS['config']['user']['cash_min']}元，剩余{$GLOBALS['user']['user_points']}积分，1元等于{$GLOBALS['config']['user']['cash_ratio']}积分，相当于{$GLOBALS['user']['user_points']/$GLOBALS['config']['user']['cash_ratio']}元</span>
-		<a class="mo-user-btns mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-show mo-mbxs-10px" href="javascript:;" data-url="{:mac_url('user/cash')}" lay-submit lay-filter="center">提交审核</a>
-	</form>
-</div>
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="option" type="0" del=":mac_url('user/cash_del')" title=":mac_default('提现记录')" btns="返回" href=":mac_url('user/index')" more="hide"}
-	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
-		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
-			{volist name="list" id="vo"}
-			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow"><input class="mo-form-comp mo-mrxs-5px" name="ids[]" type="checkbox" value="{$vo.cash_id}">{if$vo.cash_status==1}<span class="mo-text-green">已审核</span>{else}<span class="mo-text-gules">未审核</span>{/if}</span>
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$vo.cash_time|mac_day}</span>
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">银行:&nbsp;{$vo.cash_bank_name}</span>
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">提现{$vo.cash_money}元&nbsp;&nbsp;积分-{$vo.cash_points}</span>
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">姓名:&nbsp;{$vo.cash_payee_name}</span>
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">账号:&nbsp;{$vo.cash_bank_no}</span>
-			</li>
-			{/volist}
+{extend name="index/index"}
+{block name="include"}
+{assign name="maccms['aid']" value="6"}
+{assign name="user['ulog_type']" value="2"}
+{/block}
+{block name="left"}
+{include file="module/user/left"}
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white mo-info-wrap dc-row">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">提现申请</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">1元={$GLOBALS['config']['user']['cash_ratio']}积分，最低提现金额：{$GLOBALS['config']['user']['cash_min']}元</a></li>
 		</ul>
-		{include file="tinier/paging"}
+	</div>
+	<form class="layui-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off">
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="cash_bank_name" placeholder="请输入银行名称" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">银行名称</a>
+		</div>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="number" name="cash_bank_no" placeholder="请输入银行账号" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">银行账号</a>
+		</div>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="cash_payee_name" placeholder="请输入收款姓名" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">收款姓名</a>
+		</div>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="number" name="cash_money" placeholder="请输入提现金额" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">提现金额</a>
+		</div>
+		<span class="dc-pn-5 dc-line-18 dc-font-12">剩余{$GLOBALS['user']['user_points']}积分，相当于{$GLOBALS['user']['user_points']/$GLOBALS['config']['user']['cash_ratio']}元；冻结{$GLOBALS['user']['user_points_froze']}积分，相当于{$GLOBALS['user']['user_points_froze']/$GLOBALS['config']['user']['cash_ratio']}元</span>
+		<div class="dc-row dc-pa-5">
+			<a class="mo-user-click mo-back-mojia dc-wane dc-edge dc-line-24 dc-col-12 dc-pa-10 dc-center" href="javascript:;">提交审核</a>
+		</div>
 	</form>
 </div>
-{include file="public/footer"}
+<form class="mo-user-form" autocomplete="off">
+	<div class="dc-layout dc-wane mo-back-white">
+		<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+			<h2 class="dc-bold dc-font-14">提现记录</h2>
+			<ul class="dc-rtgo dc-pa-5">
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-whole dc-show" href="javascript:;">全选</a></li>
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-empty dc-show" href="javascript:;">删除</a></li>
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-reset dc-show" href="javascript:;">清空</a></li>
+			</ul>
+		</div>
+		{volist name="list" id="vo"}
+		{$key>0?='<span class="dc-show dc-border dc-ma-5 mo-edge-color"></span>'}
+		<div class="dc-row">
+			<div class="dc-pa-5">
+				<span class="dc-font-16 dc-line-24 dc-clamp dc-bold">{$vo.cash_bank_no}</span>
+			</div>
+			<div class="dc-pa-5">
+				<span class="dc-font-14 dc-line-24 mo-text-muted">{if$vo.cash_status}<font color="green">已审核</font>{else}<font color="red">未审核</font>{/if}&nbsp;·&nbsp;{$vo.cash_points}积分&nbsp;·&nbsp;提现¥{$vo.cash_money}</span>
+			</div>
+			<div class="dc-rtgo dc-pa-5">
+				<input class="mo-form-comp" name="ids[]" type="checkbox" value="{$vo.cash_id}">
+			</div>
+			<div class="dc-rbgo dc-pa-5">
+				<a class="mo-user-clear dc-font-12 dc-line-24 mo-text-muted" href="javascript:;">删除</a>
+			</div>
+		</div>
+		{/volist}
+		{include file="module/common/paging"}
+	</div>
+</form>
+{/block}

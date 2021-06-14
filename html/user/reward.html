@@ -1,22 +1,45 @@
-{include file="public/header,user/banner"}
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	<div class="mo-cols-rows mo-paxs-5px mo-pamd-10px">
-		<h2 class="mo-fsxs-14px mo-fsss-16px mo-fsmd-18px"><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==''} mo-text-mojia{/if}" href="{:url('user/reward')}">一级下线</a><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==2} mo-text-mojia{/if}" href="{:url('user/reward')}?level=2">二级下线</a><a class="mo-mrxs-5px mo-mrmd-10px{if$param.level==3} mo-text-mojia{/if}" href="{:url('user/reward')}?level=3">三级下线</a></h2>
-		<ul class="mo-user-oper mo-part-more mo-paxs-5px mo-pamd-10px">
-			<li class="mo-coxs-iblock mo-fsxs-14px mo-lhxs-24px"><a class="mo-plxs-5px" href="{:mac_url('user/index')}">返回</a>
-		</ul>
+{extend name="index/index"}
+{block name="include"}
+{assign name="maccms['aid']" value="66"}
+{/block}
+{block name="left"}
+{include file="module/user/left"}
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">
+			{if$param.level==''}
+			<a class="dc-bold dc-pr-5 mo-text-mojia" href="javascript:;">一级下线</a>
+			{else}
+			<a class="dc-bold dc-pr-5" href="{:mac_url('user/reward')}">一级下线</a>
+			{/if}
+			{if$param.level=='2'}
+			<a class="dc-bold dc-pr-5 mo-text-mojia" href="javascript:;">二级下线</a>
+			{else}
+			<a class="dc-bold dc-pr-5" href="{:mac_url('user/reward',['level'=>2])}">二级下线</a>
+			{/if}
+			{if$param.level=='3'}
+			<a class="dc-bold mo-text-mojia" href="javascript:;">三级下线</a>
+			{else}
+			<a class="dc-bold" href="{:mac_url('user/reward',['level'=>3])}">三级下线</a>
+			{/if}
+		</h2>
 	</div>
-	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
-		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
-			{volist name="list" id="vo"}
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">{$vo.user_name}</span>
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$vo.user_reg_time|mac_day}</span>
-			</li>
-			{/volist}
-		</ul>
-		{include file="tinier/paging"}
-	</form>
+	<ul class="mo-talk-wrap dc-font-14">
+		{volist name="list" id="vo"}
+		{$key>0?='<span class="dc-show dc-border dc-ma-5 mo-edge-color"></span>'}
+		<li class="dc-row dc-pa-5">
+			<img class="mo-talk-avat mo-lazy-load dc-ltgo dc-pa-5" src="{:mao_img_lazy(mao_view_user($vo,'user_avatar'))}" data-src="{:mao_view_user($vo,'user_avatar')}" />
+			<div class="mo-talk-left dc-line-20">
+				<span class="dc-bold">{:mac_default(mao_view_user($vo,'user_nick_name'),$vo.user_name)}</span>
+				<span class="dc-font-12 mo-text-muted dc-rtgo dc-pa-5">{$vo.user_reg_time|mac_day}</span>
+				<p class="dc-line-24">{:mao_view_user($vo,'group')['group_name']}</p>
+			</div>
+		</li>
+		{/volist}
+		{include file="module/common/paging"}
+	</ul>
 </div>
-{include file="public/footer"}
+
+{/block}

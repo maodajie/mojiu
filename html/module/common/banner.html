@@ -1,17 +1,17 @@
-<div class="mo-swip-container dc-row mo-part-round">
+<div class="mo-swip-wrap dc-row dc-col-12">
 	<ul class="mo-swip-wrapper dc-font-0">
-		{maccms:foreach name="[data]"}
-		<li class="mo-swip-slide">
-			<a class="mo-situ-pics mo-lazy-color mo-swip-lazy mo-lazy-broad mo-byxs-4by1" href="{:mac_default($vo['art_jumpurl'],mac_url($vo['code'].'/detail',[],$vo))}" data-background="{:mao_url_img(mac_default($vo[$vo['code'].'_pic_slide'],$vo[$vo['code'].'_pic']))}">
-				<div class="mo-swip-title dc-row mo-part-ramp mo-text-white dc-clamp">
-					<span class="dc-clamp dc-font-18 mo-swip-head">{:strip_tags($vo[$vo['code'].'_name'])}</span>
-					<span class="dc-clamp dc-font-12">{:mac_default($vo[$vo['code'].'_remarks'],'查看详情')}</span>
+		{maccms:foreach name="[data]" id="banner"}
+		<li class="mo-swip-slide dc-east">
+			<a class="mo-swip-lazy mo-lazy-wrap mo-back-after dc-3by1" href="{:mac_default($banner['art_jumpurl'],mac_url($banner['code'].'/detail',[],$banner))}" data-background="{:mao_img_src(mac_default($banner[$banner['code'].'_pic_slide'],$banner[$banner['code'].'_pic']))}">
+				<div class="mo-swip-title mo-back-clear mo-text-white dc-pa-10 dc-init dc-col-12">
+					<span class="dc-clamp dc-font-18 dc-mb-2">{:strip_tags($banner[$banner['code'].'_name'])}</span>
+					<span class="dc-clamp dc-font-12">{:mac_default($banner[$banner['code'].'_remarks'],'查看详情')}</span>
 				</div>
 			</a>
 		</li>
 		{/maccms:foreach}
 	</ul>
-	<div class="mo-swip-pagin dc-font-0 dc-right"></div>
-	<a class="mo-swip-next mo-part-round dc-center dc-none dc-sm-block mo-icon-font mo-icon-xiayiye" href="javascript:;"></a>
-	<a class="mo-swip-prev mo-part-round dc-center dc-none dc-sm-block mo-icon-font mo-icon-shangyiye" href="javascript:;"></a>
+	<div class="mo-swip-pagin dc-rbgo dc-init dc-col-12 dc-pa-5 dc-font-0 dc-right"></div>
+	<a class="mo-swip-next dc-none dc-sm-block mo-icon-font mo-icon-xiangyou" href="javascript:;"></a>
+	<a class="mo-swip-prev dc-none dc-sm-block mo-icon-font mo-icon-xiangzuo" href="javascript:;"></a>
 </div>

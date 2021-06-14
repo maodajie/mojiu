@@ -1,0 +1,95 @@
+<div class="mo-crux-wrap js-hide dc-hide">
+	<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+		<ul class="mo-crux-type dc-font-0">
+			{maccms:foreach name=":explode(',','1,2,3,8,9,11')" id="search"}
+			{if mac_data_count(0,'all',mac_get_mid_code($search))}
+			<li class="dc-cell dc-line-30 dc-font-18 dc-center">
+				<a class="mo-crux-item dc-wane dc-show dc-mn-lg5 js-event mo-text-hover{$search==(in_array($maccms.mid,array(1,2,3,8,9,11))?mac_default($maccms.mid,1):1)?' mo-text-mojia':''}" data-mid="{$search}" data-url="{:mac_url(mac_get_mid_code($search).'/search')}" href="javascript:;">{$search|mac_get_mid_text}</a>
+			</li>
+			{/if}
+			{/maccms:foreach}
+		</ul>
+	</div>
+	<div class="mo-crux-head dc-hide">
+		<div class="dc-layout dc-wane mo-back-white">
+			<ul class="mo-crux-list dc-row">
+				<li class="dc-row dc-pn-20 dc-line-30 dc-font-12">
+					<i class="dc-ltgo dc-pa-5 dc-pl-10 dc-font-12 dc-bold mo-icon-font mo-icon-sousuo"></i>
+					<a class="dc-col-12 dc-pa-5 dc-pl-10 dc-pr-10 dc-clamp" href="{href}">{name}</a>
+					<i class="dc-rtgo dc-pa-5 dc-pr-10 dc-font-12 dc-bold mo-icon-font mo-icon-rank-goup"></i>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="mo-crux-foot">
+		<div class="dc-layout dc-wane mo-back-white dc-hide">
+			<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+				<h2 class="dc-bold dc-font-14">搜索历史</h2>
+				<ul class="dc-rtgo dc-pa-5">
+					<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-crux-empty js-event dc-show" href="javascript:;">清空</a></li>
+				</ul>
+			</div>
+			<ul class="mo-crux-seek dc-row dc-font-0">
+				<li class="dc-pa-5 dc-line-30 dc-iblock"><a class="dc-show mo-back-click dc-pn-10 dc-wane dc-font-14" href="{href}">{name}</a></li>
+			</ul>
+		</div>
+		{if$GLOBALS['config']['app']['search_hot']}
+		<div class="dc-layout dc-wane mo-back-white">
+			<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+				<h2 class="dc-bold dc-font-14">推荐搜索</h2>
+				<ul class="dc-rtgo dc-pa-5">
+					<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;"></a></li>
+				</ul>
+			</div>
+			<ul class="dc-row dc-font-0">
+				{maccms:foreach name=":explode(',',$GLOBALS['config']['app']['search_hot'])" id="search"}
+				<li class="dc-pa-5 dc-line-30 dc-iblock"><a class="dc-show mo-back-click dc-pn-10 dc-wane dc-font-14" href="{:mac_url('vod/search')}?wd={$search}">{$search}</a></li>
+				{/maccms:foreach}
+			</ul>
+		</div>
+		{/if}
+		<div class="dc-layout dc-wane mo-back-white">
+			<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+				<h2 class="dc-bold dc-font-14">热搜排行榜</h2>
+				<ul class="dc-rtgo dc-pa-5">
+					<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('label/rank')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+				</ul>
+			</div>
+			<ul class="mo-rank-wrap dc-row" data-time="{$GLOBALS['package']['rank']['time']}">
+				{maccms:foreach name=":array_slice($GLOBALS['package']['rank']['keyword'], 0, 10)" id="search"}
+				<li class="mo-rank-item dc-row dc-pa-5 dc-pl-20 dc-line-30 dc-font-12"><b class="mo-rank-sort dc-ltgo dc-center dc-font-16 dc-line-40{$key<3?' mo-text-mojia dc-bold':''}">{$key+1}</b><a class="dc-col-7 dc-clamp" href="{:mac_url('vod/search')}?wd={$search}">{$search}</a><span class="dc-col-5 dc-right mo-text-muted"><i class="mo-icon-font mo-icon-remen-fill dc-font-12 dc-pr-2" style="color:#f42c5d"></i>{$GLOBALS['package']['rank']['searches'][$key]}<i class="dc-font-12 dc-bold dc-pl-2 mo-icon-font mo-icon-rank-{$GLOBALS['package']['rank']['trend'][$key]}" style="color:{$GLOBALS['package']['rank']['trend'][$key]=='fall'?'#79CE11':($GLOBALS['package']['rank']['trend'][$key]=='rise'?'#F75349':'#A6A6A6')}"></i></span></li>
+				{/maccms:foreach}
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="mo-look-wrap js-hide dc-hide">
+	<div class="dc-layout dc-wane mo-back-white">
+		<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+			<h2 class="dc-bold dc-font-14">历史记录</h2>
+			<ul class="dc-rtgo dc-pa-5">
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-look-empty js-event dc-show" href="javascript:;">清空</a></li>
+			</ul>
+		</div>
+		<div class="mo-look-item">
+			<div class="mo-info-wrap dc-row">
+				<div class="mo-info-pic dc-pa-5 dc-row">
+					<a class="mo-lazy-wrap dc-wane dc-row mo-back-muted dc-16by9" href="{href}">
+						<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy()}" data-src="{img}" alt="{name}" />
+						<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12 dc-center">{info}</div>
+						<span class="mo-lazy-play dc-full"></span>
+					</a>
+				</div>
+				<dl class="mo-info-item dc-ltgo dc-pa-10">
+					<dt class="dc-font-16 dc-line-24 dc-omit-2"><a class="dc-bold" href="{href}">{name}</a></dt>
+				</dl>
+				<div class="mo-info-item dc-lbgo dc-pa-10">
+					<dt class="dc-font-14 dc-line-24 mo-text-muted">{nid}</dt>
+				</div>
+				<div class="mo-info-item1 dc-rbgo dc-pa-10">
+					<a class="mo-look-clear dc-font-12 dc-line-24 mo-text-muted" data-id="{id}" href="javascript:;">删除</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

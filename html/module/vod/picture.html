@@ -1,11 +1,11 @@
-<li class="mo-list-item dc-pa-5 dc-pa-md10{:mao_view_style($maccms.mid,count($__LIST__),$key)}">
-	<a class="mo-part-round dc-row mo-situ-pics mo-lazy-color{:mao_view_style($maccms.mid,count($__LIST__))}" href="{:mac_url_vod_detail($vo)}">
-		<img class="mo-pic-img mo-lazy-load" src="{:mao_url_lazy($vo.vod_pic)}" data-src="{:mao_url_img($vo.vod_pic)}" alt="{:mao_view_title($vo.vod_name)}" />
-		<div class="mo-situ-rema mo-part-ramp dc-font-12 mo-text-white dc-row">
+<li class="dc-pa-5{:mao_view_style($maccms.mid,count($__LIST__),$key)}">
+	<a class="mo-lazy-wrap dc-wane dc-row mo-back-after{:mao_view_style($maccms.mid,count($__LIST__))}" href="{:mac_url_vod_detail($vo)}">
+		<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.vod_pic)}" data-src="{:mao_img_src($vo.vod_pic)}" alt="{:mao_view_title($vo.vod_name)}" />
+		<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12">
 			<span class="dc-east">{:mao_view_title($vo.vod_name,1)}</span>
-			<span class="dc-west">{$vo.vod_remarks}</span>
+			<span class="dc-west">{:mao_vod_remarks($vo)}</span>
 		</div>
-		<span class="mo-situ-play"></span>
+		<span class="mo-lazy-play dc-full"></span>
 		{:mao_view_tips($vo)}
 	</a>
 	<div class="dc-pt-5 dc-pt-md10">

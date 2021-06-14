@@ -1,52 +1,65 @@
-{include file="public/header,user/banner"} 
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="user" title=":mac_default('修改资料')" btns="返回" href=":mac_url('user/index')"}
-	<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">用户名</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="text" value="{$obj.user_name}" placeholder="用户名" maxlength="10" disabled />
+{extend name="index/index"}
+{block name="include"}
+{assign name="maccms['aid']" value="60"}
+{/block}
+{block name="left"}
+{include file="module/user/left"}
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<form class="dc-row" autocomplete="off">
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="user_name" value="{$obj.user_name}" placeholder="请输入用户名" maxlength="20" disabled />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">用户名</a>
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">昵称</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="user_nick_name" value="{$obj.user_nick_name}" placeholder="昵称" maxlength="10" />
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="user_nick_name" value="{$obj.user_nick_name}" placeholder="请输入昵称" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">昵称</a>
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">原密码</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd" placeholder="原密码" maxlength="20" />
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="password" name="user_pwd" value="" placeholder="请输入原密码" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">原密码</a>
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">新密码</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-form-righ mo-cols-info mo-cols-xs12" type="password" name="user_pwd1" placeholder="新密码" maxlength="20" />
-			<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;">不修改请留空</a>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="password" name="user_pwd1" value="" placeholder="不修改请留空" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">新密码</a>
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">重复密码</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="password" name="user_pwd2" placeholder="重复密码" maxlength="20" />
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="password" name="user_pwd2" placeholder="不修改请留空" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">重复密码</a>
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">QQ号</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="tel" name="user_qq" value="{$obj.user_qq}" placeholder="填写QQ号码可同步QQ头像" maxlength="11" />
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="tel" name="user_qq" value="{$obj.user_qq}" placeholder="填写QQ号码可同步QQ头像" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">QQ号码</a>
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">邮箱</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-form-righ mo-cols-info mo-cols-xs12" type="email" name="user_email" value="{$obj.user_email}" placeholder="点击绑定按钮绑定邮箱账号" maxlength="20" disabled />
-			{if!$obj.user_email}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="{:mac_url('user/bind')}?ac=email">绑定</a>{else}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" data-type="email" href="javascript:;" data-url="{:mac_url('user/unbind')}" lay-submit lay-filter="unbind">解绑</a>{/if}</a>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="email" name="user_email" value="{$obj.user_email}" placeholder="请绑定邮箱" maxlength="20" />
+			{if$obj.user_email}
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-black mo-user-undo" href="javascript:;" data-type="email" data-url="{:mac_url('user/unbind')}">解绑邮箱</a>
+			{else}
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-black" href="{:mac_url('user/bind',['ac'=>'email'])}">绑定邮箱</a>
+			{/if}
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">手机号</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-form-righ mo-cols-info mo-cols-xs12" type="tel" name="user_phone" value="{$obj.user_phone}" placeholder="点击绑定按钮绑定手机号码" maxlength="11" disabled />
-			{if!$obj.user_phone}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" href="{:mac_url('user/bind')}?ac=phone">绑定</a>{else}<a class="mo-part-more mo-pnxs-10px mo-lhxs-44px mo-back-white" data-type="phone" href="javascript:;" data-url="{:mac_url('user/unbind')}" lay-submit lay-filter="unbind">解绑</a>{/if}</a>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="tel" name="user_phone" value="{$obj.user_phone}" placeholder="请绑定手机" maxlength="20" />
+			{if$obj.user_phone}
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-black mo-user-undo" href="javascript:;" data-type="phone" data-url="{:mac_url('user/unbind')}">解绑手机</a>
+			{else}
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-black" href="{:mac_url('user/bind',['ac'=>'phone'])}">绑定手机</a>
+			{/if}
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">密保问题</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="user_question" value="{$obj.user_question}" placeholder="密保问题" maxlength="20" />
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="user_question" value="{$obj.user_question}" placeholder="请输入密保问题" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">密保问题</a>
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">密保答案</span>
-			<input class="mo-form-left mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="user_answer" value="{$obj.user_answer}" placeholder="密保答案" maxlength="20" />
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="user_answer" value="{$obj.user_answer}" placeholder="请输入密保答案" maxlength="20" />
+			<a class="dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">密保答案</a>
 		</div>
-		<span class="mo-user-tips mo-lhxs-20px mo-paxs-5px mo-text-gules mo-cols-show">&emsp;</span>
-		<a class="mo-user-btns mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-show mo-mbxs-10px" href="javascript:;" data-url="{:mac_url('user/info')}" lay-submit lay-filter="center">保存</a>
+		<span class="dc-pn-5 dc-line-18 dc-font-12">&emsp;</span>
+		<div class="dc-row dc-pa-5">
+			<a class="mo-user-click dc-line-40 dc-wane mo-back-mojia dc-col-12 dc-center" href="javascript:;">保存</a>
+		</div>
 	</form>
-</div> 
-{include file="public/footer"}
+</div>
+{/block}

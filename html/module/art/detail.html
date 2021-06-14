@@ -1,13 +1,20 @@
-<dl class="mo-deta-info mo-part-bbsd mo-bord-muted mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>
-<dl class="mo-deta-info mo-cols-rows">
-	<dt class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs5 mo-cols-sm3 mo-cols-lg4 mo-cols-xl3">
-		{include file="basics/picture" type="art" style=":mac_default(' mo-lazy-broad mo-byxs-16by9')" tips=":mac_default($vo['art_level']?'推荐':$vo['art_hits'].'阅读')" remark=":mac_default(mac_substring($vo['art_remarks'],12),date('Y-m-d H:i',$vo['art_time']))" name=":mac_filter_html($vo['art_name'])" desc=":mac_default(mac_substring(mac_filter_html($vo['art_content']),50),'暂无简介')" image=":mac_url_img(trim($vo['art_pic']))" href=":mac_url_art_detail($vo)" title="hide" lazy="open"}
-		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
-			<span class="mo-fsxs-12px mo-text-muted">{$vo.art_time|mac_friend_date}&emsp;{$vo.art_hits}阅读</span>
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="dc-pa-5">
+		<h1 class="dc-font-18 dc-font-md20 dc-bold">{$obj.art_name|mac_filter_html}</h1>
+		<div class="dc-row dc-pt-5 dc-font-12 dc-line-20 mo-text-muted">
+			<i class="mo-icon-font mo-icon-remen-fill dc-font-12" style="color:#f42c5d"></i>热度{$obj.art_hits}&nbsp;·&nbsp;{$obj.art_time|mac_day}·&nbsp;{$obj.type.type_name}
 		</div>
-	</dt>
-	<dd class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs7 mo-cols-sm9 mo-cols-lg8 mo-cols-xl9">
-		<h3 class="mo-fsxs-14px mo-fsss-16px mo-coxs-trow mo-comd-arow"><a href="{:mac_url_art_detail($vo)}"{if$vo.art_color} style="color:#{$vo.art_color}!important"{/if}>{$vo.art_name|mac_filter_html}</a></h3>
-		<p class="mo-cols-info mo-cols-xs12 mo-ptxs-5px mo-fsxs-12px mo-lhxs-18px mo-coxs-none mo-comd-block mo-text-muted">{$vo.art_content|mac_filter_html|mac_substring=80}</p>
-	</dd>
-</dl>
+	</div>
+	<hr class="dc-ma-5" />
+	<div class="mo-word-wrap dc-pa-5">
+		{:mac_url_content_img(mao_html_check($obj['art_page_list'][$param['page']]['content']))}
+	</div>
+	{include file="module/common/paging"}
+</div>
+{if$GLOBALS['config']['comment']['status']&&$maccms.mid!=20}
+<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-rows mo-part-over">
+	<div class="mo-cols-rows mo-part-over">
+		<div class="mo-comm-critic"></div>
+	</div>
+</div>
+{/if}

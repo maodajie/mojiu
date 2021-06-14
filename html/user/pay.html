@@ -1,51 +1,82 @@
-{include file="public/header,user/banner"} 
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="user" title=":mac_default('充值中心')" btns="返回" href=":mac_url('user/buy')"}
-	<form class="mo-user-form" action="{:mac_url('user/gopay')}" autocomplete="off" method="post" target="_blank">
-		<ul class="mo-cols-rows mo-paxs-0px mo-pamd-5px">
-			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<input type="hidden" name="paytype" value="1">
-				<input type="hidden" name="order_code" value="{$info.order_code}">
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">订单编号</span>
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$info.order_code}</span>
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<input type="hidden" name="order_id" value="{$info.order_id}">
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">订单金额</span>
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$info.order_price}元</span>
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-bbsd mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				{volist name="ext_list" id="vo"}{if$GLOBALS['config']['pay'][strtolower($key)]['appkey']}
-				<input class="mo-form-comp mo-mrxs-5px" type="radio" name="payment" value="{$key}"{if$key==key($ext_list)} checked{/if} id="payment{$key}" /><label class="mo-mrxs-5px" for="payment{$key}">{$vo}</label>
-				{/if}{/volist}
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				{if$GLOBALS['config']['pay']['alipay']['appkey']}
-				<div class="mo-tabs-item mo-tabs-alipay mo-mbxs-5px{if key($ext_list)=='alipay'} mo-cols-show{else} mo-cols-hide{/if}"></div>
-				{/if}{if$GLOBALS['config']['pay']['codepay']['appkey']}
-				<div class="mo-tabs-item mo-tabs-codepay mo-mbxs-5px{if key($ext_list)=='codepay'} mo-cols-show{else} mo-cols-hide{/if}">
-					{maccms:foreach name=":explode(',',$GLOBALS['config']['pay']['codepay']['type'])"}
-					<input class="mo-user-radio mo-form-comp mo-mrxs-5px" type="radio" name="codepay" value="{$vo}"{if$vo==1} checked{/if} id="codepay{$key}" /><label class="mo-mrxs-5px" for="codepay{$key}">{if$vo==1}支付宝{elseif$vo==2}QQ钱包{elseif$vo==3}微信{/if}</label>
-					{/maccms:foreach}
-				</div>
-				{/if}{if$GLOBALS['config']['pay']['weixin']['appkey']}
-				<div class="mo-tabs-item mo-tabs-weixin mo-mbxs-5px{if key($ext_list)=='weixin'} mo-cols-show{else} mo-cols-hide{/if}"></div>
-				{/if}{if$GLOBALS['config']['pay']['zhapay']['appkey']}
-				<div class="mo-tabs-item mo-tabs-zhapay mo-mbxs-5px{if key($ext_list)=='zhapay'} mo-cols-show{else} mo-cols-hide{/if}">
-					{maccms:foreach name=":explode(',',$GLOBALS['config']['pay']['zhapay']['type'])"}
-					<input class="mo-user-radio mo-form-comp mo-mrxs-5px" type="radio" name="zhapay" value="{$vo}"{if$vo==1} checked{/if} id="zhapay{$key}" /><label class="mo-mrxs-5px" for="zhapay{$key}">{if$vo==1}支付宝{elseif$vo==2}QQ钱包{elseif$vo==3}微信{/if}</label>
-					{/maccms:foreach}
-				</div>
-				{/if}
-			</li>
-			<li class="mo-paxs-5px">
-				<button class="mo-cols-xs12 mo-user-btns mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-show" type="submit">提交</button>
-			</li>
+{extend name="index/index"}
+{block name="include"}
+{assign name="maccms['aid']" value="68"}
+{/block}
+{block name="left"}
+{include file="module/user/left"}
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<ul class="dc-font-14">
+		<li class="dc-pa-5 mo-cols-rows mo-lhxs-34px">
+			<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">订单编号</span>
+			<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$info.order_code}</span>
+		</li>
+		<li class="dc-pa-5 mo-cols-rows mo-lhxs-34px">
+			<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">订单金额</span>
+			<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$info.order_price}元({$info.order_points}积分)</span>
+		</li>
+		<li class="dc-pa-5 mo-cols-rows mo-lhxs-34px">
+			<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow">剩余积分</span>
+			<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$obj.user_points}积分</span>
+		</li>
+	</ul>
+</div>
+<div class="dc-layout dc-wane mo-back-white">
+	{if$GLOBALS['config']['pay']['weixin']['appkey']||$GLOBALS['config']['pay']['alipay']['appkey']}
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">请选择支付方式</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">官方支付平台</a></li>
 		</ul>
+	</div>
+	<div class="dc-row">
+		{if$GLOBALS['config']['pay']['weixin']['appkey']}
+		<li class="dc-pa-5 dc-col-6">
+			<a data-ment="weixin" class="mo-user-ment mo-user-opte dc-bold dc-font-14 dc-center dc-wane dc-show dc-clamp dc-line-40 mo-back-click" href="javascript:;">微信支付</a>
+		</li>
+		{/if}{if$GLOBALS['config']['pay']['alipay']['appkey']}
+		<li class="dc-pa-5 dc-col-6">
+			<a data-ment="alipay" class="mo-user-ment mo-user-opte dc-bold dc-font-14 dc-center dc-wane dc-show dc-clamp dc-line-40 mo-back-click" href="javascript:;">支付宝</a>
+		</li>
+		{/if}
+	</div>
+	{/if}
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">
+			{assign name="count" value="0"}
+			{volist name="ext_list" id="vo"}
+			{if$GLOBALS['config']['pay'][strtolower($key)]['type']}{php}$count++;{/php}
+			<a data-ment="{$key}" class="mo-user-page mo-user-ment dc-bold dc-iblock dc-pr-5{if$count==1} mo-text-mojia{/if}" href="javascript:;">{$vo}</a>
+			{/if}
+			{/volist}
+		</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">第三方支付平台</a></li>
+		</ul>
+	</div>
+	<div class="mo-user-boxs">
+		{assign name="count" value="0"}
+		{volist name="ext_list" id="vo"}
+		{if$GLOBALS['config']['pay'][strtolower($key)]['type']}{php}$count++;{/php}
+		<div class="mo-user-item dc-row{if$count==1} dc-show{else} dc-none{/if}">
+			{maccms:foreach name=":explode(',',$GLOBALS['config']['pay'][strtolower($key)]['type'])" id="sub" key="two"}
+			<li class="dc-pa-5 dc-col-4">
+				<a data-ment="{$key}" data-type="{$sub}" class="mo-user-type mo-user-opte dc-bold dc-font-14 dc-center dc-wane dc-show dc-clamp dc-line-40 mo-back-click" href="javascript:;">{if$sub==1}支付宝{elseif$sub==2}QQ钱包{elseif$sub==3}微信{/if}</a>
+			</li>
+			{/maccms:foreach}
+		</div>
+		{/if}
+		{/volist}
+	</div>
+	<form action="{:mac_url('user/gopay')}" autocomplete="off" method="post" target="_blank">
+		<input type="hidden" name="order_code" value="{$info.order_code}">
+		<input type="hidden" name="order_id" value="{$info.order_id}">
+		<input type="hidden" name="payment" value="">
+		<input type="hidden" name="paytype" value="1">
+		<div class="dc-row dc-pa-5">
+			<button class="mo-user-pay mo-back-mojia dc-wane dc-edge dc-line-20 dc-col-12 dc-pa-10 dc-center" type="submit">立即支付</button>
+		</div>
 	</form>
 </div>
-{include file="public/footer"}
+{/block}

@@ -1,14 +1,18 @@
-{assign name="maccms['aid']" value="72"}
-{include file="public/header"}
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	<h1 class="mo-paxs-5px mo-pamd-10px mo-coxs-center mo-fsxs-18px">本站热门排行</h1>
-</div>
-<div class="mo-cols-case mo-cols-rows">
-	{maccms:type num="24" order="asc" by="sort" flag="vod" id="magic"}
-	<div class="mo-cols-lays mo-back-white mo-part-round mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg4">
-		{include file="basics/titles" module="rank" title=":mac_default($magic.type_name)" btns="更多" href=":mac_url_type($magic)"}
-		{include file="basics/charts" type="mac_default($magic['type_id'])" name=":mac_filter_html($vo['vod_name'])" href=":mac_url_vod_detail($vo)"}
+{extend name="index/index"}
+{block name="center"}
+{maccms:foreach name="$GLOBALS['package']['rank']['data']"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">热搜{$vo.name}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="/index.php/label/rank.html">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
 	</div>
-	{/maccms:type}
+	<ul class="mo-rank-wrap dc-row">
+		{maccms:foreach name="$vo.list" id="sub"}
+		<li class="mo-rank-item dc-row dc-pa-5 dc-pl-20 dc-line-30 dc-font-12"><b class="mo-rank-sort dc-ltgo dc-center dc-font-16 dc-line-40{$key<3?' mo-text-mojia dc-bold':''}">{$key+1}</b><a class="dc-col-7 dc-clamp" href="/index.php/vod/search.html?wd={$sub.keyword}">{$sub.keyword}</a><span class="dc-col-5 dc-right mo-text-muted"><i class="mo-icon-font mo-icon-remen-fill dc-font-12 dc-pr-2" style="color:#f42c5d"></i>{$sub.searches}<i class="dc-font-12 dc-bold dc-pl-2 mo-icon-font mo-icon-rank-{$sub.trend}" style="color:{$sub.trend=='fall'?'#79CE11':($sub.trend=='rise'?'#F75349':'#A6A6A6')}"></i></span></li>
+		{/maccms:foreach}
+	</ul>
 </div>
-{include file="public/footer"}
+{/maccms:foreach}
+{/block}

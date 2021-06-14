@@ -1,1 +1,5 @@
-{include file="public/header,tinier/briefs,tinier/downer,tinier/detail,tinier/relate,index/taobao,public/footer"}
+{extend name="index/index"}
+{block name="center"}
+{include file="module/vod/info,module/common/detail,module/vod/play,module/vod/role,module/vod/plot"}
+{include file="module/common/alike" mid="vod"}
+{/block}

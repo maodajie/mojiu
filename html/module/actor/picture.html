@@ -1,0 +1,9 @@
+<li class="dc-pa-5 dc-col-3 dc-col-sm2 dc-col-lg3 dc-col-xl2">
+	<a class="mo-lazy-wrap dc-wane-100 dc-row mo-back-after dc-1by1" href="{:mac_url_actor_detail($vo)}">
+		<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.actor_pic)}" data-src="{:mao_img_src($vo.actor_pic)}" alt="{:mao_view_title($vo.actor_name)}" />
+		<span class="mo-lazy-play dc-full"></span>
+	</a>
+	<div class="dc-pt-5 dc-pt-md10">
+		<a {:mao_view_color($vo.actor_color)}class="dc-clamp dc-font-14 dc-center" href="{:mac_url_actor_detail($vo)}">{:mao_view_title($vo.actor_name)}</a>
+	</div>
+</li>

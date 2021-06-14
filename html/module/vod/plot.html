@@ -1,0 +1,35 @@
+{if$obj.vod_plot}
+{assign name="list" value=":mao_vod_plot($obj,$param,$maccms,10)"}
+<div class="dc-layout dc-wane mo-back-white mo-list-wrap">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">分集剧情</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show mo-list-sort" href="javascript:;"><i class="mo-icon-font mo-icon-paixu dc-font-12 dc-pr-2 dc-bold"></i><span>排序</span></a></li>
+		</ul>
+	</div>
+	<div class="dc-slip mo-scroll-wrap">
+		{maccms:foreach name="$list" id="vo"}
+		<a class="mo-list-page dc-bold dc-pa-5 dc-iblock dc-font-14{if mao_vod_this($maccms, $param, $vo, $key)} mo-text-mojia mo-scroll-this{/if}" href="javascript:;">{:implode('-',$vo.page)}</a>
+		{/maccms:foreach}
+	</div>
+	<div class="mo-list-boxs">
+		{maccms:foreach name="$list" id="vo"}
+		<ul class="mo-list-item dc-row{if!mao_vod_this($maccms, $param, $vo, $key)} dc-none{/if}">
+			{maccms:foreach name="$vo.list" id="sub"}
+			<li class="dc-pa-5">
+				<div class="mo-name-wrap dc-row dc-line-20 dc-font-0">
+					<h2 class="dc-bold dc-font-14">{$sub.name}</h2>
+					<div class="dc-rtgo">
+						<div class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show mo-play-open" href="javascript:;">展开<i class="mo-icon-font mo-icon-xiangxia dc-font-12 dc-bold"></i></a></div>
+					</div>
+				</div>
+				<div class="mo-word-wrap dc-font-14 dc-line-24 dc-pt-2 dc-omit-2">
+					{$sub.detail}
+				</div>
+			</li>
+			{/maccms:foreach}
+		</ul>
+		{/maccms:foreach}
+	</div>
+</div>
+{/if}

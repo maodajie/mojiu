@@ -1,0 +1,14 @@
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">猜你想看</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show">今日更新{:mac_data_count(0,'today','vod')}</a></li>
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('label/latest')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:vod name="'.implode(',',$mojia['config']['rank']['keyword']).'" num="12" type="'.$GLOBALS['type_id'].'" order="time" by="desc"}
+		{include file="module/vod/picture"}
+		{/maccms:vod}
+	</ul>
+</div>

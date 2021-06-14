@@ -1,23 +1,24 @@
-<div class="{if'[report]'=='gbook'}mo-cols-lays mo-java-page {else}mo-cols-topo mo-paxs-5px mo-pamd-10px {/if}mo-back-white">
-	<form class="mo-comm-form mo-comm-gbform mo-java-event" data-login="{$GLOBALS['config']['gbook']['login']}" autocomplete="off" onkeydown="if(event.keyCode==13){return false}" data-book="[report]">
-		<ul class="mo-cols-rows mo-part-over">
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs12">
-				<textarea class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-form-area mo-part-over" name="gbook_content" rows="4" placeholder="输入留言内容" maxlength="255"></textarea>
-			</li>
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info{if$GLOBALS['config']['gbook']['verify']} mo-cols-xs12{if'[report]'=='gbook'} mo-cols-md5{/if}{else} mo-cols-xs9{if'[report]'=='gbook'} mo-cols-md10{/if}{/if}">
-				<div class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-text-muted mo-cols-rows mo-part-over{if'[report]'=='gbook'} mo-form-tips{/if}"><div class="mo-form-maxh mo-cols-rows">提示：<span class="mo-comm-tips">还可以输入255字</span></div>{if'[report]'=='gbook'}<a class="mo-form-face mo-pnxs-10px mo-fsxs-20px mo-text-muted mo-bord-muted mo-part-curs mo-icon-font mo-icon-xiaolian" href="javascript:;"></a><div class="mo-face-info mo-part-bord mo-bord-muted mo-back-white mo-bord-round mo-cols-xs12 mo-cols-hide mo-java-ceal"></div>{/if}</div>
-			</li>
-			{if$GLOBALS['config']['gbook']['verify']}
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs6{if'[report]'=='gbook'} mo-cols-md3{/if}">
-				<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted" type="tel" name="verify" placeholder="验证码" maxlength="4" />
-			</li>
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs3{if'[report]'=='gbook'} mo-cols-md2{/if}">
-				<img class="mo-part-curs mo-bord-round mo-bord-muted mo-back-muted mo-cols-xs12 mo-java-verify" height="40" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
-			</li>
-			{/if}
-			<li class="mo-paxs-5px mo-pamd-10px mo-cols-info mo-cols-xs3{if'[report]'=='gbook'} mo-cols-md2{/if}">
-				<a class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-part-btns mo-back-mojia mo-cols-show mo-comm-gbooks">提交</a>
-			</li>
-		</ul>
-	</form>
-</div>
+<form class="mo-talk-form js-event" data-type="parent" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
+	<ul class="dc-both dc-font-14">
+		<li class="dc-pa-5 dc-col-12">
+			<textarea class="mo-talk-text dc-edge dc-wane dc-over dc-pn-10 dc-pt-5 dc-pb-5 dc-col-12 mo-back-muted dc-line-24" name="[type]_content" rows="2" placeholder="请输入内容" maxlength="255"></textarea>
+			<input type="hidden" name="[type]_pid" value="0">
+		</li>
+		{if$GLOBALS['config']['[type]']['verify']}
+		<li class="dc-pa-5 dc-col-12">
+			<input class="dc-edge dc-wane dc-pn-10 dc-col-12 mo-back-muted dc-line-44" type="number" name="verify" placeholder="请输入验证码" maxlength="4" />
+			<img class="dc-rtgo dc-wane dc-ma-10 js-verify" height="34" src="{:mac_url('verify/index')}" title="看不清楚? 换一张！" />
+		</li>
+		{/if}
+		<li class="dc-pa-5 dc-col-9">
+			<div class="dc-wane dc-over dc-line-24 mo-back-muted mo-text-muted">
+				<div class="dc-pn-10 dc-line-34 dc-font-12">提示：<span class="mo-talk-tips">还可以输入255字</span></div>
+				<a class="mo-form-face dc-rtgo dc-ma-5 dc-pn-10 dc-font-18 dc-line-34 dc-show mo-text-muted mo-icon-font mo-icon-xiaolian" href="javascript:;"></a>
+				<div class="mo-face-wrap mo-back-muted dc-ma-5 dc-pa-5 dc-pb-0 dc-wane dc-hide"></div>
+			</div>
+		</li>
+		<li class="dc-pa-5 dc-col-3">
+			<a data-url="{[url]}" data-load="[load]" data-type="[type]" data-login="{$GLOBALS['config']['[type]']['login']}" class="mo-talk-click dc-wane dc-show dc-center dc-line-34 mo-back-muted mo-back-mojia" href="javascript:;">提交</a>
+		</li>
+	</ul>
+</form>

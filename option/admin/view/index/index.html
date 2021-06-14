@@ -1,21 +1,20 @@
 {include file="public/header"}
 <form class="ts-admin-wrap layui-form layui-form-pane" autocomplete="off">
 	<input type="hidden" name="__token__" value="{$Request.token}" />
-	<div class="layui-tab">
+	<div class="layui-tab" lay-filter="admin">
 		<ul class="layui-tab-title">
 			<li class="layui-this">欢迎使用</li>
 			<li>基础设置</li>
 			<li>导航设置</li>
+			<li>侧边按钮</li>
 			<li>首页设置</li>
-			<li>播放设置</li>
 			<li>配色设置</li>
 			<li>广告设置</li>
 			<li>SEO设置</li>
 			<li>特色功能</li>
-			<li>侧边按钮</li>
 		</ul>
 		<div class="layui-tab-content">
-			{include file="module/themes,module/basics,module/navbar,module/indexs,module/player,module/colour,module/advert,module/seokey,module/unique,module/fixbar"}
+			{include file="module/themes,module/basics,module/navbar,module/fixbar,module/indexs,module/colour,module/advert,module/seokey,module/unique"}
 			<div class="layui-form-item">
 				<div class="layui-input-block">
 					<button type="submit" lay-filter="submit" lay-submit class="layui-btn">立即保存</button>
@@ -25,15 +24,4 @@
 		</div>
 	</div>
 </form>
-<script type="text/javascript">
-	layui.config({
-		version: '{$mojia.config.ver}',
-		base: '{$mojia.config.cdn}{$mojia.config.base}/script/',
-	}).extend({
-		income: '{$GLOBALS["package"][$GLOBALS["package"]["mode"]]["income"]}'
-	}).use(['admin', 'income'], function() {
-		layui.admin.global.init();
-		layui.income.init();
-	});
-</script>
 {include file="public/footer"}

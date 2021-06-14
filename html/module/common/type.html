@@ -1,0 +1,38 @@
+{if$obj.childids}
+{assign name="slide" value=":mao_view_slide($indexs,$maccms.mid)"}{if$slide}
+<div class="dc-layout dc-wane dc-pa-0 dc-pa-md0">
+	{include file="module/common/banner" data=":mao_return($slide)"}
+</div>
+{/if}
+{maccms:type parent="'.$GLOBALS['type_id'].'" order="asc" by="sort" id="magic"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$magic['type_name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url_type($magic)}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:[mid] num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
+		{include file="module/[mid]/picture"}
+		{/maccms:[mid]}
+	</ul>
+</div>
+{/maccms:type}
+{else}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$obj['type_name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock">第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span id="mo-page-total" class="mo-text-mojia">0</span>&nbsp;个结果</li>
+			<li class="mo-text-muted dc-font-12 dc-pl-5 dc-iblock"><a class="dc-show" href="{:mac_url_type(($obj.parent?$obj.parent:$obj),[],'show')}"><i class="mo-icon-font mo-icon-shaixuan dc-font-12 dc-bold"></i>筛选</a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:[mid] num="48" type="'.$GLOBALS['type_id'].'" order="desc" by="time" paging="yes" pageurl="[mid]/type" half="3"}
+		{include file="module/[mid]/picture"}
+		{/maccms:[mid]}
+	</ul>
+</div>
+{include file="module/common/paging"}
+{/if}

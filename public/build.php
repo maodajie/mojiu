@@ -19,5 +19,4 @@ define('THEME_NAME', basename(__FILE__));
 define('BIND_MODULE', 'build');
 define('ENTRANCE', 'build');
 // 加载框架引导文件
-// require APP_PATH . '/build/common.php';
 require '../../../thinkphp/start.php';

@@ -1,19 +1,19 @@
 <div class="layui-tab-item">
 	<table class="layui-table" style="margin-top:0">
 		<colgroup>
-			<col width="50">
+			<col width="60">
 			<col width="110">
 			<col width="130">
 			<col width="130">
-			<col width="120">
 			<col width="130">
-			<col width="110">
+			<col width="130">
+			<col width="130">
 			<col width="100">
 			<col>
 		</colgroup>
 		<thead>
 			<tr>
-				<th>调整</th>
+				<th align="center">调整</th>
 				<th>名称</th>
 				<th>广告</th>
 				<th>分类</th>
@@ -24,68 +24,20 @@
 	            <th>状态</th>
 			</tr> 
 		</thead>
-		<tbody>
+		<tbody class="ts-move-wrap" id="indexs">
 			{maccms:foreach name=":mao_array_sort($mojia['home'],'id')" id="indexs" key="home"}
 			<tr>
-				<td>
+				<td align="center">
+					<a class="ts-move-tune mo-icon-font mo-icon-icon-" href="javascript:;"></a>
 					<input type="hidden" name="mojia[home][{$home}][id]" value="{$indexs.id}" />
-					<a href="javascript:;" lay-filter="homeup" lay-submit class="mo-icon-font mo-icon-xiangshang"></a>
-					<a href="javascript:;" lay-filter="homedn" lay-submit class="mo-icon-font mo-icon-xiangxia"></a>
 					<input type="hidden" name="mojia[home][{$home}][type]" value="{$indexs.type}" />
 				</td>
 				<td><input type="text" name="mojia[home][{$home}][name]" value="{$indexs.name}" class="layui-input" placeholder="名称"></td>
 				{switch $indexs.type}
-				{case banner}
-				<td class="layui-form" lay-filter="{$home}">
-					<input type="hidden" name="mojia[home][{$home}][advs]" value="{$indexs.advs}" />
-					<select multiple="multiple" lay-filter="choose">
-						<option value="" data-check="art" data-type="check">添加数据</option>
-						{if$indexs.advs}{maccms:art ids="'.$indexs['advs'].'"}
-						<option value="{$vo.art_id}"{if in_array($vo, explode(',',$indexs['advs']))} selected{/if}>{$vo.art_name}</option>
-						{/maccms:art}{/if}
-					</select>
-				</td>
-				<td>
-					<input type="hidden" name="mojia[home][{$home}][category]" value="{$indexs.category}" />
-					<select multiple="multiple" lay-filter="home">
-						<option value="">全部</option>
-						{maccms:type order="asc" by="sort" id="vo" ids="parent" mid="'.$indexs['mid'].'"}
-						<option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$indexs['category']))} selected{/if}>{$vo.type_name}</option>
-						{/maccms:type}
-					</select>
-				</td>
-				<td>
-					<input type="hidden" name="mojia[home][{$home}][level]" value="{$indexs.level}" />
-					<select multiple="multiple" lay-filter="home">
-						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','9,8,7,6,5,4,3,2,1')"}
-						<option value="{$vo}"{if in_array($vo, explode(',',$indexs['level']))} selected{/if}>推荐{$vo}</option>
-						{/maccms:foreach}
-					</select>
-				</td>
-				<td>
-					<input type="hidden" name="mojia[home][{$home}][art]" value="{$indexs.art}" />
-					<input type="hidden" name="mojia[home][{$home}][mid]" value="{$indexs.mid}" />
-					<select name="mojia[home][{$home}][sort]" lay-filter="">
-						{maccms:foreach name="$sort"}
-						<option value="{$vo[0]}"{if$indexs['sort']==$vo[0]} selected{/if}>{$vo[1]}</option>
-						{/maccms:foreach}
-					</select>
-				</td>
-				<td>
-					<input type="hidden" name="mojia[home][{$home}][sub]" value="{$indexs.sub}" />
-					<select multiple="multiple" lay-filter="home">
-						<option value="">侧栏</option>
-						{maccms:foreach name=":explode(',','9,8,7,6,5,4,3,2,1')"}
-						<option value="{$vo}"{if in_array($vo, explode(',',$indexs['sub']))} selected{/if}>推荐{$vo}</option>
-						{/maccms:foreach}
-					</select>
-				</td>
-				{/case}
 				{case notice}
 				<td class="layui-form" lay-filter="{$home}">
 					<select name="mojia[home][{$home}][index]" lay-filter="choose">
-						<option value="" data-check="art">首页公告->点此添加</option>
+						<option value="" data-type="art">首页公告->点此添加</option>
 						{if$indexs.index}{maccms:art ids="'.$indexs['index'].'"}
 						<option value="{$vo.art_id}"{if$vo.art_id==$indexs['index']} selected{/if}>{$vo.art_name}</option>
 						{/maccms:art}{/if}
@@ -100,7 +52,7 @@
 				</td>
 				<td class="layui-form" lay-filter="{$home}">
 					<select name="mojia[home][{$home}][gbook]" lay-filter="choose">
-						<option value="" data-check="art">留言公告->点此添加</option>
+						<option value="" data-type="art">留言公告->点此添加</option>
 						{if$indexs.gbook}{maccms:art ids="'.$indexs['gbook'].'"}
 						<option value="{$vo.art_id}"{if in_array($vo, explode(',',$indexs['gbook']))} selected{/if}>{$vo.art_name}</option>
 						{/maccms:art}{/if}
@@ -115,7 +67,8 @@
 				</td>
 				<td class="layui-form" lay-filter="{$home}">
 					<select name="mojia[home][{$home}][alert]" lay-filter="choose">
-						<option value="" data-check="art">弹窗公告->点此添加</option>
+						<option value="" data-type="art">弹窗公告->点此添加</option>
+						<option value="0">弹窗公告关闭</option>
 						{if$indexs.alert}{maccms:art ids="'.$indexs['alert'].'"}
 						<option value="{$vo.art_id}"{if in_array($vo, explode(',',$indexs['alert']))} selected{/if}>{$vo.art_name}</option>
 						{/maccms:art}{/if}
@@ -124,19 +77,29 @@
 				{/case}
 				{case common}
 				<td class="layui-form" lay-filter="{$home}">
-					<select name="mojia[home][{$home}][advs]" lay-filter="choose">
-						<option value="" data-check="art">添加数据</option>
-						<option value="0">关闭广告</option>
-						{if$indexs.advs}{maccms:art ids="'.$indexs['advs'].'"}
-						<option value="{$vo.art_id}"{if in_array($vo, explode(',',$indexs['advs']))} selected{/if}>{$vo.art_name}</option>
+					{if$indexs.adnum>1}
+					<input type="hidden" name="mojia[home][{$home}][art]" value="{$indexs.art}" />
+					<select multiple="indexs" lay-filter="choose">
+						<option value="" data-type="art" data-num="{$indexs.adnum}">添加广告</option>
+						{if$indexs.art}{maccms:art ids="'.$indexs['art'].'"}
+						<option value="{$vo.art_id}"{if in_array($vo, explode(',',$indexs['art']))} selected{/if}>{$vo.art_name}</option>
 						{/maccms:art}{/if}
 					</select>
-					<input type="hidden" name="mojia[home][{$home}][art]" value="{$indexs.art}" />
+					{else}
+					<select name="mojia[home][{$home}][art]" lay-filter="choose">
+						<option value="0">关闭广告</option>
+						<option value="0" data-type="art" data-num="{$indexs.adnum}">添加广告</option>
+						{if$indexs.art}{maccms:art ids="'.$indexs['art'].'"}
+						<option value="{$vo.art_id}"{if in_array($vo, explode(',',$indexs['art']))} selected{/if}>{$vo.art_name}</option>
+						{/maccms:art}{/if}
+					</select>
+					{/if}
+					<input type="hidden" name="mojia[home][{$home}][adnum]" value="{$indexs.adnum}" />
 					<input type="hidden" name="mojia[home][{$home}][mid]" value="{$indexs.mid}" />
 				</td>
 				<td>
 					<input type="hidden" name="mojia[home][{$home}][category]" value="{$indexs.category}" />
-					<select multiple="multiple" lay-filter="home">
+					<select multiple="indexs" lay-filter="">
 						<option value="">全部</option>
 						{maccms:type order="asc" by="sort" id="vo" ids="parent" mid="'.$indexs['mid'].'"}
 						<option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$indexs['category']))} selected{/if}>{$vo.type_name}</option>
@@ -145,7 +108,7 @@
 				</td>
 				<td>
 					<input type="hidden" name="mojia[home][{$home}][level]" value="{$indexs.level}" />
-					<select multiple="multiple" lay-filter="home">
+					<select multiple="indexs" lay-filter="">
 						<option value="">请选择</option>
 						{maccms:foreach name=":explode(',','9,8,7,6,5,4,3,2,1')"}
 						<option value="{$vo}"{if in_array($vo, explode(',',$indexs['level']))} selected{/if}>推荐{$vo}</option>
@@ -154,8 +117,8 @@
 				</td>
 				<td>
 					<select name="mojia[home][{$home}][sort]" lay-filter="">
-						{maccms:foreach name="$sort"}
-						<option value="{$vo[0]}"{if$indexs['sort']==$vo[0]} selected{/if}>{$vo[1]}</option>
+						{maccms:foreach name="$common['maosort']"}
+						<option value="{$key}"{if$indexs['sort']==$key} selected{/if}>{$vo}</option>
 						{/maccms:foreach}
 					</select>
 				</td>
@@ -179,9 +142,10 @@
 					</select>
 				</td>
 				<td>
-					<select multiple="multiple" lay-filter="home">
+					<input type="hidden" name="mojia[home][{$home}][category]" value="{$indexs.category}" />
+					<select multiple="indexs" lay-filter="">
 						<option value="">全部</option>
-						{maccms:foreach name="$menu"}
+						{maccms:foreach name="$common['maomenu']"}
 						<option value="{$vo[0]}"{if in_array($vo[0], explode(',',$indexs['category']))} selected{/if}>{$vo[1]}</option>
 						{/maccms:foreach}
 					</select>
@@ -198,7 +162,7 @@
 				</td>
 				<td>
 					<select name="mojia[home][{$home}][sort]" lay-filter="">
-						{maccms:foreach name="$list"}
+						{maccms:foreach name="$common['maolist']"}
 						<option value="{$vo[0]}"{if$indexs['sort']==$vo[0]} selected{/if}>{$vo[1]}</option>
 						{/maccms:foreach}
 					</select>
@@ -210,7 +174,7 @@
 				<td><input type="text" value="暂无" class="layui-input" disabled=""></td>
 				<td>
 					<input type="hidden" name="mojia[home][{$home}][level]" value="{$indexs.level}" />
-					<select multiple="multiple" lay-filter="home">
+					<select multiple="indexs" lay-filter="">
 						<option value="">请选择</option>
 						{maccms:foreach name=":explode(',','9,8,7,6,5,4,3,2,1')"}
 						<option value="{$vo}"{if in_array($vo, explode(',',$indexs['level']))} selected{/if}>推荐{$vo}</option>
@@ -219,8 +183,8 @@
 				</td>
 				<td>
 					<select name="mojia[home][{$home}][sort]" lay-filter="">
-						{maccms:foreach name="$sort"}
-						<option value="{$vo[0]}"{if$indexs['sort']==$vo[0]} selected{/if}>{$vo[1]}</option>
+						{maccms:foreach name="$common['maosort']"}
+						<option value="{$key}"{if$indexs['sort']==$key} selected{/if}>{$vo}</option>
 						{/maccms:foreach}
 					</select>
 				</td>
@@ -234,8 +198,8 @@
 				{case friend}
 				<td>
 					<select name="mojia[home][{$home}][advs]" lay-filter="">
-						<option value="1"{if$indexs['advs']==1} selected{/if}>开启</option>
-						<option value="0"{if$indexs['advs']==0} selected{/if}>关闭</option>
+						<option value="1"{if$indexs['advs']==1} selected{/if}>开启广告</option>
+						<option value="0"{if$indexs['advs']==0} selected{/if}>关闭广告</option>
 					</select>
 				</td>
 				<td>

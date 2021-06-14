@@ -1,0 +1,91 @@
+<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+	<ul class="mo-menu-wrap mo-scroll-wrap dc-slip dc-font-0">
+		{maccms:type ids="parent" order="asc" by="sort" id="magic"}
+		<li class="mo-menu-item dc-row dc-pa-lg5 dc-ml-15 dc-ml-md20 dc-ml-lg0 dc-iblock dc-lg-block dc-line-30 dc-font-18">
+			<a class="dc-wane dc-show dc-mn-lg5 mo-text-hover{if$magic.type_id==$GLOBALS['type_id']||$magic.type_id==$GLOBALS['type_pid']} mo-scroll-this mo-text-mojia{/if}" href="{:mac_url_type($magic,[],'show')}">{$magic.type_name|strip_tags}<span class="dc-rtgo dc-line-md30 dc-pa-5 dc-font-14 dc-none dc-lg-iblock mo-text-muted"><i class="dc-pr-2">{:mac_data_count($magic.type_id,'all')}</i><i class="mo-icon-font mo-icon-xiangyou dc-font-14"></i></span></a>
+		</li>
+		{/maccms:type}
+	</ul>
+</div>
+<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">类型</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.class==''} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>'','starsign'=>$param.starsign,'area'=>$param.area,'year'=>$param.year,'lang'=>$param.lang,'level'=>$param.level,'letter'=>$param.letter,'actor'=>$param.actor,'by'=>$param.by],'show')}">全部</a></dd>
+		{if$obj.type_extend.class}
+		{maccms:foreach name=":explode(',',$obj.type_extend.class)"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.class==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'year'=>$param.year,'lang'=>$param.lang,'level'=>$param.level,'letter'=>$param.letter,'actor'=>$param.actor,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{else}
+		{maccms:foreach name=":explode(',',$maccms[mac_get_mid_code(in_array($maccms['mid'],array('2'))?$maccms['mid']:1).'_extend_class'])"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.class==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$vo,'starsign'=>$param.starsign,'area'=>$param.area,'year'=>$param.year,'lang'=>$param.lang,'level'=>$param.level,'letter'=>$param.letter,'actor'=>$param.actor,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{/if}
+	</dl>
+	{if$maccms.mid!=2}
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">地区</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.area==''} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>'','year'=>$param.year,'actor'=>$param.actor,'by'=>$param.by],'show')}">全部</a></dd>
+		{if$obj.type_extend.area}
+		{maccms:foreach name=":explode(',',$obj.type_extend.area)"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.area==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'year'=>$param.year,'actor'=>$param.actor,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{else}
+		{maccms:foreach name=":explode(',',$maccms.vod_extend_area)"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.area==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$vo,'year'=>$param.year,'actor'=>$param.actor,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{/if}
+	</dl>
+	{/if}
+	{if$maccms.mid==2}
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">推荐</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.level==''} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'level'=>'','letter'=>$param.letter,'by'=>$param.by],'show')}">全部</a></dd>
+		{maccms:foreach name=":explode(',','1,2,3,4,5,6,7,8,9')"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.level==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'level'=>$vo,'letter'=>$param.letter,'by'=>$param.by],'show')}">推荐{$vo}</a></dd>
+		{/maccms:foreach}
+	</dl>
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">字母</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.letter==''} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'level'=>$param.level,'letter'=>'','by'=>''],'show')}">全部</a></dd>
+		{maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0')"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.letter==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'level'=>$param.level,'letter'=>$vo,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+	</dl>
+	{elseif$maccms.mid==8}
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">星座</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.starsign==''} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>'','area'=>$param.area,'by'=>$param.by],'show')}">全部</a></dd>
+		{maccms:foreach name=":explode(',','白羊座,金牛座,双子座,巨蟹座,狮子座,处女座,天秤座,天蝎座,射手座,摩羯座,水瓶座,双鱼座')"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.starsign==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$vo,'area'=>$param.area,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+	</dl>
+	{elseif$maccms.mid==11}
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">语言</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.lang==''} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'area'=>$param.area,'lang'=>$vo,'by'=>$param.by],'show')}">全部</a></dd>
+		{if$obj.type_extend.lang}
+		{maccms:foreach name=":explode(',',$obj.type_extend.lang)"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.lang==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'area'=>$param.area,'lang'=>$vo,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{else}
+		{maccms:foreach name=":explode(',',$maccms.vod_extend_lang)"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.lang==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'area'=>$param.area,'lang'=>$vo,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{/if}
+	</dl>
+	{else}
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">年代</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.year==''} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'area'=>$param.area,'year'=>'','actor'=>$param.actor,'by'=>$param.by],'show')}">全部</a></dd>
+		{if$obj.type_extend.year}
+		{maccms:foreach name=":explode(',',$obj.type_extend.year)"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.year==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'area'=>$param.area,'year'=>$vo,'actor'=>$param.actor,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{else}
+		{maccms:foreach name=":explode(',',$maccms.vod_extend_year)"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center mo-back-muted{if$param.year==$vo} mo-text-mojia mo-scroll-this{else} mo-text-hover{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'area'=>$param.area,'year'=>$vo,'actor'=>$param.actor,'by'=>$param.by],'show')}">{$vo}</a></dd>
+		{/maccms:foreach}
+		{/if}
+	</dl>
+	{/if}
+</div>

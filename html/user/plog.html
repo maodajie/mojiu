@@ -1,17 +1,41 @@
-{include file="public/header,user/banner"}
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="option" type="0" del=":mac_url('user/plog_del')" title=":mac_default('积分记录')" btns="返回" href=":mac_url('user/index')"}
-	<form class="mo-user-form" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
-		<ul class="mo-cols-rows mo-paxs-0px{if count($list)} mo-pamd-5px{/if}">
-			{volist name="list" id="vo"}
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow"><input class="mo-form-comp mo-mrxs-5px" name="ids[]" type="checkbox" value="{$vo.plog_id}">{$vo.plog_type|mac_get_plog_type_text}&nbsp;[积分{if condition="in_array($vo.plog_type,[1,2,3,4])"}+{else/}-{/if}{$vo.plog_points}]</span>
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow mo-coxs-right">{$vo.plog_time|mac_day}</span>
-			</li>
-			{/volist}
-		</ul>
-		{include file="tinier/paging"}
-	</form>
-</div>
-{include file="public/footer"}
+{extend name="index/index"}
+{block name="include"}
+{assign name="maccms['aid']" value="65"}
+{/block}
+{block name="left"}
+{include file="module/user/left"}
+{/block}
+{block name="center"}
+<form class="mo-user-form" autocomplete="off">
+	<div class="dc-layout dc-wane mo-back-white">
+		<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+			<h2 class="dc-bold dc-font-14">操作</h2>
+			<ul class="dc-rtgo dc-pa-5">
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-whole dc-show" href="javascript:;">全选</a></li>
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-empty dc-show" href="javascript:;">删除</a></li>
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-reset dc-show" href="javascript:;">清空</a></li>
+			</ul>
+		</div>
+	
+	{volist name="list" id="vo"}
+	{$key>0?='<span class="dc-show dc-border dc-ma-5 mo-edge-color"></span>'}
+	<div class="dc-row">
+		<div class="dc-pa-5">
+			<span class="dc-font-16 dc-line-24 dc-omit-2 dc-bold">{$vo.plog_type|mac_get_plog_type_text}&nbsp;&nbsp;{if in_array($vo.plog_type,[1,2,3,4])}+{else/}-{/if}{$vo.plog_points}</span>
+		</div>
+		<div class="dc-pa-5">
+			<span class="dc-font-14 dc-line-24 mo-text-muted">{$vo.plog_time|mac_day}</span>
+		</div>
+		<div class="dc-rtgo dc-pa-5">
+			<input class="mo-form-comp" name="ids[]" type="checkbox" value="{$vo.plog_id}">
+		</div>
+		<div class="dc-rbgo dc-pa-5">
+			<a class="mo-user-clear dc-font-12 dc-line-24 mo-text-muted" href="javascript:;">删除</a>
+		</div>
+	</div>
+	{/volist}
+	{include file="module/common/paging"}
+	</div>
+</form>
+
+{/block}

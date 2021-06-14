@@ -1,1 +1,39 @@
-{include file="public/header,index/banner,index/latest,index/sorted,public/footer"}
+{extend name="index/index"}
+{block name="center"}
+{assign name="slide" value=":mao_view_slide($indexs,$maccms.mid)"}{if$slide}
+<div class="dc-layout dc-wane dc-pa-0 dc-pa-md0">
+	{include file="module/common/banner" data=":mao_return($slide)"}
+</div>
+{/if}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">正在热播</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('label/rank')}"><i class="mo-icon-font mo-icon-paihangbang dc-font-12 dc-bold dc-pr-2"></i>排行榜</a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:vod num="12" type="'.$GLOBALS['type_id'].'" order="desc" by="time" name="'.implode(',',$mojia['config']['rank']['keyword']).'"}
+		{include file="module/vod/picture"}
+		{/maccms:vod}
+	</ul>
+</div>
+{maccms:type ids="parent" order="asc" by="sort" id="magic" mid="1"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$magic['type_name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			{maccms:type parent="'.$magic['type_id'].'" order="asc" by="sort"}
+			<li class="mo-text-muted dc-font-12 dc-pl-10{if$key>4} dc-none dc-md-iblock{else} dc-iblock{/if}"><a class="dc-show" href="{:mac_url_type($vo)}">{$vo.type_name|mac_filter_html}</a></li>
+			{/maccms:type}
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url_type($magic)}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
+		{include file="module/vod/picture"}
+		{/maccms:vod}
+	</ul>
+</div>
+{/maccms:type}
+{/block}

@@ -1,0 +1,37 @@
+<form class="mo-user-form" autocomplete="off" data-url="{:url('user/ulog_del')}" data-type="{$user.ulog_type}">
+	<div class="dc-layout dc-wane mo-back-white">
+		<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+			<h2 class="dc-bold dc-font-14">操作</h2>
+			<ul class="dc-rtgo dc-pa-5">
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-whole dc-show" href="javascript:;">全选</a></li>
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-empty dc-show" href="javascript:;">删除</a></li>
+				<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="mo-user-reset dc-show" href="javascript:;">清空</a></li>
+			</ul>
+		</div>
+		{volist name="list" id="vo"}
+		{$key>0?='<span class="dc-show dc-border dc-ma-5 mo-edge-color"></span>'}
+		<div class="mo-info-wrap dc-row">
+			<div class="mo-info-pic dc-pa-5 dc-row">
+				<a class="mo-lazy-wrap dc-wane dc-row mo-back-muted dc-16by9" href="{$vo.data.link}">
+					<img class="mo-lazy-load js-lazyload" src="{:mao_img_src($vo.data.pic)}" data-src="{:mao_img_src($vo.data.pic)}" alt="{:mao_view_title($vo.topic_name)}" />
+					<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12 dc-center">{$vo.data.type.type_name}</div>
+					<span class="mo-lazy-play dc-full"></span>
+				</a>
+			</div>
+			<dl class="mo-info-item dc-ltgo dc-pa-10 dc-pa-md15">
+				<dt class="dc-font-16 dc-line-24 dc-omit-2"><a class="dc-bold" href="{$vo.data.link}">{$vo.data.name|strip_tags}</a></dt>
+			</dl>
+			<div class="mo-info-item dc-lbgo dc-pa-10 dc-pa-md15">
+				<dt class="dc-font-14 dc-line-24 mo-text-muted">第{$vo.ulog_nid}集&nbsp;·&nbsp;{if$vo.ulog_points}消费{$vo.ulog_points}积分{else}免费{/if}</dt>
+			</div>
+			<div class="mo-info-item1 dc-rtgo dc-pa-10 dc-pa-md15">
+				<input class="mo-form-comp" name="ids[]" type="checkbox" value="{$vo.ulog_id}">
+			</div>
+			<div class="mo-info-item1 dc-rbgo dc-pa-10 dc-pa-md15">
+				<a class="mo-user-clear dc-font-12 dc-line-24 mo-text-muted" href="javascript:;">删除</a>
+			</div>
+		</div>
+		{/volist}
+		{include file="module/common/paging"}
+	</div>
+</form>

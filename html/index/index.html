@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 {include file="public/include"}
+{block name="include"}{/block}
 {block name="title"}
 <title>{:mao_view_inst($mojia['seo']['index'.$maccms['aid']]['title'])}</title>
-<meta name="keywords" content="{:mao_view_inst($mojia['seo']['index'.$maccms['aid']]['title'])}" />
+<meta name="generator" content="{$mojia.config.author.website}">
+<meta name="keywords" content="{:mao_view_inst($mojia['seo']['index'.$maccms['aid']]['key'])}" />
 <meta name="description" content="{:mao_view_inst($mojia['seo']['index'.$maccms['aid']]['des'])}" />
 <meta itemprop="name" content="{:mao_view_inst($mojia['seo']['index'.$maccms['aid']]['title'])}" />
 <meta itemprop="description" content="{:mao_view_inst($mojia['seo']['index'.$maccms['aid']]['des'])}" />
@@ -19,78 +20,38 @@
 {/block}
 {include file="module/include/style"}
 </head>
-
-<body class="mo-back-white">
+<body class="mo-body-wrap dc-min-width mo-back-muted">
 {include file="public/header"}
 <div class="mo-main-wrap dc-body dc-row">
-	{block name="left"}
-	{maccms:foreach name=":mao_array_sort($mojia['home'],'id')" id="indexs" key="home"}
-	{if$indexs.state==1}
-	{switch $home}
-	{case banner}
-	{if mao_view_slide($indexs,$maccms.mid)}
-	<div class="mo-main-item dc-box">
-		{include file="module/common/banner" data=":mao_view_slide($indexs,$maccms.mid)"}
-	</div>
-	{/if}
-	{/case}
-	{case latest}
-	<div class="mo-main-item">
-		<div class="mo-title-wrap dc-row dc-mb-5 dc-mb-md20">
-			<h2 class="dc-font-16 dc-font-md24 dc-line-24 dc-bold">{$indexs['name']}</h2>
-			<ul class="mo-part-more dc-font-0">
-				<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block">今日更新{:mac_data_count(0,'today','vod')}</a></li>
-				<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="{:mac_url('label/latest')}">更多<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
-			</ul>
+	<div class="mo-main-left dc-min-height dc-col-12 dc-col-lg3">
+		<div class="mo-main-inner">
+			<div class="dc-row dc-pr-lg20">
+				{block name="left"}
+				{include file="module/index/left"}
+				{/block}
+			</div>
 		</div>
-		<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
-			{maccms:vod num="'.$indexs['num'].'" type="'.$indexs['category'].'" level="'.$indexs['level'].'" order="'.$indexs['order'].'" by="'.$indexs['sort'].'"}
-			{include file="module/vod/picture"}
-			{/maccms:vod}
-		</ul>
 	</div>
-	{/case}
-	{case cinema}
-	<div class="mo-main-item">
-		<div class="mo-title-wrap dc-row dc-mb-5 dc-mb-md20">
-			<h2 class="dc-font-16 dc-font-md24 dc-line-24 dc-bold">{$indexs['name']}</h2>
-			<ul class="mo-part-more dc-font-0">
-				<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="{:mac_url('label/cinema')}">更多<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
-			</ul>
+	<div class="mo-main-center dc-col-12 dc-col-lg6">
+		<div class="mo-main-head js-hide dc-hide">
+			{include file="module/index/eject"}
 		</div>
-		<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
-			{maccms:vod num="'.$indexs['num'].'" type="'.$indexs['category'].'" level="'.$indexs['level'].'" order="'.$indexs['order'].'" by="'.$indexs['sort'].'"}
-			{include file="module/vod/picture"}
-			{/maccms:vod}
-		</ul>
-	</div>
-	{/case}
-	{case sorted}
-	{maccms:type ids="'.$indexs['category'].'" mid="'.$indexs['mid'].'" order="asc" by="sort" id="magic"}
-	<div class="mo-main-item">
-		<div class="mo-title-wrap dc-row dc-mb-5 dc-mb-md20">
-			<h2 class="dc-font-16 dc-font-md24 dc-line-24 dc-bold">{$magic['type_name']}</h2>
-			<ul class="mo-part-more dc-font-0">
-				{maccms:type parent="'.$magic['type_id'].'" order="asc" by="sort"}
-				<li class="dc-font-12 dc-line-24 mo-text-muted dc-pl-5{if$key>2} dc-none dc-md-iblock{else} dc-iblock{/if}"><a class="dc-block" href="{:mac_url_type($vo)}">{$vo.type_name|mac_filter_html}</a></li>
-				{/maccms:type}
-				<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="{:mac_url_type($magic)}">更多<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
-			</ul>
+		<div class="mo-main-foot js-show">
+			{block name="center"}
+			{include file="module/index/center"}
+			{/block}
 		</div>
-		<ul class="mo-list-wrap dc-na-5 dc-na-md10 dc-row">
-			{maccms:vod num="'.$indexs['num'].'" type="'.$magic['type_id'].'" level="'.$indexs['level'].'" order="'.$indexs['order'].'" by="'.$indexs['sort'].'"}
-			{include file="module/vod/picture"}
-			{/maccms:vod}
-		</ul>
 	</div>
-	{/maccms:type}
-	{/case}
-	{/switch}
-	{/if}
-	{/maccms:foreach}
-	{/block}
+	<div class="mo-main-right dc-min-height dc-none dc-col-lg3 dc-lg-block">
+		<div class="mo-main-inner">
+			<div class="dc-row dc-pl-lg20">
+				{block name="right"}
+				{include file="module/index/right"}
+				{/block}
+			</div>
+		</div>
+	</div>
 </div>
 {include file="public/footer,module/include/script"}
 </body>
-
 </html>

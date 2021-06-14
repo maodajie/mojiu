@@ -1,0 +1,20 @@
+{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
+<div class="dc-layout dc-wane mo-back-white mo-info-wrap dc-row">
+	<div class="mo-info-pic dc-pa-5 dc-row">
+		<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-16by9" href="{:mac_url_website_detail($vo)}">
+			<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.website_logo)}" data-src="{:mao_img_src($vo.website_logo)}" alt="{:mao_view_title($vo.website_name)}" />
+			<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12">
+				<span class="dc-east">{:mao_view_title($vo.website_name,1)}</span>
+				<span class="dc-west">{:mao_vod_remarks($vo)}</span>
+			</div>
+			<span class="mo-lazy-play dc-full"></span>
+			{:mao_view_tips($vo)}
+		</a>
+	</div>
+	<dl class="mo-info-item dc-ltgo dc-pa-10 dc-pa-md15">
+		<dt class="dc-font-16 dc-line-24 dc-clamp"><a {:mao_view_color($vo.website_color)} class="dc-bold" href="{:mac_url_vod_detail($vo)}">{$vo.website_name|strip_tags}</a></dt>
+	</dl>
+	<div class="mo-info-item dc-lbgo mo-info-btn dc-pa-15 dc-pa-md20 dc-font-0 dc-line-24 dc-clamp">
+		<a class="dc-font-14 dc-line-30 dc-pn-10 dc-iblock dc-mr-10 mo-part-btns dc-wane mo-back-muted" href="{$vo.website_jumpurl}"><i class="mo-icon-font mo-icon-fenxiang dc-pr-2 dc-font-14"></i>点我直达</a>
+	</div>
+</div>

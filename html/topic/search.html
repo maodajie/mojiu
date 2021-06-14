@@ -1,1 +1,4 @@
-{include file="public/header,basics/search,tinier/relate,public/footer" type="topic" module="topics"}
+{extend name="index/index"}
+{block name="center"}
+{include file="module/common/search" mid="topic"}
+{/block}

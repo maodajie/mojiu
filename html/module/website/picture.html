@@ -1,0 +1,14 @@
+<li class="dc-pa-5 dc-col-4 dc-col-sm3 dc-col-lg3">
+	<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-16by9" href="{:mac_url_website_detail($vo)}">
+		<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.website_logo)}" data-src="{:mao_img_src($vo.website_logo)}" alt="{:mao_view_title($vo.website_name)}" />
+		<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12">
+			<span class="dc-east">{:mao_view_title($vo.website_name,1)}</span>
+			<span class="dc-west">{:mao_vod_remarks($vo)}</span>
+		</div>
+		<span class="mo-lazy-play dc-full"></span>
+		{:mao_view_tips($vo)}
+	</a>
+	<div class="dc-pt-5 dc-pt-md10">
+		<a {:mao_view_color($vo.website_color)}class="dc-clamp dc-font-14 dc-center" href="{:mac_url_website_detail($vo)}">{:mao_view_title($vo.website_name)}</a>
+	</div>
+</li>

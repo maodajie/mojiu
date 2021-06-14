@@ -24,8 +24,8 @@
 				<td><input type="text" name="mojia[base][{$base}][name]" value="{$basics.name}" class="layui-input" placeholder="后台入口"></td>
 				<td>
 					<select name="mojia[base][{$base}][entry]">
-						{maccms:foreach name=":glob('../../../*.php')"}
-						<option value="{:str_replace('../../../','',$vo)}"{if$basics.entry==str_replace('../../../','',$vo)} selected{/if}>{:str_replace('../../../','',$vo)}</option>
+						{maccms:foreach name="$common['maopath']"}
+						<option value="{$vo}"{if$basics.entry==$vo} selected{/if}>{$vo}</option>
 						{/maccms:foreach}
 					</select>
 				</td>
@@ -65,24 +65,32 @@
 			{case input}
 			<tr>
 				<td><input type="text" name="mojia[base][{$base}][name]" value="{$basics.name}" class="layui-input" placeholder="名称"></td>
-				<td colspan="3"><input type="text" name="mojia[base][{$base}][text]" value="{$basics.text}" class="layui-input" placeholder="请填写"></td>
 				<td>
-					{if$basics.des}
+					<input type="hidden" name="mojia[base][{$base}][category]" value="{$basics.category}" />
+					<select multiple="basics" lay-filter="">
+						<option value="">请选择需要横向显示缩略图的分类</option>
+						{maccms:type ids="parent" order="asc" by="sort" mid="1"}
+						<option value="{$vo.type_id}"{if in_array($vo.type_id, explode(',',$basics['category']))} selected{/if}>{$vo.type_name}</option>
+						{/maccms:type}
+					</select>
+				</td>
+				<td><input type="text" name="mojia[base][{$base}][sub]" value="{$basics.sub}" class="layui-input" placeholder="名称"></td>
+				<td><input type="text" name="mojia[base][{$base}][text]" value="{$basics.text}" class="layui-input" placeholder="6px"></td>
+				<td>
 					<input type="hidden" name="mojia[base][{$base}][des]" value="{$basics.des}" />
 					{$basics.des}
-					{else}
-					<input type="radio" name="mojia[base][{$base}][state]" value="1" title="开启"{if$basics.state==1} checked{/if}>
-					<input type="radio" name="mojia[base][{$base}][state]" value="0" title="关闭"{if$basics.state==0} checked{/if}>
-					{/if}
 				</td>
 			</tr>
 			{/case}
 			{case copy}
 			<tr>
 				<td><input type="text" name="mojia[base][copy][name]" value="{$basics.name}" class="layui-input" placeholder="版权设置"></td>
-				<td><input type="text" name="mojia[base][copy][tips]" value="{$basics.tips}" class="layui-input" placeholder="请填写主题名称"></td>
+				<td><input type="text" name="mojia[base][copy][title]" value="{$basics.title}" class="layui-input" placeholder="请填写主题名称"></td>
 				<td colspan="2"><input type="text" name="mojia[base][copy][link]" value="{$basics.link}" class="layui-input" placeholder="请填写主题链接"></td>
-				<td>网站底部主题版权设置</td>
+				<td>
+					<input type="hidden" name="mojia[base][{$base}][des]" value="{$basics.des}" />
+					{$basics.des}
+				</td>
 			</tr>
 			{/case}
 			{case code}

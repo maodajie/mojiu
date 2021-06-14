@@ -4,7 +4,7 @@
 		{include file="basics/unique" title=":mac_default('专题')" count=":mac_default('——&nbsp;'.($vo['topic_rel_vod']?count(explode(',',$vo['topic_rel_vod'])).'个视频':($vo['topic_rel_art']?count(explode(',',$vo['topic_rel_art'])).'篇文章':'暂未收录数据')).'&nbsp;——')" name=":mac_filter_html($vo['topic_name'])" image=":mac_url_img(trim($vo['topic_pic']))" href=":mac_url_topic_detail($vo)" lazy="open"}
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			{if$maccms.aid!=34}
-			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_topic_detail($vo)}">查看详情</a>
+			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px dc-wane mo-back-mojia mo-cols-info" href="{:mac_url_topic_detail($vo)}">查看详情</a>
 			{/if}
 		</div>
 	</dt>
@@ -17,4 +17,4 @@
 	</dd>
 	{if$maccms.aid!=33}{include file="tinier/qrcode"}{/if}
 </dl>
-<dl class="mo-deta-info mo-part-bbsd mo-bord-muted mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>
+<dl class="mo-deta-info mo-part-bbsd mo-edge-color mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>

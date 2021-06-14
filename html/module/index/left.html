@@ -1,0 +1,19 @@
+<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+	<ul class="mo-menu-wrap mo-scroll-wrap dc-slip dc-font-0">
+		{maccms:type ids="parent" order="asc" by="sort" id="magic"}
+		<li class="mo-menu-item dc-row dc-pa-lg5 dc-ml-15 dc-ml-md20 dc-ml-lg0 dc-iblock dc-lg-block dc-line-30 dc-font-18">
+			<a class="dc-wane dc-show dc-mn-lg5 mo-text-hover{if$magic.type_id==$GLOBALS['type_id']||$magic.type_id==$GLOBALS['type_pid']} mo-scroll-this mo-text-mojia{/if}" href="{:mac_url_type($magic)}">{$magic.type_name|strip_tags}<span class="dc-rtgo dc-line-md30 dc-pa-5 dc-font-14 dc-none dc-lg-iblock mo-text-muted"><i class="dc-pr-2">{:mac_data_count($magic.type_id,'all',mac_get_mid_code($magic.type_mid))}</i><i class="mo-icon-font mo-icon-xiangyou dc-font-14"></i></span></a>
+		</li>
+		{if$magic.type_extend.class}
+		<li class="mo-menu-item dc-col-4 dc-pa-5 dc-none dc-lg-iblock dc-line-34 dc-font-14">
+			<a class="dc-wane dc-show dc-center mo-back-muted mo-text-hover" href="{:mac_url_type($magic,['class'=>''],'show')}">全部</a>
+		</li>
+		{maccms:foreach name=":array_slice(explode(',',$magic.type_extend.class),0,5)" id="sub"}
+		<li class="mo-menu-item dc-col-4 dc-pa-5 dc-none dc-lg-iblock dc-line-34 dc-font-14">
+			<a class="dc-wane dc-show dc-center mo-back-muted mo-text-hover" href="{:mac_url_type($magic,['class'=>$sub],'show')}">{$sub}</a>
+		</li>
+		{/maccms:foreach}
+		{/if}
+		{/maccms:type}
+	</ul>
+</div>

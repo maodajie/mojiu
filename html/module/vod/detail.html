@@ -1,19 +1,19 @@
-{if!is_array($vo)}{assign name="vo" value="$obj"}{/if}
-<div class="mo-main-item mo-info-wrap dc-row mo-back-white">
-	<div class="dc-col-4 dc-col-md3 dc-col-xl2 mo-info-pics dc-row">
-		<a class="mo-bord-round dc-row dc-show dc-1by2 dc-font-0" href="{:mac_url_vod_detail($vo)}">
-			<img class="dc-full" src="{:mao_url_img($vo.vod_pic)}" alt="{$obj.vod_name}" />
-		</a>
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-30 dc-pa-5 dc-font-0 dc-pb-2">
+		<h2 class="dc-font-16 dc-line-24"><a class="dc-bold" href="{:mac_url_vod_detail($obj)}">{$obj.vod_name|strip_tags}</a></h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show mo-play-open" href="javascript:;">展开<i class="mo-icon-font mo-icon-xiangxia dc-font-12 dc-bold"></i></a></li>
+		</ul>
 	</div>
-	<dl class="dc-col-8 dc-col-md9 dc-col-xl10 dc-pl-10 dc-pl-md15">
-		<dt class="dc-font-16 dc-line-24 dc-clamp"><a {:mao_view_color($vo.vod_color)} class="dc-bold" href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|mac_filter_html}</a></dt>
-		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">主演:&nbsp;</span>{$vo.vod_actor|mac_url_create='actor','vod','search'}</dd>
-		<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">导演:&nbsp;</span>{$vo.vod_director|mac_url_create='director','vod','search'}</dd>
-		<dd class="dc-font-14 dc-line-24 dc-clamp">{$vo.vod_year|mac_url_create='year','vod','search'}{$vo.vod_class|mac_url_create='class','vod','search'}{$vo.vod_area|mac_url_create='area','vod','search'}</dd>
-	</dl>
-	<dd class="dc-col-8 dc-col-md9 dc-col-xl10 dc-pl-10 dc-pl-md15 dc-font-0 dc-line-24 dc-clamp mo-info-btns">
-		<a class="dc-font-14 dc-none mo-deta-play dc-mr-10 mo-part-btns dc-line-30 mo-bord-round mo-back-mojia" href="{:mac_url_vod_detail($vo)}"><i class="mo-icon-font mo-icon-down dc-pr-2 dc-font-14"></i>详情</a>
-		<a class="dc-font-14 dc-iblock mo-deta-play dc-mr-10 mo-part-btns dc-line-30 mo-bord-round mo-back-mojia" href="{:mac_url_vod_play($vo,'first')}"><i class="mo-icon-font mo-icon-play dc-pr-2 dc-font-14"></i>播放</a>
-		<a class="dc-font-14 dc-iblock mo-deta-play dc-mr-10 mo-part-btns dc-line-30 mo-bord-round mo-back-mojia" href="{:mac_url_vod_down($vo,'first')}"><i class="mo-icon-font mo-icon-down dc-pr-2 dc-font-14"></i>下载</a>
-	</dd>
+	<div class="dc-row dc-pn-5 dc-pb-2 dc-font-12 dc-line-20 mo-text-muted">
+		<i class="mo-icon-font mo-icon-remen-fill dc-font-12" style="color:#f42c5d"></i>热度{$obj.vod_hits}&nbsp;·&nbsp;{$obj.vod_class|mac_url_create='class','vod','search'}·&nbsp;{$obj.vod_area|mac_url_create='area','vod','search'}·&nbsp;{$obj.vod_remarks|mac_default='未知'}
+	</div>
+	<div class="mo-word-wrap dc-font-14 dc-line-24 dc-pa-5 dc-pt-0 dc-pt-md2 dc-pb-2 dc-omit-2" style="height: 48px;">
+		{if$obj.vod_plot}
+		<span class="dc-bold dc-show">本集剧情&nbsp;{$obj['vod_plot_list'][$param['nid']]['name']}</span>
+		{$obj['vod_plot_list'][$param['nid']]['detail']}
+		<span class="dc-bold dc-show">视频详情</span>
+		{/if}
+		{:mac_default(mac_url_content_img(mao_html_check($obj[mac_get_mid_code($maccms['mid']).'_content'])),'暂无简介')}
+	</div>
 </div>

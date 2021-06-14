@@ -1,31 +1,47 @@
-{include file="public/header,user/banner"} 
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="user" title=":mac_default('升级会员')" btns="返回" href=":mac_url('user/index')"}
-	<form class="mo-user-form" action="{:mac_url('user/upgrade')}" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
-		<ul class="mo-cols-rows mo-paxs-0px mo-pamd-5px">
-			{volist name="group_list" id="vo"}{if$vo.group_id>2}
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包天：{$vo.group_points_day}积分</span>
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_day}" data-long="day" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包周：{$vo.group_points_week}积分</span>
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_week}" data-long="week" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包月：{$vo.group_points_month}积分</span>
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_month}" data-long="month" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
-			</li>
-			<li class="mo-paxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></li>
-			<li class="mo-paxs-5px mo-cols-rows mo-lhxs-34px">
-				<span class="mo-cols-info mo-cols-xs8 mo-wrap-arow">{$vo.group_name}包年：{$vo.group_points_year}积分</span>
-				<span class="mo-cols-info mo-cols-xs4 mo-wrap-arow mo-coxs-right"><a class="mo-paxs-5x10 mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_year}" data-long="year" data-url="{:mac_url('user/upgrade')}" lay-submit lay-filter="group">升级</a></span>
-			</li>
-			{/if}{/volist}
-		</ul>
-	</form>
+{extend name="index/index"}
+{block name="include"}
+{assign name="maccms['aid']" value="67"}
+{/block}
+{block name="left"}
+{include file="module/user/left"}
+{/block}
+{block name="center"}
+{volist name="group_list" id="vo"}{if$vo.group_id>2}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">当前等级：{$obj.group.group_name}</h2>
+	</div>
+	<ul class="dc-line-24 dc-font-14" data-jump="{:mac_url('user/index')}" data-buy="{:mac_url('user/buy')}" data-id="{$vo.group_id}" data-name="{$vo.group_name}">
+		<li class="dc-pn-5 dc-row">到期时间：{if$obj.user_end_time}{:date('Y-m-d',$obj['user_end_time'])}{else}无限制{/if}</li>
+		<li class="dc-pn-5 dc-row">剩余积分：{$obj.user_points}</li>
+		<li class="dc-pn-5 dc-row">点击下方需要的会员组和时长进行购买升级</li>
+	</ul>
 </div>
-{include file="public/footer"}
+<div class="dc-layout dc-wane mo-back-white mo-info-wrap dc-row">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$vo.group_name}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">请选择</a></li>
+		</ul>
+	</div>
+	<ul class="dc-line-24 dc-font-14" data-jump="{:mac_url('user/index')}" data-buy="{:mac_url('user/buy')}" data-id="{$vo.group_id}" data-name="{$vo.group_name}">
+		<li class="dc-pa-5 dc-row">
+			<span class="dc-show">包天：{$vo.group_points_day}积分</span>
+			<a class="mo-user-grade dc-wane dc-rtgo dc-pn-10 dc-ma-5 dc-show mo-back-mojia" href="javascript:;" data-points="{$vo.group_points_day}" data-long="day">升级</a></span>
+		</li>
+		<li class="dc-pa-5 dc-row">
+			<span class="dc-show">包周：{$vo.group_points_week}积分</span>
+			<a class="mo-user-grade dc-wane dc-rtgo dc-pn-10 dc-ma-5 dc-line-24 mo-back-mojia" href="javascript:;" data-points="{$vo.group_points_week}" data-long="week">升级</a></span>
+		</li>
+		<li class="dc-pa-5 dc-row">
+			<span class="dc-show">包月：{$vo.group_points_month}积分</span>
+			<a class="mo-user-grade dc-wane dc-rtgo dc-pn-10 dc-ma-5 dc-line-24 mo-back-mojia" href="javascript:;" data-points="{$vo.group_points_month}" data-long="month">升级</a></span>
+		</li>
+		<li class="dc-pa-5 dc-row">
+			<span class="dc-show">包年：{$vo.group_points_year}积分</span>
+			<a class="mo-user-grade dc-wane dc-rtgo dc-pn-10 dc-ma-5 dc-line-24 mo-back-mojia" href="javascript:;" data-points="{$vo.group_points_year}" data-long="year">升级</a></span>
+		</li>
+	</ul>
+</div>
+{/if}{/volist}
+{/block}

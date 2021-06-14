@@ -1,0 +1,194 @@
+{maccms:foreach name=":mao_array_sort($mojia['home'],'id')" id="index" key="home"}
+{if$index.state==1}
+{switch $home}
+{case banner}
+{assign name="slide" value=":mao_view_slide($index,$maccms.mid)"}
+{if$slide}
+<div class="dc-layout dc-wane dc-pa-0 dc-pa-md0">
+	{include file="module/common/banner" data=":mao_return($slide)"}
+</div>
+{/if}
+{/case}
+{case notice}
+{if$mojia.home.notice.index}
+<div class="dc-layout dc-wane mo-back-white">
+	{maccms:art ids="'.$mojia['home']['notice']['index'].'" order="desc" by="time"}
+	<div class="dc-pa-5 dc-font-14 dc-line-20">
+		{$mojia.home.notice.type?mac_url_content_img($vo.art_content):'<marquee>'.mac_url_content_img($vo.art_content).'</marquee>'}
+	</div>
+	{/maccms:art}
+</div>
+{/if}
+{/case}
+{case cinema}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('label/rank')}"><i class="mo-icon-font mo-icon-paihangbang dc-font-12 dc-bold dc-pr-2"></i>排行榜</a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:vod num="'.$index['num'].'" type="'.$index['category'].'" level="'.$index['level'].'" order="'.$index['order'].'" by="'.$index['sort'].'" name="'.implode(',',$mojia['config']['rank']['keyword']).'"}
+		{include file="module/vod/picture"}
+		{/maccms:vod}
+	</ul>
+</div>
+{/case}
+{case latest}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('vod/index')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:vod num="'.$index['num'].'" type="'.$index['category'].'" level="'.$index['level'].'" order="'.$index['order'].'" by="'.$index['sort'].'"}
+		{include file="module/vod/picture"}
+		{/maccms:vod}
+	</ul>
+</div>
+{maccms:type ids="parent" order="asc" by="sort" id="magic" mid="1"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$magic['type_name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url_type($magic)}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:vod num="12" type="'.$magic['type_id'].'" order="desc" by="time"}
+		{include file="module/vod/picture"}
+		{/maccms:vod}
+	</ul>
+</div>
+{/maccms:type}
+{/case}
+{case sunday}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">周一</a></li>
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">周二</a></li>
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">周三</a></li>
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">周四</a></li>
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">周五</a></li>
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">周六</a></li>
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="javascript:;">周日</a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:vod num="'.$index['num'].'" type="'.$index['category'].'" level="'.$index['level'].'" order="'.$index['order'].'" by="'.$index['sort'].'"}
+		{include file="module/vod/picture"}
+		{/maccms:vod}
+	</ul>
+</div>
+{/case}
+{case newest}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('art/index')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:art num="'.$index['num'].'" type="'.$index['category'].'" level="'.$index['level'].'" order="'.$index['order'].'" by="'.$index['sort'].'"}
+		{include file="module/art/picture"}
+		{/maccms:art}
+	</ul>
+</div>
+{/case}
+{case taobao}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('label/index')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{assign name="taobao" value=":include($GLOBALS['package']['dir'].'/extra/taobao.php')"}
+		{maccms:foreach name=":array_slice($taobao, 0, $index['num'])"}
+		{include file="module/taoke/picture"}
+		{/maccms:foreach}
+	</ul>
+</div>
+{/case}
+{case actors}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('actor/index')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:actor num="'.$index['num'].'" type="'.$index['category'].'" level="'.$index['level'].'" order="'.$index['order'].'" by="'.$index['sort'].'"}
+		{include file="module/actor/picture"}
+		{/maccms:actor}
+	</ul>
+</div>
+{/case}
+{case webnav}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('website/index')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:website num="'.$index['num'].'" type="'.$index['category'].'" level="'.$index['level'].'" order="'.$index['order'].'" by="'.$index['sort'].'"}
+		{include file="module/website/picture"}
+		{/maccms:website}
+	</ul>
+</div>
+{/case}
+{case topics}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('topic/index')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:topic num="'.$index['num'].'" type="'.$index['category'].'" level="'.$index['level'].'" order="'.$index['order'].'" by="'.$index['sort'].'"}
+		{include file="module/topic/picture"}
+		{/maccms:topic}
+	</ul>
+</div>
+{/case}
+{case friend}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">{$index['name']}</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="{:mac_url('website/index')}">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{if$mojia.home.friend.advs&&$mojia.home.friend.type!='pic'}
+		<li class="dc-pa-5 dc-col-4 dc-col-sm3">
+			<a class="dc-clamp dc-line-20 dc-font-14" href="{$mojia.config.author.url}" target="_blank">{$mojia.config.author.name}模板</a>
+		</li>
+		{/if}{maccms:link num="'.$mojia['home']['friend']['num'].'" type="'.$mojia['home']['friend']['type'].'" order="'.$mojia['home']['friend']['order'].'" by="'.$mojia['home']['friend']['sort'].'"}
+		{if$mojia.home.friend.type=='pic'}
+		<li class="dc-pa-5 dc-col-4 dc-col-sm3">
+			<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-4by1" href="{$vo.link_url}" target="_blank" data-original="{$mojia['other']['chain']['state']?(stristr($mojia['other']['chain']['apis'],'asset/exc/create')==true?$template:''.stristr($vo['link_logo'],'//')==true?$mojia['other']['chain']['apis']:''):''}{:mac_url_img(trim($vo['link_logo']))}"></a>
+		</li>
+		{else}
+		<li class="dc-pa-5 dc-col-4 dc-col-sm3">
+			<a class="dc-clamp dc-line-20 dc-font-14" href="{$vo.link_url}" target="_blank">{$vo.link_name}</a>
+		</li>
+		{/if}
+		{/maccms:link}
+	</ul>
+</div>
+{/case}
+{/switch}
+{/if}
+{/maccms:foreach}

@@ -1,0 +1,34 @@
+<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+	<ul class="mo-menu-wrap mo-scroll-wrap dc-slip dc-font-0">
+		{maccms:foreach name="$taobao[0]['data']" id="magic"}
+		<li class="mo-menu-item dc-row dc-pa-lg5 dc-ml-15 dc-ml-md20 dc-ml-lg0 dc-iblock dc-lg-block dc-line-30 dc-font-18">
+			<a class="dc-wane dc-show dc-mn-lg5 mo-text-hover{if$magic.cid==$param.cid} mo-scroll-this mo-text-mojia{/if}" href="{:mac_url('label/show',['cid'=>$magic.cid])}">{$magic.cname}<span class="dc-rtgo dc-line-md30 dc-pa-5 dc-font-14 dc-none dc-lg-iblock mo-text-muted"><i class="mo-icon-font mo-icon-xiangyou dc-font-14"></i></span></a>
+		</li>
+		{/maccms:foreach}
+	</ul>
+</div>
+<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">类型</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.sub==''} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>'','type'=>$param.type,'sort'=>$param.sort])}">全部</a></dd>
+		{maccms:foreach name="$taobao[0]['data'][array_search($param['cid'],array_map('array_shift',$taobao[0]['data']))]['subcategories']" id="sub"}
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.sub==$sub.subcid} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$sub.subcid,'type'=>$param.type,'sort'=>$param.sort])}">{$sub.subcname}</a></dd>
+		{/maccms:foreach}
+	</dl>
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">卖点</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.type==''} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>'','sort'=>$param.sort])}">全部</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.type==1} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>1,'sort'=>$param.sort])}">拍多件活动</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.type==3} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>3,'sort'=>$param.sort])}">限量抢购</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.type==4} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>4,'sort'=>$param.sort])}">额外满减</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.type==6} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>6,'sort'=>$param.sort])}">买商品礼赠</a></dd>
+	</dl>
+	<dl class="mo-show-wrap dc-slip dc-lg-init dc-line-30 dc-font-0 mo-scroll-wrap">
+		<dt class="dc-font-14 dc-iblock dc-lg-block dc-pa-lg5">排序</dt>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.sort==''} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>$param.type,'sort'=>''])}">综合排序</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.sort==1} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>$param.type,'sort'=>1])}">上架时间</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.sort==5} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>$param.type,'sort'=>5])}">价格最高</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.sort==6} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>$param.type,'sort'=>6])}">价格最低</a></dd>
+		<dd class="dc-font-14 dc-iblock dc-col-lg4 dc-init dc-pa-lg5 dc-ml-15 dc-ml-lg0"><a class="dc-wane dc-show dc-center{if$param.sort==3} mo-back-mojia mo-scroll-this{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$param.cid,'sub'=>$param.sub,'type'=>$param.type,'sort'=>3])}">领券量</a></dd>
+	</dl>
+</div>

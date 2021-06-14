@@ -1,0 +1,11 @@
+<li class="dc-pa-5 dc-col-4 dc-col-sm4 dc-col-lg4">
+	<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-1by1" href="{:mac_url('label/detail',['id'=>$vo.id,'sid'=>$vo.goodsId])}">
+		<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.mainPic)}" data-src="{$vo.mainPic}" alt="{$vo.dtitle}" />
+		<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12 dc-center">销量{$vo.monthSales}</div>
+		<span class="mo-lazy-play dc-full"></span>
+		{:mao_view_tips($vo)}
+	</a>
+	<div class="dc-pt-5 dc-pt-md10" style="height:40px">
+		<a class="dc-omit-2 dc-font-14" href="{:mac_url('label/detail',['id'=>$vo.id,'sid'=>$vo.goodsId])}">{$vo.dtitle}</a>
+	</div>
+</li>

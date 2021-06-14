@@ -1,0 +1,24 @@
+{extend name="index/index"}
+{block name="title"}
+<title>404 Not Found - {$GLOBALS['config']['site']['site_name']}</title>
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-pa-10 dc-font-0">
+		<h2 class="dc-bold dc-font-28 dc-pb-10">提示<span class="dc-pl-20 dc-font-18">{$msg}</span></h2>
+		<span class="dc-show dc-border mo-edge-color"></span>
+	</div>
+	<div class="mo-jump-wrap dc-pb-20 dc-pl-10 dc-row">
+		<div class="dc-col-6">
+			<h4 class="dc-font-18 dc-line-44">可能原因：</h4>
+			<p class="dc-font-14 dc-line-30">找不到请求的页面</p>
+			<p class="dc-font-14 dc-line-30">输入的网址不正确</p>
+		</div>
+		<div class="dc-col-6">
+			<h4 class="dc-font-18 dc-line-44">可以尝试：</h4>
+			<p class="dc-font-14 dc-line-30"><a class="mo-text-mojia" href="http://127.0.0.1/index.php/vod/detail/id/471158.html">打开网站首页</a></p>
+			<p class="dc-font-14 dc-line-30"><a class="js-jump" data-url="{:mac_url('index/index')}" href="{:strpos($_SERVER['HTTP_REFERER'],$_SERVER['HTTP_HOST'])===false?mac_url('index/index'):$url}">自动跳转(<span>3</span>)</a></p>
+		</div>
+	</div>
+</div>
+{/block}

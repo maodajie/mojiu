@@ -1,0 +1,11 @@
+<li class="dc-pa-5 dc-col-6 dc-col-sm4 dc-col-lg4">
+	<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-16by9" href="{:mac_url_topic_detail($vo)}">
+		<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.topic_pic)}" data-src="{:mao_img_src($vo.topic_pic)}" alt="{:mao_view_title($vo.topic_name)}" />
+		<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12 dc-center dc-font-12">
+			<span class="dc-line-18 dc-line-lg24">专题</span>
+			<span class="dc-clamp dc-font-12 dc-line-24">——&nbsp;{if$vo.topic_rel_vod}共{:count(explode(',',$vo.topic_rel_vod))}部{elseif!$vo.topic_rel_vod&&$vo.topic_rel_art}共{:count(explode(',',$vo.topic_rel_art))}篇{else}暂无影片{/if}&nbsp;——</span>
+			<span {:mao_view_color($vo.topic_color)}class="dc-clamp dc-line-18 dc-line-lg24" href="{:mac_url_vod_detail($vo)}">{:mao_view_title($vo.topic_name)}</span>
+		</div>
+		<span class="mo-lazy-play dc-full"></span>
+	</a>
+</li>

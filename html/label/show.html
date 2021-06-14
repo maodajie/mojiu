@@ -1,0 +1,23 @@
+{extend name="index/index"}
+{block name="include"}
+{assign name="param" value=":input()"}
+{assign name="taobao" value=":mao_taoke_index($mojia,$param)"}
+{/block}
+{block name="left"}
+{include file="module/taoke/screen"}
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">商品列表</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock">共&nbsp;<span class="mo-text-mojia">{:count(array_slice($taobao[2]['data']['list'], 0, 48))}</span>&nbsp;个商品</li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:foreach name=":array_slice($taobao[2]['data']['list'], 0, 48)"}
+		{include file="module/taoke/picture"}
+		{/maccms:foreach}
+	</ul>
+</div>
+{/block}

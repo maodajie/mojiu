@@ -1,0 +1,8 @@
+{extend name="index/index"}
+{block name="left"}
+{assign name="taobao" value=":mao_taoke_detail($mojia,input())"}
+{include file="module/taoke/left"}
+{/block}
+{block name="center"}
+{include file="module/taoke/info,module/taoke/detail,module/taoke/alike"}
+{/block}

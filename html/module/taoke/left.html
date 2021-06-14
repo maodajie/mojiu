@@ -1,0 +1,17 @@
+<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+	<ul class="mo-menu-wrap mo-scroll-wrap dc-slip dc-font-0">
+		{maccms:foreach name="$taobao[0]['data']" id="magic"}
+		<li class="mo-menu-item dc-row dc-pa-lg5 dc-ml-15 dc-ml-md20 dc-ml-lg0 dc-iblock dc-lg-block dc-line-30 dc-font-18">
+			<a class="dc-wane dc-show dc-mn-lg5 mo-text-hover{if$magic.cid==$param.cid} mo-scroll-this mo-text-mojia{/if}" href="{:mac_url('label/show',['cid'=>$magic.cid])}">{$magic.cname}<span class="dc-rtgo dc-line-md30 dc-pa-5 dc-font-14 dc-none dc-lg-iblock mo-text-muted"><i class="mo-icon-font mo-icon-xiangyou dc-font-14"></i></span></a>
+		</li>
+		<li class="mo-menu-item dc-col-4 dc-pa-5 dc-none dc-lg-iblock dc-line-34 dc-font-14">
+			<a class="dc-wane dc-show dc-center mo-back-muted mo-text-hover" href="{:mac_url('label/show',['cid'=>$magic.cid])}">全部</a>
+		</li>
+		{maccms:foreach name=":array_slice($taobao[0]['data'][$key]['subcategories'],0,5)" id="sub"}
+		<li class="mo-menu-item dc-col-4 dc-pa-5 dc-none dc-lg-iblock dc-line-34 dc-font-14">
+			<a class="dc-wane dc-show dc-center{if$sub.subcid==$param.subcid} mo-back-mojia{else} mo-back-muted mo-text-hover{/if}" href="{:mac_url('label/show',['cid'=>$magic.cid,'sub'=>$sub.subcid])}">{$sub.subcname}</a>
+		</li>
+		{/maccms:foreach}
+		{/maccms:foreach}
+	</ul>
+</div>

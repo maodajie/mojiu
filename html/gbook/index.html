@@ -1,8 +1,15 @@
-{include file="public/header,index/notice,gbook/report" report="gbook"}
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="gbook" title=":mac_default('留言板')" btns="返回" more="hide"}
-	<div class="mo-comm-gbajax">
-		<p class="mo-coxs-center mo-paxs-5px mo-pamd-10px">加载中请稍等</p>
+{extend name="index/index"}
+{block name="center"}
+<div class="mo-talk-wrap dc-layout dc-wane mo-back-white dc-over">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">留言板</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock">共&nbsp;<span id="mo-page-total" class="mo-text-mojia">0</span>&nbsp;条留言</li>
+		</ul>
 	</div>
+	{include file="gbook/report" type="gbook" url=":mac_url('gbook/saveData')"}
+	<ul class="mo-talk-list dc-font-14" data-url="{:mac_url('gbook/ajax')}">
+		{include file="gbook/ajax"}
+	</ul>
 </div>
-{include file="public/footer"}
+{/block}

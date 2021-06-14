@@ -13,4 +13,8 @@
 - 作者首页：[http://maodajie.com](http://maodajie.com)
 - 纸飞机群：[https://t.me/mubanqun](https://t.me/mubanqun)
 - 扣群交流：[137183109](https://jq.qq.com/?_wv=1027&k=5Cpumac)
-- 静态加速：[https://cdn.jsdelivr.net/gh/maodajie/mojiu@master/](https://cdn.jsdelivr.net/gh/maodajie/mojiu@master/)
+- 静态加速：[https://cdn.jsdelivr.net/gh/maodajie/mojiu@main/](https://cdn.jsdelivr.net/gh/maodajie/mojiu@main/)
+
+#### 文件下载
+- 下载地址：[https://cdn.jsdelivr.net/gh/maodajie/mojiu@down/zip/](https://cdn.jsdelivr.net/gh/maodajie/mojiu@down/zip/)
+- 更新记录：[https://cdn.jsdelivr.net/gh/maodajie/mojiu@down/log/](https://cdn.jsdelivr.net/gh/maodajie/mojiu@down/log/)

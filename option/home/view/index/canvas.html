@@ -1,31 +1,43 @@
-<div class="mo-have-info mo-cols-rows mo-back-white">
-	<div class="mo-have-main mo-cols-rows">
-		<div class="mo-have-head mo-cols-rows mo-cols-xs12 mo-byxs-2by3">
-			<img class="mo-have-boxs mo-part-full" width="100%" height="auto" src="{image}" />
-		</div>
-		<div class="mo-cols-rows">
-			<div class="mo-have-code mo-code-info mo-paxs-10px mo-cols-info mo-cols-xs4" data-api="{$mojia['other']['share']['apis']?1:0}">
-				<img src="{favicon}" id="mo-have-pics" class="mo-cols-hide" crossorigin="anonymous" />
+<!DOCTYPE html>
+<html>
+<head>
+{include file="../../../../html/public/include,../../../../html/module/include/style"}
+<title>{$_GET['name']}</title>
+</head>
+<body>
+<div class="mo-make-wrap">
+	<div class="mo-make-item dc-bulge dc-wane">
+		<div class="mo-make-head">
+			<div class="mo-lazy-wrap dc-row mo-back-muted dc-1by2">
+				<img class="mo-lazy-load mo-make-load dc-height" src="{$_GET['img']}" alt="{$_GET['name']}" />
 			</div>
-			<div class="mo-have-data mo-paxs-10px mo-plxs-0px mo-cols-info mo-cols-xs8">
-				<h4 class="mo-fsxs-14px mo-wrap-arow mo-ptxs-5px">{title}</h4>
-				<p class="mo-fsxs-12px mo-lhxs-18px mo-part-ptop">{keywords}</p>
+			<div class="mo-make-info dc-pa-5 dc-row">
+				<div class="mo-name-wrap dc-line-30 dc-pa-10 dc-font-0 dc-pb-2">
+					<h2 class="dc-font-14 dc-line-24 dc-clamp"><a class="mo-make-href dc-bold" href="{$_GET['href']}">{:preg_replace('/_.*/i','',$_GET['name'])}</a></h2>
+				</div>
+				<div class="dc-pn-10 dc-pb-2 dc-font-12 dc-line-20 mo-text-muted" style="height: 40px;overflow: hidden;">
+					{$_GET['key']}
+				</div>
+				<div class="mo-make-code dc-rbgo dc-ma-10 dc-load" data-api="{$mojia.sole.share.api?1:0}">
+					<img class="mo-make-icon dc-hide" src="{:mac_url_img($mojia.base.logo.pic2)}" crossorigin="anonymous" />
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="mo-part-dott mo-bord-muted mo-cols-show"></div>
-	<div class="mo-cols-rows mo-paxs-5px">
-		<li class="mo-cols-info mo-cols-xs12 mo-paxs-5px mo-fsxs-12px">
-			<a class="mo-have-btns mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-back-mojia mo-java-event" href="javascript:;">生成海报分享给好友</a>
-		</li>
-		<li class="mo-cols-info mo-cols-xs3 mo-paxs-5px mo-fsxs-12px">
-			<a class="mo-have-shut mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-bord-muted" href="javascript:;">关闭</a>
-		</li>
-		<li class="mo-cols-info mo-cols-xs5 mo-paxs-5px mo-fsxs-12px">
-			<a class="mo-have-copy mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-bord-muted" href="javascript:;">复制标题+网址</a>
-		</li>
-		<li class="mo-cols-info mo-cols-xs4 mo-paxs-5px mo-fsxs-12px">
-			<a class="mo-have-link mo-lhxs-34px mo-back-click mo-wrap-arow mo-part-hund mo-coxs-center mo-part-btns mo-bord-muted" href="javascript:;">复制网址</a>
-		</li>
+		<ul class="mo-make-foot dc-row dc-pa-5">
+			<li class="dc-col-6 dc-pa-5">
+				<a class="mo-make-copy mo-make-text dc-bold dc-font-14 dc-center mo-edge-color dc-wane dc-show dc-clamp dc-line-40" href="javascript:;">复制链接</a>
+			</li>
+			<li class="dc-col-6 dc-pa-5">
+				<a class="mo-make-down mo-make-text dc-bold dc-font-14 dc-center mo-edge-color dc-wane dc-show dc-clamp dc-line-40 dc-disad" href="javascript:;">loading</a>
+			</li>
+		</ul>
 	</div>
 </div>
+{if$mojia.config.mode=='exploit'}
+<script src="{$mojia.config.cdn}{$mojia.config.node}/html2canvas/dist/html2canvas.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+{else}
+<script src="{$mojia.config.cdn}{$mojia.config.base}/script/canvas.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+{/if}
+{include file="../../../../html/module/include/script"}
+</body>
+</html>

@@ -1,25 +1,32 @@
 <script type="text/javascript">
 	var magic = {
+		'index': '{$mojia.config.index}',
 		'path': '{$mojia.config.path}',
-		'type': '{$mojia.config.base}',
-		'run': '{$mojia.config.run}',
+		'base': '{$mojia.config.base}',
 		'tpl': '{$mojia.config.tpl}',
 		'cdn': '{$mojia.config.cdn}',
-		'ver': '{$mojia.config.ver}'
+		'ver': '{$mojia.config.ver}',
+		'mid': '{$maccms.mid}',
+		'aid': '{$maccms.aid}',
+		'rid': '{$param.id}',
+		'sid': '{$param.sid}',
+		'nid': '{$param.nid}',
 	};
 </script>
 {if$mojia.config.mode=='exploit'}
 <script type="text/javascript">
 	window.lazySizesConfig = window.lazySizesConfig || {};
-	window.lazySizesConfig.lazyClass = 'mo-lazy-load';
+	window.lazySizesConfig.lazyClass = 'js-lazyload';
+	window.lazySizesConfig.loadedClass = 'mo-lazy-okay';
 </script>
 <script src="{$mojia.config.cdn}{$mojia.config.base}/layui/layui.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
-<script src="{$mojia.config.cdn}{$mojia.config.base}/plugin/jquery.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
-<script src="{$mojia.config.cdn}{$mojia.config.base}/plugin/lazysizes.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
-<script src="{$mojia.config.cdn}{$mojia.config.base}/plugin/nicescroll.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
-<script src="{$mojia.config.cdn}{$mojia.config.base}/plugin/clipboard.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
-<script src="{$mojia.config.cdn}{$mojia.config.base}/plugin/sidebar.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
-<script src="{$mojia.config.cdn}{$mojia.config.base}/plugin/qrcode.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
-<script src="{$mojia.config.cdn}{$mojia.config.base}/plugin/swiper.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.node}/jquery/dist/jquery.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.node}/lazysizes/lazysizes.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.node}/sticky-sidebar/dist/sticky-sidebar.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.node}/swiper/swiper-bundle.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.node}/kjua/dist/kjua.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.node}/clipboard/dist/clipboard.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.node}/file-saver/dist/FileSaver.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.cdn}{$mojia.config.base}/layui/lay/modules/layer.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
 {/if}
 <script src="{$mojia.config.cdn}{$mojia.config.base}/script/layui.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>

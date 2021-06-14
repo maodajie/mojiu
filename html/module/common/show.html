@@ -1,0 +1,18 @@
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-0">
+			<a class="dc-bold dc-font-14 dc-pr-10 dc-iblock{if$param.by==''} mo-text-mojia{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'year'=>$param.year,'actor'=>$param.actor,'by'=>''],'show')}">最新</a>
+			<a class="dc-bold dc-font-14 dc-pr-10 dc-iblock{if$param.by=='hits'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'year'=>$param.year,'actor'=>$param.actor,'by'=>'hits'],'show')}">最热</a>
+			<a class="dc-bold dc-font-14 dc-pr-10 dc-iblock{if$param.by=='score'} mo-text-mojia{/if}" href="{:mac_url_type($obj,['class'=>$param.class,'starsign'=>$param.starsign,'area'=>$param.area,'year'=>$param.year,'actor'=>$param.actor,'by'=>'score'],'show')}">评分</a>
+		</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock">第&nbsp;<span id="mo-page-this" class="mo-text-mojia">1</span>&nbsp;页，共&nbsp;<span id="mo-page-total" class="mo-text-mojia">0</span>&nbsp;个结果</li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row">
+		{maccms:[mid] num="48" type="'.$GLOBALS['type_id'].'" order="desc" by="time" paging="yes" pageurl="[mid]/show" half="3"}
+		{include file="module/[mid]/picture"}
+		{/maccms:[mid]}
+	</ul>
+</div>
+{include file="module/common/paging"}

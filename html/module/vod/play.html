@@ -1,24 +1,27 @@
-{if$maccms.aid!=15}{assign name="param['sid']" value=":key($obj.vod_play_list)"}{/if}
-<div class="mo-main-item">
-	<div class="mo-title-wrap dc-row dc-mb-10 dc-mb-md20">
-		<h2 class="dc-font-16 dc-font-md24 dc-line-24 dc-bold">播放列表</h2>
-		<ul class="mo-part-more dc-font-0">
-			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block" href="javascript:;"><i class="mo-icon-font mo-icon-paixu dc-font-12 dc-pr-2 dc-bold"></i>排序</a></li>
-			<li class="dc-iblock dc-font-12 dc-line-24 mo-text-muted dc-pl-5"><a class="dc-block dc-font-12" href="javascript:;"><i class="mo-icon-font mo-icon-play {$obj['vod_play_list'][$param['sid']]['player_info']['from']} dc-font-12 dc-pr-2"></i>{$obj['vod_play_list'][$param['sid']]['player_info']['show']}<i class="mo-icon-font mo-icon-xiayiye dc-font-12 dc-bold"></i></a></li>
+{assign name="list" value=":mao_vod_page($obj,$param,$maccms)"}
+<div class="dc-layout dc-wane mo-back-white mo-list-wrap">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">播放列表</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show mo-list-sort" href="javascript:;"><i class="mo-icon-font mo-icon-paixu dc-font-12 dc-pr-2 dc-bold"></i><span>排序</span></a></li>
 		</ul>
 	</div>
-	<ul class="mo-java-scroll mo-bord-round mo-back-white dc-slip dc-font-0 dc-pr-15 dc-mb-10 dc-hide">
-		{maccms:foreach name="obj.vod_play_list" id="sub"}
-		<li class="dc-iblock dc-font-14 dc-line-40 dc-pl-15"><a class="dc-show" href="{[href]}">{$sub.player_info.show}</a></li>
+	{if count($list)>1}
+	<div class="dc-slip mo-scroll-wrap">
+		{maccms:foreach name="$list" id="vo"}
+		<a class="mo-list-page dc-bold dc-pa-5 dc-iblock dc-font-14{if mao_vod_this($maccms, $param, $vo, $key)} mo-text-mojia mo-scroll-this{/if}" href="javascript:;">{:implode('-',$vo.page)}</a>
 		{/maccms:foreach}
-	</ul>
-	{maccms:foreach name="obj.vod_play_list" id="par"}
-	<ul class="mo-movs-item dc-na-5 mo-sort-boxs dc-row mo-pamd-5px{if$maccms.aid==15}{if$par.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} dc-show{else} dc-hide{/if}{elseif$key==$param['sid']} dc-show{else} dc-hide{/if}">
-		{maccms:foreach name="obj['vod_play_list'][$par['sid']]['urls']" id="sub"}
-		<li class="dc-pa-5{if is_numeric($sub.name)||strpos($sub.name,'第')!==false&&strpos($sub.name,'集')!==false} dc-col-2 dc-col-lg1{else} dc-col-6 dc-col-sm4 dc-col-md3 dc-col-lg2{/if}">
-			<a class="mo-part-btns mo-font-14 dc-center mo-bord-muted mo-bord-round dc-show dc-clamp dc-line-40 mo-back-click{if$key==$param.nid&&$par.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" {if$maccms.aid==14} target="{$obj['vod_play_list'][$param['sid']]['player_info']['target']}" {/if} href="{:mac_url_vod_play($obj,['sid'=>$par['sid'],'nid'=>$sub.nid])}">{:str_replace(array('第','集','期','话'),'',$sub.name)} </a>
-		</li>
+	</div>
+	{/if}
+	<div class="mo-list-boxs">
+		{maccms:foreach name="$list" id="vo"}
+		<ul class="mo-list-item dc-row{if!mao_vod_this($maccms, $param, $vo, $key)} dc-none{/if}">
+			{maccms:foreach name="$vo.list" id="sub"}
+			<li class="dc-pa-5{:mao_vod_class($sub)}">
+				<a class="dc-bold dc-font-14 dc-center mo-edge-color dc-wane dc-show dc-clamp dc-line-40 mo-back-click{if$sub.nid==$param.nid} mo-back-mojia{/if}" {if$maccms.aid==14} target="{$obj['vod_play_list'][$param['sid']]['player_info']['target']}" {/if} href="{:mac_url_vod_play($obj,['sid'=>$par['sid'],'nid'=>$sub.nid])}">{:str_replace(array('第','集','期','话','回','篇',' '),'',$sub.name)} </a>
+			</li>
+			{/maccms:foreach}
+		</ul>
 		{/maccms:foreach}
-	</ul>
-	{/maccms:foreach}
+	</div>
 </div>

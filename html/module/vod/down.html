@@ -38,8 +38,8 @@
 			</div>
 			<div class="mo-cols-info mo-cols-xs7">
 				<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptxs-0px mo-ptss-10px mo-ptmd-5px mo-coxs-center">欢迎关注微信公众号</li>
-				<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptss-10px"><input class="mo-chat-input mo-form-info mo-bord-round mo-bord-muted mo-back-muted" data-user="{$user.user_id}" type="text" placeholder="请输入口令" maxlength="60" /></li>
-				<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptss-10px"><a class="mo-chat-submit mo-form-info mo-bord-round mo-bord-muted mo-back-mojia mo-coxs-center" href="javascript:;">确认</a></li>
+				<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptss-10px"><input class="mo-chat-input mo-form-info dc-wane mo-edge-color mo-back-muted" data-user="{$user.user_id}" type="text" placeholder="请输入口令" maxlength="60" /></li>
+				<li class="mo-cols-rows mo-paxs-5px mo-pasm-10px mo-ptss-10px"><a class="mo-chat-submit mo-form-info dc-wane mo-edge-color mo-back-mojia mo-coxs-center" href="javascript:;">确认</a></li>
 			</div>
 		</div>
 	</div>
@@ -48,11 +48,11 @@
 		{maccms:foreach name="obj['vod_down_list'][$par['sid']]['urls']" id="sub"}
 		<li class="mo-cols-rows mo-cols-info mo-cols-xs12">
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
-				<input class="mo-down-copy mo-down-copy{$key} mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}" />
+				<input class="mo-down-copy mo-down-copy{$key} mo-form-info dc-wane mo-edge-color mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}" />
 			</div>
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs5 mo-cols-sm4 mo-cols-lg2">
 				{assign name="download" value=":str_replace(array('thunder','magnet','ed2k','pan.baidu.com','share.weiyun.com'),'',$sub.url,$count)"}
-				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click{if$key==$param.nid&&$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" href="{if$count||preg_match('/iPhone|iPad|iPod|iOS/i',$_SERVER['HTTP_USER_AGENT'])}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$sub.url.'ZZ')}{/if}" target="_blank">{$sub.name}</a>
+				<a class="mo-part-btns mo-edge-color mo-form-info dc-wane mo-cols-show mo-back-click{if$key==$param.nid&&$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" href="{if$count||preg_match('/iPhone|iPad|iPod|iOS/i',$_SERVER['HTTP_USER_AGENT'])}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$sub.url}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$sub.url.'ZZ')}{/if}" target="_blank">{$sub.name}</a>
 			</div>
 		</li>
 		{/maccms:foreach}
@@ -62,21 +62,21 @@
 		<li class="mo-cols-rows">
 			{if$popedom.code==1||$popedom.code==''}
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs7 mo-cols-sm8 mo-cols-lg10">
-				<input class="mo-down-copy mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}" />
+				<input class="mo-down-copy mo-form-info dc-wane mo-edge-color mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}" />
 			</div>
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs5 mo-cols-sm4 mo-cols-lg2">
 				{assign name="download" value=":str_replace(array('thunder','magnet','ed2k','pan.baidu.com','share.weiyun.com'),'',$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'],$count)"}
-				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click" href="{if$count||preg_match('/iPhone|iPad|iPod|iOS/i',$_SERVER['HTTP_USER_AGENT'])}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'].'ZZ')}{/if}" target="_blank">{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}</a>
+				<a class="mo-part-btns mo-edge-color mo-form-info dc-wane mo-cols-show mo-back-click" href="{if$count||preg_match('/iPhone|iPad|iPod|iOS/i',$_SERVER['HTTP_USER_AGENT'])}{$mojia['other']['demo']['state']?$mojia['other']['demo']['link']:$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url']}{else}thunder://{$mojia['other']['demo']['state']?base64_encode('AA'.$mojia['other']['demo']['link'].'ZZ'):base64_encode('AA'.$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['url'].'ZZ')}{/if}" target="_blank">{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}</a>
 			</div>
 			{else}
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs12 mo-cols-sm6 mo-cols-lg8">
-				<input class="mo-form-info mo-bord-round mo-bord-muted mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$popedom.msg}" />
+				<input class="mo-form-info dc-wane mo-edge-color mo-back-muted mo-cols-info mo-cols-xs12 mo-pnxs-10px mo-coxs-left" type="text" value="{$popedom.msg}" />
 			</div>
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs6 mo-cols-sm3 mo-cols-lg2">
-				<a class="mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-click" href="{:mac_url('user/buy')}" target="_blank">马上充值</a>
+				<a class="mo-part-btns mo-edge-color mo-form-info dc-wane mo-cols-show mo-back-click" href="{:mac_url('user/buy')}" target="_blank">马上充值</a>
 			</div>
 			<div class="mo-paxs-5px mo-cols-info mo-cols-xs6 mo-cols-sm3 mo-cols-lg2">
-				<a class="mo-java-power mo-part-btns mo-bord-muted mo-form-info mo-bord-round mo-cols-show mo-back-mojia" href="javascript:;" data-name="{if$obj.player_info.flag=='play'}播放{else}下载{/if}" data-type="{if$obj.player_info.flag=='play'}4{else}5{/if}">确认购买</a>
+				<a class="mo-java-power mo-part-btns mo-edge-color mo-form-info dc-wane mo-cols-show mo-back-mojia" href="javascript:;" data-name="{if$obj.player_info.flag=='play'}播放{else}下载{/if}" data-type="{if$obj.player_info.flag=='play'}4{else}5{/if}">确认购买</a>
 			</div>
 			{/if}
 		</li>
@@ -85,7 +85,7 @@
 	<ul class="mo-down-item mo-sort-boxs mo-cols-rows mo-pamd-5px{if$maccms.aid==16}{if$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-cols-show{else} mo-cols-hide{/if}{elseif$key==$param['sid']} mo-cols-show{else} mo-cols-hide{/if}">
 		{maccms:foreach name="obj['vod_down_list'][$par['sid']]['urls']" id="sub"}
 		<li class="mo-paxs-5px{if is_numeric($sub.name)||strpos($sub.name,'第')!==false&&strpos($sub.name,'集')!==false} mo-cols-info mo-cols-xs2 mo-cols-lg1{else} mo-cols-info mo-cols-xs6 mo-cols-sm4 mo-cols-md3 mo-cols-lg2{/if}">
-			<a class="mo-part-btns mo-fsxs-14px mo-bord-muted mo-bord-round mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid&&$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$par['sid'],'nid'=>$sub.nid])}"{if$maccms.aid==14} target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}"{/if}>{:str_replace(array('第','集'),'',$sub.name)}</a>
+			<a class="mo-part-btns mo-fsxs-14px mo-edge-color dc-wane mo-cols-show mo-wrap-arow mo-lhxs-40px mo-back-click mo-back-write{if$key==$param.nid&&$par.player_info.from==$obj['vod_down_list'][$param['sid']]['player_info']['from']} mo-back-mojia{/if}" href="{:mac_url_vod_down($obj,['sid'=>$par['sid'],'nid'=>$sub.nid])}"{if$maccms.aid==14} target="{$obj['vod_down_list'][$param['sid']]['player_info']['target']}"{/if}>{:str_replace(array('第','集'),'',$sub.name)}</a>
 		</li>
 		{/maccms:foreach}
 	</ul>

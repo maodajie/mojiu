@@ -1,20 +1,26 @@
-{include file="public/header,user/banner"} 
-<div class="mo-cols-lays mo-back-white mo-part-round">
-	{include file="basics/titles" module="user" title=":mac_default('绑定'.($ac=='phone'?'手机':'邮箱'))" btns="返回" href=":mac_url('user/index')"}
-	<form class="layui-form mo-user-form mo-cols-rows mo-pnxs-5px mo-pnmd-10px mo-lhxs-40px" autocomplete="off" onkeydown="if(event.keyCode==13){return false}">
-		<div class="mo-pzxs-5px"><span class="mo-part-dott mo-bord-muted mo-cols-show"></span></div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">{if$ac=='phone'}手机{else}邮箱{/if}</span>
-			<input class="mo-form-text mo-text-input mo-bord-muted mo-cols-info mo-cols-xs12" type="text" name="to" placeholder="请输入{if$ac=='phone'}手机号码{else}邮箱地址{/if}" maxlength="20" />
-			<input type="hidden" name="ac" value="{$ac}">
+{extend name="index/index"}
+{block name="include"}
+{assign name="maccms['aid']" value="60"}
+{/block}
+{block name="left"}
+{include file="module/user/left"}
+{/block}
+{block name="center"}
+<div class="dc-layout dc-wane mo-back-white">
+	<h2 class="dc-font-20 dc-center dc-pz-20">{$ac=='phone'?'手机':'邮箱'}绑定</h2>
+	<form class="mo-user-wrap dc-row" autocomplete="off">
+		<input type="hidden" name="ac" value="{$ac}">
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="email" name="to" placeholder="请输入{if$ac=='phone'}手机号码{else}邮箱地址{/if}" maxlength="20" />
 		</div>
-		<div class="mo-cols-rows mo-mtxs-5px">
-			<span class="mo-form-name">验证</span>
-			<input class="mo-form-text mo-text-input mo-bord-muted mo-form-righ mo-cols-info mo-cols-xs12" type="tel" name="code" placeholder="请输入邮箱验证码" maxlength="8" />
-			<a class="mo-part-more mo-prxs-10px mo-pnxs-10px mo-lhxs-44px mo-back-white" href="javascript:;" data-url="{:mac_url('user/bindmsg')}" lay-submit lay-filter="bindmsg">获取验证码</a>
+		<div class="dc-row dc-pa-5">
+			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="code" placeholder="请输入证码" maxlength="20" />
+			<a data-url="{:mac_url('user/bindmsg')}" class="mo-user-load dc-row dc-wane dc-rtgo dc-ma-10 dc-pn-10 dc-line-34 mo-text-muted" href="javascript:;">获取验证码</a>
 		</div>
-		<span class="mo-user-tips mo-lhxs-20px mo-paxs-5px mo-text-gules mo-cols-show">&emsp;</span>
-		<a class="mo-user-btns mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-show mo-mbxs-10px" href="javascript:;" data-url="{:mac_url('user/bind')}" data-jump="{:mac_url('user/info')}" lay-submit lay-filter="center">确认绑定</a>
+		<span class="dc-pn-5 dc-line-18 dc-font-12">&emsp;</span>
+		<div class="dc-row dc-pa-5">
+			<a data-jump="{:mac_url('user/info')}" class="mo-user-click mo-back-mojia dc-wane dc-edge dc-line-24 dc-col-12 dc-pa-10 dc-center" href="javascript:;">立即绑定</a>
+		</div>
 	</form>
 </div>
-{include file="public/footer"}
+{/block}

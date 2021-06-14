@@ -1,0 +1,11 @@
+<li class="dc-pa-5 dc-col-6 dc-col-sm4 dc-col-lg4">
+	<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-16by9" href="{:mac_url_art_detail($vo)}">
+		<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.art_pic)}" data-src="{:mao_img_src($vo.art_pic)}" alt="{$vo.art_name|strip_tags}" />
+		<div class="mo-lazy-wind mo-back-clear mo-text-white dc-pa-5 dc-pt-10 dc-init dc-col-12">{$vo.art_remarks|strip_tags}</div>
+		<span class="mo-lazy-play dc-full"></span>
+		{:mao_view_tips($vo)}
+	</a>
+	<div class="dc-pt-5 dc-pt-md10" style="height:40px">
+		<a {:mao_view_color($vo.art_color)}class="dc-omit-2 dc-font-14" href="{:mac_url_art_detail($vo)}">{$vo.art_name|strip_tags}</a>
+	</div>
+</li>

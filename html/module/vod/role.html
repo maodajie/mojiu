@@ -1,0 +1,32 @@
+{assign name="role" value=":model('role')->listCacheData(['rid'=>$obj['vod_id']])"}
+{if$role['list']}
+<div class="dc-layout dc-wane mo-back-white">
+	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
+		<h2 class="dc-bold dc-font-14">相关角色</h2>
+		<ul class="dc-rtgo dc-pa-5">
+			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show mo-play-open" href="javascript:;">展开<i class="mo-icon-font mo-icon-xiangxia dc-font-12 dc-bold"></i></a></li>
+		</ul>
+	</div>
+	<ul class="mo-list-wrap dc-row dc-font-0 dc-slip">
+		{maccms:foreach name="$role['list']"}
+		<li class="dc-pa-5 dc-col-3 dc-col-xs2x dc-col-sm2 dc-iblock dc-init mo-list-page{if$key==0} mo-text-mojia{/if}">
+			<a class="mo-lazy-wrap dc-wane-100 dc-1by1 dc-row mo-back-muted" href="javascript:;">
+				<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($vo.actor_pic)}" data-src="{:mao_img_src($vo.role_pic)}" alt="{:mao_view_title($vo.actor_name)}" />
+				<span class="mo-lazy-play dc-full"></span>
+			</a>
+			<div class="dc-pt-5 dc-pt-md10">
+				<a {:mao_view_color($vo.actor_color)}class="dc-clamp dc-font-14 dc-center" href="javascript:;">{$vo.role_name}</a>
+				<a class="dc-clamp dc-font-12 dc-line-18 dc-pt-2 mo-text-muted dc-center" href="{:mac_url('vod/search',['actor'=>trim($vo.role_actor)])}">{$vo.role_actor|mac_default='演员未知'}&nbsp;饰</a>
+			</div>
+		</li>
+		{/maccms:foreach}
+	</ul>
+	<ul class="mo-list-wrap dc-row mo-word-wrap dc-omit-2">
+		{maccms:foreach name="$role['list']"}
+		<li class="mo-list-item dc-line-24 dc-font-14 dc-pn-5{if$key>0} dc-none{/if}">
+			{$vo.role_content}
+		</li>
+		{/maccms:foreach}
+	</ul>
+</div>
+{/if}

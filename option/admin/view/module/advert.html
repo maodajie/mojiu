@@ -23,7 +23,7 @@
 				<td><input type="text" name="mojia[ads][{$ads}][name]" value="{$advert.name}" class="layui-input" placeholder="全站顶部"></td>
 				<td>
 					<input type="hidden" name="mojia[ads][{$ads}][group]" value="{$advert.group}" />
-					<select multiple="multiple" lay-filter="">
+					<select multiple="advert" lay-filter="">
 						<option value="">请选择</option>
 						{maccms:foreach name=":model('Group')->getCache('group_list')"}
 						<option value="{$vo.group_id}"{if in_array($vo['group_id'], explode(',',$advert['group']))} selected{/if}>{$vo.group_name}</option>

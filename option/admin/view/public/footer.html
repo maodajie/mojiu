@@ -1,2 +1,20 @@
+<script type="text/javascript">
+	var magic = {
+		'admin': '{$mojia.config.admin}',
+		'path': '{$mojia.config.path}',
+		'base': '{$mojia.config.base}',
+		'tpl': '{$mojia.config.tpl}',
+		'cdn': '{$mojia.config.cdn}',
+		'ver': '{$mojia.config.ver}',
+		'mac': '{$mojia.config.path}{$mojia.base.edit.entry}',
+		'inc': '{$GLOBALS["package"][$GLOBALS["package"]["mode"]]["income"]}',
+		'name': '{$mojia.config.name}'
+	};
+</script>
+{if$mojia.config.mode=='exploit'}
+<script src="{$mojia.config.tpl}{$mojia.config.node}/sortablejs/sortable.min.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+{/if}
+<script src="{$mojia.config.tpl}{$mojia.config.base}/layui/layui.all.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
+<script src="{$mojia.config.tpl}{$mojia.config.base}/script/admin.js?v={$mojia.config.ver}" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+<div class="dc-layout dc-wane mo-back-white dc-pl-15 dc-pr-15">
+	<ul class="mo-menu-wrap mo-scroll-wrap dc-slip dc-font-0">
+		<li class="mo-menu-item dc-row dc-pa-lg5 dc-ml-15 dc-ml-md20 dc-ml-lg0 dc-iblock dc-lg-block dc-line-30 dc-font-18">
+			<a class="dc-wane dc-show dc-mn-lg5 mo-text-hover" href="{:mac_url('user/index')}">个人中心<span class="dc-rtgo dc-line-md30 dc-pa-5 dc-font-14 dc-none dc-lg-iblock mo-text-muted"><i class="mo-icon-font mo-icon-xiangyou dc-font-14"></i></span></a>
+		</li>
+		{assign name="maouser" value=":include($GLOBALS['package']['dir'].'/extra/common.php')"}
+		{maccms:foreach name="$maouser['maouser']" id="sub"}
+		<li class="mo-menu-item dc-row dc-pa-lg5 dc-ml-15 dc-ml-md20 dc-ml-lg0 dc-iblock dc-lg-block dc-line-30 dc-font-18">
+			<a class="dc-wane dc-show dc-mn-lg5 mo-text-hover{if$key==$maccms.aid} mo-scroll-this mo-text-mojia{/if}" href="{:mac_url('user/'.$sub.code)}">{$sub.name}<span class="dc-rtgo dc-line-md30 dc-pa-5 dc-font-14 dc-none dc-lg-iblock mo-text-muted"><i class="mo-icon-font mo-icon-xiangyou dc-font-14"></i></span></a>
+		</li>
+		{/maccms:foreach}
+	</ul>
+</div>
