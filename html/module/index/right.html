@@ -14,8 +14,8 @@
 		</ul>
 	</div>
 	<ul class="mo-rank-wrap dc-row" data-time="{$GLOBALS['package']['rank']['time']}">
-		{maccms:foreach name=":array_slice($GLOBALS['package']['rank']['keyword'], 0, 10)" id="sub"}
-		<li class="mo-rank-item dc-row dc-pa-5 dc-pl-20 dc-line-30 dc-font-12"><b class="mo-rank-sort dc-ltgo dc-center dc-font-16 dc-line-40{$key<3?' mo-text-mojia dc-bold':''}">{$key+1}</b><a class="dc-col-7 dc-clamp" href="{:mac_url('vod/search')}?wd={$sub}">{$sub}</a><span class="dc-col-5 dc-right mo-text-muted"><i class="mo-icon-font mo-icon-remen-fill dc-font-12 dc-pr-2" style="color:#f42c5d"></i>{$GLOBALS['package']['rank']['searches'][$key]}<i class="dc-font-12 dc-bold dc-pl-2 mo-icon-font mo-icon-rank-{$GLOBALS['package']['rank']['trend'][$key]}" style="color:{$GLOBALS['package']['rank']['trend'][$key]=='fall'?'#79CE11':($GLOBALS['package']['rank']['trend'][$key]=='rise'?'#F75349':'#A6A6A6')}"></i></span></li>
+		{maccms:foreach name=":array_slice(mao_view_rank($GLOBALS['package']['rank']['data']), 0, 10)" id="sub"}
+		<li class="mo-rank-item dc-row dc-pa-5 dc-pl-20 dc-line-30 dc-font-12"><b class="mo-rank-sort dc-ltgo dc-center dc-font-16 dc-line-40{$key<3?' mo-text-mojia dc-bold':''}">{$key+1}</b><a class="dc-col-7 dc-clamp" href="{:mac_url('vod/search')}?wd={$sub.word}">{$sub.word}</a><span class="dc-col-5 dc-right mo-text-muted"><i class="mo-icon-font mo-icon-remen-fill dc-font-12 dc-pr-2" style="color:#f42c5d"></i>{$sub.hotScore}<i class="dc-font-12 dc-bold dc-pl-2 mo-icon-font mo-icon-rank-{$sub.hotChange}" style="color:{$sub.hotChange=='down'?'#79CE11':($sub.hotChange=='up'?'#F75349':'#A6A6A6')}"></i></span></li>
 		{/maccms:foreach}
 	</ul>
 </div>

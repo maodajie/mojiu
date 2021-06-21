@@ -1,18 +1,33 @@
 {extend name="index/index"}
 {block name="center"}
 {maccms:foreach name="$GLOBALS['package']['rank']['data']"}
+{if in_array($vo.typeName, ['movie', 'teleplay', 'cartoon', 'variety'])}
 <div class="dc-layout dc-wane mo-back-white">
 	<div class="mo-name-wrap dc-row dc-line-20 dc-pa-5 dc-font-0">
-		<h2 class="dc-bold dc-font-14">热搜{$vo.name}</h2>
-		<ul class="dc-rtgo dc-pa-5">
-			<li class="mo-text-muted dc-font-12 dc-pl-10 dc-iblock"><a class="dc-show" href="/index.php/label/rank.html">更多<i class="mo-icon-font mo-icon-xiangyou dc-font-12 dc-bold"></i></a></li>
-		</ul>
+		<h2 class="dc-bold dc-font-14">热搜{$vo.text}</h2>
 	</div>
 	<ul class="mo-rank-wrap dc-row">
-		{maccms:foreach name="$vo.list" id="sub"}
-		<li class="mo-rank-item dc-row dc-pa-5 dc-pl-20 dc-line-30 dc-font-12"><b class="mo-rank-sort dc-ltgo dc-center dc-font-16 dc-line-40{$key<3?' mo-text-mojia dc-bold':''}">{$key+1}</b><a class="dc-col-7 dc-clamp" href="/index.php/vod/search.html?wd={$sub.keyword}">{$sub.keyword}</a><span class="dc-col-5 dc-right mo-text-muted"><i class="mo-icon-font mo-icon-remen-fill dc-font-12 dc-pr-2" style="color:#f42c5d"></i>{$sub.searches}<i class="dc-font-12 dc-bold dc-pl-2 mo-icon-font mo-icon-rank-{$sub.trend}" style="color:{$sub.trend=='fall'?'#79CE11':($sub.trend=='rise'?'#F75349':'#A6A6A6')}"></i></span></li>
+		{maccms:foreach name="$vo.content" id="sub"}
+		<div class="mo-info-wrap dc-row">
+			<div class="mo-info-pic dc-pa-5 dc-row">
+				<a class="mo-lazy-wrap dc-wane dc-row mo-back-after dc-1by2" href="{:mac_url('vod/search')}?wd={$sub.word}">
+					<img class="mo-lazy-load js-lazyload" src="{:mao_img_lazy($sub.img)}" data-src="{:mao_img_src($sub.img)}" alt="{$sub.word}" />
+					<span class="mo-lazy-play dc-full"></span>
+					{:mao_view_tips($sub)}
+				</a>
+			</div>
+			<dl class="mo-info-item dc-ltgo dc-pa-10 dc-pa-md15">
+				<dt class="dc-font-16 dc-line-24 dc-clamp"><a class="dc-bold" href="{:mac_url('vod/search')}?wd={$sub.word}">{$sub.word}</a></dt>
+				<dd class="dc-font-14 dc-line-24 dc-clamp"><span class="mo-text-muted">{$sub.show[0]}</span></dd>
+				<dd class="dc-rtgo dc-pa-10 dc-pa-md15">
+					<div class="dc-right mo-text-muted dc-pz-15"><i class="mo-icon-font mo-icon-remen-fill dc-font-12 dc-pr-2" style="color:#f42c5d"></i>{$sub.hotScore}<i class="dc-font-12 dc-bold dc-pl-2 mo-icon-font mo-icon-rank-{$sub.hotChange}" style="color:{$sub.hotChange=='down'?'#79CE11':($sub.hotChange=='up'?'#F75349':'#A6A6A6')}"></i></div>
+				</dd>
+			</dl>
+		</div>
+		<!-- <li class="mo-rank-item dc-row dc-pa-5 dc-pl-20 dc-line-30 dc-font-12"><b class="mo-rank-sort dc-ltgo dc-center dc-font-16 dc-line-40{$key<3?' mo-text-mojia dc-bold':''}">{$key+1}</b><a class="dc-col-7 dc-clamp" href="/index.php/vod/search.html?wd={$sub.keyword}">{$sub.keyword}</a></li> -->
 		{/maccms:foreach}
 	</ul>
 </div>
+{/if}
 {/maccms:foreach}
 {/block}
