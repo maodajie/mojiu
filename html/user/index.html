@@ -89,14 +89,15 @@
 	<div class="mo-info-wrap dc-row">
 		<div class="mo-info-pic dc-pa-5 dc-row">
 			<div class="mo-lazy-wrap dc-wane dc-row mo-back-muted dc-1by1">
-				<div class="mo-user-code mo-user-code1 dc-rtgo" style="height: 100%;" data-url="{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/visit',['uid'=>$obj.user_id])}" data-api="{$mojia.fix.share.api?1:0}">
+				<div class="mo-user-code mo-user-code1 dc-rtgo dc-load dc-col-12 dc-height" data-url="{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/visit',['uid'=>$obj.user_id])}" data-api="{$mojia.sole.share.api?1:0}">
 					<img class="mo-user-icon1 dc-hide" src="https://cdn.jsdelivr.net/gh/maodajie/mojiu@main/static/image/favicon.png" crossorigin="anonymous" />
 				</div>
 			</div>
 		</div>
 		<dl class="mo-info-item dc-ltgo dc-pa-10 dc-pa-md15">
 			<dt class="dc-font-16 dc-line-24 dc-clamp"><a class="dc-bold" href="">推广访问</a></dt>
-			<dd class="dc-font-14 dc-line-24"><span class="mo-user-link mo-text-muted" href="{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/visit',['uid'=>$obj.user_id])}">{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/visit',['uid'=>$obj.user_id])}</dd>
+			<dd class="dc-font-14 dc-line-24 mo-text-muted">成功邀请1位用户访问</dd>
+			<dd class="dc-font-14 dc-line-24 mo-text-muted">获取{$GLOBALS['config']['user']['invite_visit_points']}积分</dd>
 		</dl>
 		<div class="mo-info-item dc-lbgo mo-info-btn dc-pa-10 dc-pa-md15 dc-font-0 dc-line-24 dc-clamp">
 			<a class="mo-user-copy1 dc-font-14 dc-line-30 dc-pn-10 dc-iblock dc-mr-10 mo-part-btns dc-wane mo-back-muted" href="javascript:;"><i class="mo-icon-font mo-icon-fuzhi dc-pr-2 dc-font-14"></i>复制链接</a>
@@ -107,14 +108,15 @@
 	<div class="mo-info-wrap dc-row">
 		<div class="mo-info-pic dc-pa-5 dc-row">
 			<div class="mo-lazy-wrap dc-wane dc-row mo-back-muted dc-1by1">
-				<div class="mo-user-code mo-user-code2 dc-rtgo" style="height: 100%;" data-url="{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/reg',['uid'=>$obj.user_id])}" data-api="{$mojia.fix.share.api?1:0}">
+				<div class="mo-user-code mo-user-code2 dc-rtgo dc-load dc-col-12 dc-height" style="height: 100%;" data-url="{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/reg',['uid'=>$obj.user_id])}" data-api="{$mojia.sole.share.api?1:0}">
 					<img class="mo-user-icon2 dc-hide" src="{:mao_img_src(mao_view_user($obj,'user_avatar',1),$mojia.sole.share)}" crossorigin="anonymous" />
 				</div>
 			</div>
 		</div>
 		<dl class="mo-info-item dc-ltgo dc-pa-10 dc-pa-md15">
 			<dt class="dc-font-16 dc-line-24 dc-clamp"><a class="dc-bold" href="">推广注册</a></dt>
-			<dd class="dc-font-14 dc-line-24"><span class="mo-user-link mo-text-muted" href="{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/reg',['uid'=>$obj.user_id])}">{$maccms.http_type}{$_SERVER['HTTP_HOST']}{:mac_url('user/reg',['uid'=>$obj.user_id])}</dd>
+			<dd class="dc-font-14 dc-line-24 mo-text-muted">成功邀请1位用户注册</dd>
+			<dd class="dc-font-14 dc-line-24 mo-text-muted">获取{$GLOBALS['config']['user']['invite_reg_points']}积分</dd>
 		</dl>
 		<div class="mo-info-item dc-lbgo mo-info-btn dc-pa-10 dc-pa-md15 dc-font-0 dc-line-24 dc-clamp">
 			<a class="mo-user-copy2 dc-font-14 dc-line-30 dc-pn-10 dc-iblock dc-mr-10 mo-part-btns dc-wane mo-back-muted" href="javascript:;"><i class="mo-icon-font mo-icon-fuzhi dc-pr-2 dc-font-14"></i>复制链接</a>
