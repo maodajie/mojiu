@@ -64,21 +64,21 @@
     {
       "icon_id": "15838455",
       "name": "direction-down",
-      "font_class": "rank-fall",
+      "font_class": "rank-down",
       "unicode": "e66b",
       "unicode_decimal": 58987
     },
     {
       "icon_id": "15838461",
       "name": "direction-up",
-      "font_class": "rank-rise",
+      "font_class": "rank-up",
       "unicode": "e66d",
       "unicode_decimal": 58989
     },
     {
       "icon_id": "15838514",
       "name": "minus",
-      "font_class": "rank-fair",
+      "font_class": "rank-same",
       "unicode": "e67a",
       "unicode_decimal": 59002
     },

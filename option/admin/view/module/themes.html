@@ -58,7 +58,7 @@
 			</tr>
 			<tr>
 				<td>到期时间</td>
-				<td><a href="{:mac_url('index/verify')}" target="_blank"><span class="layui-badge">{if!is_numeric($mojia.config.token)}永久授权{else}{:date('Y-m-d',strtotime($mojia.config.token))}{/if}</span></a></td>
+				<td><a href="{:mac_url('index/verify')}" target="_blank"><span class="layui-badge">{if!is_numeric($mojia.config.token)}永久授权{else}{:date('Y-m-d',strtotime($mojia.config.token))}到期{/if}</span></a></td>
 				<td>KEY: {$mojia.config.key}</td>
 			</tr>
 			<tr>

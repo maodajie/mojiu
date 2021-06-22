@@ -1,7 +1,7 @@
 {
   "title": "魔九",
   "name": "mojiu",
-  "version": "2021.0614.2015",
+  "version": "2021.0622.1456",
   "description": "苹果CMS v10 多功能响应式模板",
   "keywords": [
     "魔九",
@@ -38,7 +38,7 @@
   },
   "static": {
     "income": "{/}https://cdn.jsdelivr.net/gh/maodajie/daima@main/",
-    "down": "http://192.168.31.152/template/mojiu-down/",
+    "down": "https://cdn.jsdelivr.net/gh/maodajie/mojiu@down/",
     "main": "https://cdn.jsdelivr.net/gh/maodajie/mojiu@main/"
   },
   "main": "static/script/layui.js",
