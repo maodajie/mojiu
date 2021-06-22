@@ -3,6 +3,7 @@
 <div class="dc-layout dc-wane mo-back-white">
 	<h2 class="dc-font-20 dc-center dc-pz-20">{$param.ac_text}找回密码</h2>
 	<form class="mo-user-wrap dc-row" autocomplete="off">
+		<input type="hidden" name="ac" value="{$param.ac}">
 		<div class="dc-row dc-pa-5">
 			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="text" name="to" placeholder="请输入您绑定的{$param['ac_text']}" maxlength="20" />
 		</div>

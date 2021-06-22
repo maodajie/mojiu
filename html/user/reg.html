@@ -14,6 +14,7 @@
 		</div>
 		{if$GLOBALS['config']['user']['reg_phone_sms']}
 		<div class="dc-row dc-pa-5">
+			<input type="hidden" name="ac" value="phone">
 			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="tel" name="to" placeholder="请输入手机号码" maxlength="20" />
 		</div>
 		<div class="dc-row dc-pa-5">
@@ -22,6 +23,7 @@
 		</div>
 		{elseif$GLOBALS['config']['user']['reg_email_sms']}
 		<div class="dc-row dc-pa-5">
+			<input type="hidden" name="ac" value="email">
 			<input class="mo-back-muted dc-wane dc-edge dc-line-44 dc-col-12 dc-pn-15" type="email" name="to" placeholder="请输入邮箱号码" maxlength="20" />
 		</div>
 		<div class="dc-row dc-pa-5">
