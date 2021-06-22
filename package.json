@@ -38,7 +38,7 @@
   },
   "static": {
     "income": "{/}https://cdn.jsdelivr.net/gh/maodajie/daima@main/",
-    "down": "https://cdn.jsdelivr.net/gh/maodajie/mojiu@down/",
+    "down": "http://192.168.31.152/template/mojiu-down/",
     "main": "https://cdn.jsdelivr.net/gh/maodajie/mojiu@main/"
   },
   "main": "static/script/layui.js",

@@ -1,4 +1,10 @@
 <?php
+/*!
+ * @author:大橙子
+ * @website:https://maodajie.com
+ * @telegram:https://t.me/mubanqun
+ * @qqcode:1570457334
+ */
 
 if (!function_exists('mac_get_mid_code')) {
     exit('请升级最新版苹果CMS后使用 下载地址 https://cdn.jsdelivr.net/gh/magicblack/maccms_down/');
