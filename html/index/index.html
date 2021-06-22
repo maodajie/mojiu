@@ -23,7 +23,7 @@
 <body class="mo-body-wrap dc-min-width mo-back-muted">
 {include file="public/header"}
 <div class="mo-main-wrap dc-body dc-row">
-	<div class="mo-main-left dc-min-height dc-col-12 dc-col-lg3">
+	<div class="mo-main-item dc-min-height dc-col-12 dc-col-lg3">
 		<div class="mo-main-inner">
 			<div class="dc-row dc-pr-lg20">
 				{block name="left"}
@@ -32,17 +32,19 @@
 			</div>
 		</div>
 	</div>
-	<div class="mo-main-center dc-col-12 dc-col-lg6">
-		<div class="mo-main-head js-hide dc-hide">
-			{include file="module/index/eject"}
-		</div>
-		<div class="mo-main-foot js-show">
-			{block name="center"}
-			{include file="module/index/center"}
-			{/block}
+	<div class="mo-main-item dc-col-12 dc-col-lg6">
+		<div class="mo-main-inner">
+			<div class="dc-row mo-main-head js-hide dc-hide">
+				{include file="module/index/eject"}
+			</div>
+			<div class="dc-row mo-main-foot js-show">
+				{block name="center"}
+				{include file="module/index/center"}
+				{/block}
+			</div>
 		</div>
 	</div>
-	<div class="mo-main-right dc-min-height dc-none dc-col-lg3 dc-lg-block">
+	<div class="mo-main-item dc-min-height dc-none dc-col-lg3 dc-lg-block">
 		<div class="mo-main-inner">
 			<div class="dc-row dc-pl-lg20">
 				{block name="right"}
