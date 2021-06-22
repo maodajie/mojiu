@@ -16,7 +16,7 @@
 <div class="mo-goto-wrap js-fadein">
 	<ul class="js-union" data-union="{:in_array($maccms['mid'],explode(',',$mojia['base']['union']['type']))}" data-url="{$mojia['base']['union']['link']}">
 		{if$obj[mac_get_mid_code($maccms.mid).'_id']&&$mojia['base']['edit']['state']&&mao_check_login()}
-		<li class="dc-center"><a class="mo-goto-item mo-back-white dc-wane dc-show dc-bulge dc-font-20 dc-font-md24 mo-icon-font mo-icon-bianji js-event" href="{$mojia.config.path}{$mojia.base.edit.entry}/admin/{:mac_get_mid_code($maccms.mid)}/info/id/{$obj[mac_get_mid_code($maccms.mid).'_id']}.{$GLOBALS['config']['app']['suffix']}" target="_blank"></a></li>
+		<li class="dc-center"><a class="mo-goto-item mo-back-white dc-wane dc-show dc-bulge dc-font-20 dc-font-md24 mo-icon-font mo-icon-bianji js-event" href="{$mojia.base.edit.entry}/admin/{:mac_get_mid_code($maccms.mid)}/info/id/{$obj[mac_get_mid_code($maccms.mid).'_id']}.{$GLOBALS['config']['app']['suffix']}" target="_blank"></a></li>
 		{/if}{maccms:foreach name=":mao_view_fix('foot')" id="fix"}
 		<li class="dc-center"><a class="mo-goto-item mo-back-white dc-wane dc-show dc-bulge dc-font-20 dc-font-md24 mo-icon-font {$fix.icon} js-event js-fixbar" href="{:mac_default($fix.href,'javascript:;')}" data-type="{$key}" target="{:strpos($fix.href,'javascript:')===false?'_blank':'_self'}"></a></li>
 		{/maccms:foreach}
